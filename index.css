@@ -10,13 +10,36 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 170; /* 볼드체로 설정 */
 }
+
 
 a {
     color: var(--accent-color);
     text-decoration: none;
 }
+
+.typing-container {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 2.8rem;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 5px solid var(--accent-color);
+    width: 0;
+    animation: typing 1.5s steps(20, end) forwards, blink 0.8s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 20ch; } /* 글자 수에 맞게 조절 */
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
 
 .hero {
     height: 60vh;
@@ -31,7 +54,7 @@ a {
 .hero h1 {
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
-    animation: fadeInUp 1s ease-in-out;
+    /*animation: fadeInUp 1s ease-in-out; */
 }
 
 .hero h1 span {
@@ -71,6 +94,7 @@ a {
         transform: translateY(0);
     }
 }
+
 
 .section {
     padding: 100px 20px;
@@ -123,6 +147,70 @@ a {
 
 
 
+.section-colored {
+    position: relative;
+    background: linear-gradient(135deg, #00c9a7, #00b7d4);
+    color: #fff;
+    padding: 100px 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    z-index: 1;
+}
+
+.section-colored .section-title {
+    color: #000000;
+}
+
+.section-colored .about-text {
+    color: #ffffff;
+}
+
+.section-colored strong {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.section-colored a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+.section-colored_1 {
+    position: relative;
+    background: linear-gradient(135deg, #00c9a7, #00b7d4);
+    color: #fff;
+    padding: 100px 20px;
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.section-colored_1 .section-title {
+    color: #000000;
+}
+
+.section-colored_1 .about-text {
+    color: #ffffff;
+}
+
+.section-colored_1 strong {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.section-colored_1 a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+
+
+
+
+
 .social-icons {
     display: flex;
     justify-content: center;
@@ -167,6 +255,14 @@ footer {
 
 footer a {
     color: var(--accent-color);
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+footer b {
+    color: var(--accent-color);
+    margin-top: 20px;
+    font-size: 0.8rem;
 }
 
 footer p {
