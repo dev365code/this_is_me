@@ -119,3 +119,57 @@ a {
         margin-left: 40px;
     }
 }
+
+
+
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.social-icons img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+.back-to-top {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.back-to-top a {
+    display: inline-block;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    transform: rotate(180deg); /* 위 방향 화살표 */
+    transition: transform 0.3s ease;
+}
+
+.back-to-top a:hover {
+    transform: rotate(180deg) scale(1.2);
+}
+
+footer {
+    padding: 40px 20px;
+    background-color: #1e1e1e;
+    color: #aaa;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--accent-color);
+}
+
+footer p {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
