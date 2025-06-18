@@ -1,0 +1,121 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #81D8D0; /* Tiffany Mint */
+    --section-spacing: 100px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.hero h1 span {
+    color: var(--accent-color);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1.4s ease-in-out;
+}
+
+.hero .cta {
+    padding: 10px 22px;
+    background-color: var(--accent-color);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    animation: fadeInUp 1.8s ease-in-out;
+    transition: background-color 0.3s ease;
+}
+
+.hero .cta:hover {
+    background-color: #00b4b2;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+}
+
+.about-text {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-text {
+        text-align: left;
+        margin-left: 40px;
+    }
+}
