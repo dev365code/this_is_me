@@ -22,40 +22,28 @@ a {
 
 .typing-container {
     font-family: 'Source Code Pro', monospace;
-    font-size: clamp(1.8rem, 5vw, 2.8rem); /* 반응형 크기 */
-    display: block;
-    min-height: 2.5em;
-    position: relative;
-}
-
-.typing-line {
-    display: block;
+    font-size: clamp(1.8rem, 5vw, 2.8rem); /* 반응형만 적용 */
+    display: inline-block;
     white-space: nowrap;
     overflow: hidden;
+    border-right: 5px solid var(--accent-color);
     width: 0;
-    opacity: 0;
-}
-
-.typing-line.active {
-    opacity: 1;
-    border-right: 3px solid var(--accent-color);
-    animation: blink 0.8s step-end infinite;
-}
-
-/* 모바일에서 더 작은 글씨 */
-@media (max-width: 768px) {
-    .typing-container {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-    }
+    animation: typing 1.5s steps(20, end) forwards, blink 0.8s step-end infinite; /* 기존 설정 */
 }
 
 @keyframes typing {
     from { width: 0; }
-    to { width: 20ch; } /* 글자 수에 맞게 조절 */
+    to { width: 20ch; } /* 기존대로 */
 }
 
 @keyframes blink {
     50% { border-color: transparent; }
+}
+
+@media (max-width: 768px) {
+    .typing-container {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+    }
 }
 
 
