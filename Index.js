@@ -1,3 +1,12 @@
+console.log('JavaScript 파일 로드됨');
+
+// 모바일에서 확인하기 위한 알림
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM 로드 완료');
+  // alert('스크립트 실행됨!'); // 임시 테스트용
+});
+
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
