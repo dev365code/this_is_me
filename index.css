@@ -22,18 +22,30 @@ a {
 
 .typing-container {
     font-family: 'Source Code Pro', monospace;
-    font-size: clamp(1.8rem, 5vw, 2.8rem); /* 반응형만 적용 */
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 5px solid var(--accent-color);
-    width: 0;
-    animation: typing 1.5s steps(20, end) forwards, blink 0.8s step-end infinite; /* 기존 설정 */
+    font-size: 2.8rem;
+    line-height: 1.2;
+    min-height: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 20ch; } /* 기존대로 */
+.typing-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    border-right: none; /*커서 숨기기*/
+    padding-right: 2px;
+    
+}
+
+.typing-line span {
+    color: var(--accent-color);
+}
+
+.blink {
+    animation: blink 0.8s step-end infinite;
 }
 
 @keyframes blink {
@@ -42,7 +54,15 @@ a {
 
 @media (max-width: 768px) {
     .typing-container {
-        font-size: clamp(1.2rem, 5vw, 1.8rem);
+        font-size: 2rem;
+        min-height: 5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .typing-container {
+        font-size: 1.6rem;
+        min-height: 4.5rem;
     }
 }
 
