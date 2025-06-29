@@ -17,7 +17,7 @@ async function typeText(element, text, speed = 100, isAccentColor = false) {
     element.textContent = '';
     
     if (isAccentColor) {
-      element.style.color = 'var(--accent-color)';
+      element.style.color = '#81D8D0';
       element.style.borderRightColor = 'var(--accent-color)';
     } else {
       element.style.color = '#ffffff';

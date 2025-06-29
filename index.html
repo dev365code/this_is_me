@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="index.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <!-- Google Fonts: Montserrat -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
@@ -15,18 +15,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="index.css">
-
 </head>
 <body>
 <section class="hero">
-<h1 class="typing-container" id="typing-container">
-  <span class="typing-line" id="line1"></span>
-  <span class="typing-line" id="line2"></span>
-</h1>
-<h2 id="subtitle">Backend Developer</h2>
-<a class="cta" href="#" id="cta-button">View Resume</a>
+  <h1 class="typing-container">Hi, I'm <span>Wooyong Lee</span></h1>
+  <h2>Backend Developer</h2>
+  <a class="cta" href="#">View Resume</a>
 </section>
 
 <section id="about" class="section section-colored" data-aos="fade-up">
@@ -48,11 +42,43 @@
     <h2 class="section-title">Projects</h2>
     <div class="project-grid">
       <div class="project-card" data-aos="zoom-in">
-        <h3>Auto Trading Bot</h3>
-        <p>Python, PyTorch 기반의 리밸런싱 시스템</p>
-        <a href="#">GitHub</a>
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="image/tigerchopchop.jpg" alt="Auto Trading Bot" />
+          </div>
+          <div class="project-content">
+            <h3>Auto Trading Bot</h3>
+            <p>Python, PyTorch 기반의 리밸런싱 시스템</p>
+            <a href="#" class="project-link">GitHub</a>
+          </div>
+        </div>
       </div>
-      <!-- Add more project cards as needed -->
+      
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="image/tigerchopchop.jpg" alt="Project 2" />
+          </div>
+          <div class="project-content">
+            <h3>Portfolio Website</h3>
+            <p>React, TypeScript 기반의 반응형 웹사이트</p>
+            <a href="#" class="project-link">GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="image/tigerchopchop.jpg" alt="Project 3" />
+          </div>
+          <div class="project-content">
+            <h3>Data Analytics</h3>
+            <p>Java, Spring Boot 기반의 데이터 분석 플랫폼</p>
+            <a href="#" class="project-link">GitHub</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -82,24 +108,23 @@
 
 <footer class="footer navbar-static-bottom">
   <div class="container">
-        <span class="back-to-top">
-            <a href="#top">
-                <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>
-            </a>
-        </span>
+    <span class="back-to-top">
+      <a href="#top">
+        <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>
+      </a>
+    </span>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/yong125/" rel="noopener noreferrer" target="_blank" aria-label="linkedin">
-        <i class="fa fa-linkedin fa-inverse">
-        </i>
-      </a><a href="https://github.com/dev365code" rel="noopener noreferrer" target="_blank" aria-label="github">
-      <i class="fa fa-github fa-inverse"></i>
-    </a>
+        <i class="fa fa-linkedin fa-inverse"></i>
+      </a>
+      <a href="https://github.com/dev365code" rel="noopener noreferrer" target="_blank" aria-label="github">
+        <i class="fa fa-github fa-inverse"></i>
+      </a>
     </div>
-    <hr><p class="footer__text">© 2025 - Coded by <b href="https://github.com/dev365code" target="_blank" rel="noopener noreferrer">Wooyong Lee</b>
-  </p>
+    <hr>
+    <p class="footer__text">© 2025 - Coded by <b href="https://github.com/dev365code" target="_blank" rel="noopener noreferrer">Wooyong Lee</b></p>
   </div>
 </footer>
-
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
@@ -109,6 +134,5 @@
     easing: 'ease-in-out',
   });
 </script>
-<script src="index.js"></script>
 </body>
 </html>
