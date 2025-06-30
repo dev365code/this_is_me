@@ -234,7 +234,7 @@ a {
 }
 
 .project-card:hover .project-content h3 {
-    color: #ffffff;
+    color: #000000;
 }
 
 .project-content p {
@@ -400,15 +400,15 @@ a {
 }
 
 footer {
-    padding: 40px 20px;
-    background-color: #1e1e1e;
+    padding: 20px 10px;
+    background-color: #757575;
     color: #aaa;
     text-align: center;
     font-size: 0.9rem;
 }
 
 footer a {
-    color: var(--accent-color);
+    color: #757575;
     margin-top: 20px;
     font-size: 2rem;
 }
@@ -420,6 +420,6 @@ footer b {
 }
 
 footer p {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 0.8rem;
 }
