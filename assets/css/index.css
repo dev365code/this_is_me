@@ -33,55 +33,55 @@ a {
 /* Colored Sections */
 .section-colored {
     position: relative;
-    background: linear-gradient(135deg, #00c9a7, #00b7d4);
-    color: #fff;
+    background: var(--accent-color);
+    color: var(--bg-color);
     padding: 100px 20px;
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     z-index: 1;
 }
 
 .section-colored .section-title {
-    color: #000000;
+    color: var(--bg-color);
 }
 
 .section-colored .about-text {
-    color: #ffffff;
+    color: var(--bg-color);
 }
 
 .section-colored strong {
-    color: #ffffff;
+    color: var(--bg-color);
     font-weight: bold;
 }
 
 .section-colored a {
-    color: #ffffff;
+    color: var(--bg-color);
     text-decoration: underline;
 }
 
 .section-colored_1 {
     position: relative;
-    background: linear-gradient(135deg, #00c9a7, #00b7d4);
-    color: #fff;
+    background: var(--accent-color);
+    color: var(--bg-color);
     padding: 100px 20px;
     clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
     z-index: 1;
 }
 
 .section-colored_1 .section-title {
-    color: #000000;
+    color: var(--bg-color);
 }
 
 .section-colored_1 .about-text {
-    color: #ffffff;
+    color: var(--bg-color);
 }
 
 .section-colored_1 strong {
-    color: #ffffff;
+    color: var(--bg-color);
     font-weight: bold;
 }
 
 .section-colored_1 a {
-    color: #ffffff;
+    color: var(--bg-color);
     text-decoration: underline;
 }
 

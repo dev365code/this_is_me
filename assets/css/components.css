@@ -22,7 +22,7 @@
 .hero .cta {
     padding: 10px 22px;
     background-color: var(--accent-color);
-    color: #000;
+    color: var(--bg-color);
     font-weight: bold;
     border: none;
     border-radius: 999px;
@@ -35,7 +35,8 @@
 }
 
 .hero .cta:hover {
-    background-color: #00b4b2;
+    background-color: var(--accent-color);
+    opacity: 0.8;
 }
 
 /* About Section */
@@ -97,7 +98,7 @@
 }
 
 .skill-tag {
-    background: rgba(129, 216, 208, 0.2);
+    background: rgba(0, 215, 208, 0.2);
     color: var(--accent-color);
     padding: 8px 16px;
     border-radius: 20px;

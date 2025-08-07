@@ -21,7 +21,7 @@
 .blog-card:hover {
     transform: translateY(-10px);
     border-color: var(--accent-color);
-    box-shadow: 0 20px 40px rgba(129, 216, 208, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 215, 208, 0.2);
 }
 
 .blog-wrapper {
@@ -57,8 +57,8 @@
 }
 
 .blog-tag {
-    background: linear-gradient(135deg, var(--accent-color), #00b7d4);
-    color: #000;
+    background: var(--accent-color);
+    color: var(--bg-color);
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.75rem;
@@ -83,7 +83,7 @@
 }
 
 .blog-card:hover .blog-content h3 {
-    color: #00b7d4;
+    color: var(--accent-color);
 }
 
 .blog-content p {
@@ -113,7 +113,7 @@
 }
 
 .blog-link:hover {
-    color: #00b7d4;
+    color: var(--accent-color);
     transform: translateX(5px);
 }
 

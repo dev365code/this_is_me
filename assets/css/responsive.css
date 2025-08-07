@@ -27,7 +27,7 @@
 
 .nav-toggle:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(129, 216, 208, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 215, 208, 0.3);
 }
 
 .nav-list {
