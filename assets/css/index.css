@@ -1,9 +1,4 @@
-:root {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --accent-color: #81D8D0; /* Tiffany Mint */
-    --section-spacing: 100px;
-}
+/* Theme variables are now in theme.css */
 
 body {
     margin: 0;
@@ -110,8 +105,8 @@ a {
 
 footer {
     padding: 20px 10px;
-    background-color: #757575;
-    color: #aaa;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     text-align: center;
     font-size: 0.9rem;
 }
@@ -131,7 +126,7 @@ footer b {
 footer p {
     margin-top: 10px;
     font-size: 0.8rem;
-    color: #aaa;
+    color: var(--footer-text);
 }
 
 footer p a {

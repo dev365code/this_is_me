@@ -9,11 +9,11 @@
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid rgba(129, 216, 208, 0.2);
+    border: 1px solid var(--card-border);
     backdrop-filter: blur(10px);
 }
 
@@ -71,7 +71,7 @@
 }
 
 .project-content p {
-    color: #ccc;
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 20px;

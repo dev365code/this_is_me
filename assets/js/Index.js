@@ -20,8 +20,8 @@ async function typeText(element, text, speed = 100, isAccentColor = false) {
       element.style.color = '#81D8D0';
       element.style.borderRightColor = 'var(--accent-color)';
     } else {
-      element.style.color = '#000000';
-      element.style.borderRightColor = '#000000';
+      element.style.color = 'var(--typing-primary)';
+      element.style.borderRightColor = 'var(--typing-cursor-primary)';
     }
     
     const timer = setInterval(() => {
@@ -49,7 +49,7 @@ async function typeTextContinue(element, existingText, newText, speed = 100, isA
     const timer = setInterval(() => {
       if (i < newText.length) {
         const fullText = existingText + newText.substring(0, i + 1);
-        element.innerHTML = `<span style="color: #000000">${existingText}</span><span style="color: var(--accent-color)">${newText.substring(0, i + 1)}</span>`;
+        element.innerHTML = `<span style="color: var(--typing-primary)">${existingText}</span><span style="color: var(--accent-color)">${newText.substring(0, i + 1)}</span>`;
         element.style.width = (fullText.length) + 'ch';
         i++;
       } else {
@@ -72,7 +72,7 @@ async function startTypingAnimation() {
   if (isMobile()) {
     line2.style.display = 'block';
     
-    line1.style.borderRight = '3px solid #000000';
+    line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
     line1.classList.add('blink');
     await typeText(line1, "Hi, I'm", 120, false);
     await new Promise(resolve => setTimeout(resolve, 300));
@@ -85,7 +85,7 @@ async function startTypingAnimation() {
     
   } else {
     line2.style.display = 'none';
-    line1.style.borderRight = '3px solid #000000';
+    line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
     line1.classList.add('blink');
     
     await typeText(line1, "Hi, I'm ", 100, false);
@@ -113,4 +113,52 @@ window.addEventListener('resize', () => {
 
 window.addEventListener('load', () => {
   setTimeout(startTypingAnimation, 500);
+});
+
+// Theme Management
+class ThemeManager {
+  constructor() {
+    this.themeToggle = document.getElementById('theme-toggle');
+    this.themeIcon = document.getElementById('theme-icon');
+    this.currentTheme = this.getStoredTheme() || 'dark';
+    
+    this.init();
+  }
+  
+  init() {
+    this.setTheme(this.currentTheme);
+    this.themeToggle.addEventListener('click', () => this.toggleTheme());
+  }
+  
+  getStoredTheme() {
+    return localStorage.getItem('portfolio-theme');
+  }
+  
+  setStoredTheme(theme) {
+    localStorage.setItem('portfolio-theme', theme);
+  }
+  
+  setTheme(theme) {
+    this.currentTheme = theme;
+    
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      this.themeIcon.className = 'fa fa-sun-o';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      this.themeIcon.className = 'fa fa-moon-o';
+    }
+    
+    this.setStoredTheme(theme);
+  }
+  
+  toggleTheme() {
+    const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+    this.setTheme(newTheme);
+  }
+}
+
+// Initialize theme manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new ThemeManager();
 });
