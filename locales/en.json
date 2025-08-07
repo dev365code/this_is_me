@@ -1,0 +1,115 @@
+{
+  "personal": {
+    "name": "Wooyong Lee",
+    "title": "Backend Developer",
+    "email": "your.email@example.com",
+    "phone": "+82-10-0000-0000",
+    "location": "Seoul, South Korea",
+    "profileImage": "assets/images/tigerchopchop.jpg",
+    "resume": "#",
+    "description": "I'm passionate about building clean, scalable systems."
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Wooyong Lee",
+    "subtitle": "Backend Developer",
+    "ctaText": "View Resume",
+    "ctaLink": "#"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm passionate about building clean, scalable systems.",
+    "details": [
+      "Currently learning and developing with <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>Trading Algorithms</strong>.",
+      "I value simplicity, performance, and meaningful data."
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": [
+      {
+        "name": "Backend",
+        "skills": ["Java", "Spring", "SQL"]
+      },
+      {
+        "name": "Data & ML",
+        "skills": ["Python", "PyTorch"]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "items": [
+      {
+        "title": "Auto Trading Bot",
+        "description": "Rebalancing system based on Python and PyTorch",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["Python", "PyTorch", "Trading"]
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "Responsive website built with React and TypeScript",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["React", "TypeScript", "Web"]
+      },
+      {
+        "title": "Data Analytics Platform",
+        "description": "Data analysis platform built with Java and Spring Boot",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["Java", "Spring Boot", "Analytics"]
+      }
+    ]
+  },
+  "blog": {
+    "title": "Blog Posts",
+    "posts": [
+      {
+        "title": "Designing RESTful APIs with Spring Boot and JPA",
+        "description": "Covers efficient backend API design methods and database integration optimization strategies using JPA.",
+        "date": "2024.12.15",
+        "link": "#",
+        "tags": ["Java", "Spring"]
+      },
+      {
+        "title": "Building an Algorithmic Trading System",
+        "description": "Sharing experiences building an automated trading system with Python and PyTorch, including backtesting results.",
+        "date": "2024.11.28",
+        "link": "#",
+        "tags": ["Algorithm", "Python"]
+      },
+      {
+        "title": "SQL Optimization for Large-Scale Data Processing",
+        "description": "From index design to query optimization, methods for improving performance in large-scale databases.",
+        "date": "2024.11.10",
+        "link": "#",
+        "tags": ["Database", "SQL"]
+      }
+    ]
+  },
+  "social": {
+    "github": "https://github.com/dev365code",
+    "linkedin": "https://www.linkedin.com/in/yong125/",
+    "email": "your.email@example.com",
+    "website": "#"
+  },
+  "footer": {
+    "copyright": "© 2025 - Coded by",
+    "author": "Wooyong Lee",
+    "authorLink": "https://github.com/dev365code"
+  },
+  "meta": {
+    "title": "This Is Me - Wooyong Lee Portfolio",
+    "description": "Backend Developer passionate about building clean, scalable systems with Java, Spring, and modern technologies.",
+    "keywords": "Backend Developer, Java, Spring, SQL, Portfolio, Wooyong Lee",
+    "favicon": "favicon.png"
+  },
+  "ui": {
+    "readMore": "Read More",
+    "github": "GitHub",
+    "viewAll": "View All",
+    "backToTop": "Back to Top"
+  }
+}

@@ -64,6 +64,15 @@ async function startTypingAnimation() {
   const line1 = document.getElementById('line1');
   const line2 = document.getElementById('line2');
   
+  // Get current language data
+  let greeting = "Hi, I'm";
+  let name = "Wooyong Lee";
+  
+  if (window.i18nManager && window.i18nManager.translations && window.i18nManager.translations.hero) {
+    greeting = window.i18nManager.translations.hero.greeting;
+    name = window.i18nManager.translations.hero.name;
+  }
+  
   line1.textContent = '';
   line2.textContent = '';
   line1.style.width = '0';
@@ -74,25 +83,25 @@ async function startTypingAnimation() {
     
     line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
     line1.classList.add('blink');
-    await typeText(line1, "Hi, I'm", 120, false);
+    await typeText(line1, greeting, 120, false);
     await new Promise(resolve => setTimeout(resolve, 300));
     
     line1.style.borderRight = 'none';
     line1.classList.remove('blink');
     line2.style.borderRight = '3px solid var(--accent-color)';
     line2.classList.add('blink');
-    await typeText(line2, "Wooyong Lee", 120, true);
+    await typeText(line2, name, 120, true);
     
   } else {
     line2.style.display = 'none';
     line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
     line1.classList.add('blink');
     
-    await typeText(line1, "Hi, I'm ", 100, false);
+    await typeText(line1, greeting + " ", 100, false);
     line1.style.borderRightColor = 'var(--accent-color)';
     
     const currentText = line1.textContent;
-    await typeTextContinue(line1, currentText, "Wooyong Lee", 100, true);
+    await typeTextContinue(line1, currentText, name, 100, true);
   }
   
   setTimeout(() => {

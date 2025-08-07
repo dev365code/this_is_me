@@ -1,61 +1,61 @@
 {
   "personal": {
-    "name": "Wooyong Lee",
-    "title": "Backend Developer",
+    "name": "이우용",
+    "title": "백엔드 개발자",
     "email": "your.email@example.com",
     "phone": "+82-10-0000-0000",
-    "location": "Seoul, South Korea",
+    "location": "서울, 대한민국",
     "profileImage": "assets/images/tigerchopchop.jpg",
     "resume": "#",
-    "description": "I'm passionate about building clean, scalable systems."
+    "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다."
   },
   "hero": {
-    "greeting": "Hi, I'm",
-    "name": "Wooyong Lee",
-    "subtitle": "Backend Developer",
-    "ctaText": "View Resume",
+    "greeting": "안녕하세요, 저는",
+    "name": "이우용",
+    "subtitle": "백엔드 개발자",
+    "ctaText": "이력서 보기",
     "ctaLink": "#"
   },
   "about": {
-    "title": "About Me",
-    "description": "I'm passionate about building clean, scalable systems.",
+    "title": "소개",
+    "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다.",
     "details": [
-      "Currently learning and developing with <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>Trading Algorithms</strong>.",
-      "I value simplicity, performance, and meaningful data."
+      "현재 <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, <strong>트레이딩 알고리즘</strong>을 학습하고 개발하고 있습니다.",
+      "단순함, 성능, 그리고 의미 있는 데이터를 중요하게 생각합니다."
     ]
   },
   "skills": {
-    "title": "Skills",
+    "title": "기술 스택",
     "categories": [
       {
-        "name": "Backend",
+        "name": "백엔드",
         "skills": ["Java", "Spring", "SQL"]
       },
       {
-        "name": "Data & ML",
+        "name": "데이터 & ML",
         "skills": ["Python", "PyTorch"]
       }
     ]
   },
   "projects": {
-    "title": "Projects",
+    "title": "프로젝트",
     "items": [
       {
-        "title": "Auto Trading Bot",
+        "title": "자동매매 봇",
         "description": "Python, PyTorch 기반의 리밸런싱 시스템",
         "image": "assets/images/tigerchopchop.jpg",
         "link": "#",
         "tags": ["Python", "PyTorch", "Trading"]
       },
       {
-        "title": "Portfolio Website",
+        "title": "포트폴리오 웹사이트",
         "description": "React, TypeScript 기반의 반응형 웹사이트",
         "image": "assets/images/tigerchopchop.jpg",
         "link": "#",
         "tags": ["React", "TypeScript", "Web"]
       },
       {
-        "title": "Data Analytics",
+        "title": "데이터 분석 플랫폼",
         "description": "Java, Spring Boot 기반의 데이터 분석 플랫폼",
         "image": "assets/images/tigerchopchop.jpg",
         "link": "#",
@@ -64,7 +64,7 @@
     ]
   },
   "blog": {
-    "title": "Blog Posts",
+    "title": "블로그 포스트",
     "posts": [
       {
         "title": "Spring Boot와 JPA를 활용한 RESTful API 설계",
@@ -96,14 +96,20 @@
     "website": "#"
   },
   "footer": {
-    "copyright": "© 2025 - Coded by",
-    "author": "Wooyong Lee",
+    "copyright": "© 2025 - 개발자",
+    "author": "이우용",
     "authorLink": "https://github.com/dev365code"
   },
   "meta": {
-    "title": "This Is Me - Wooyong Lee Portfolio",
-    "description": "Backend Developer passionate about building clean, scalable systems with Java, Spring, and modern technologies.",
-    "keywords": "Backend Developer, Java, Spring, SQL, Portfolio, Wooyong Lee",
+    "title": "This Is Me - 이우용 포트폴리오",
+    "description": "Java, Spring 등 현대적인 기술로 깔끔하고 확장 가능한 시스템 구축에 열정을 가진 백엔드 개발자입니다.",
+    "keywords": "백엔드 개발자, Java, Spring, SQL, 포트폴리오, 이우용",
     "favicon": "favicon.png"
+  },
+  "ui": {
+    "readMore": "자세히 보기",
+    "github": "GitHub",
+    "viewAll": "전체 보기",
+    "backToTop": "맨 위로"
   }
 }

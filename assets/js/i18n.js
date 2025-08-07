@@ -1,22 +1,96 @@
-// Config Loader - 설정 파일을 읽어서 동적으로 페이지 생성
-class ConfigLoader {
+// Internationalization System
+class I18nManager {
   constructor() {
-    this.config = null;
+    this.currentLang = this.getStoredLang() || 'ko';
+    this.translations = {};
+    this.configLoader = null;
     this.init();
   }
   
   async init() {
+    await this.loadTranslations();
+    this.renderLanguageToggle();
+    this.setupEventListeners();
+  }
+  
+  getStoredLang() {
+    return localStorage.getItem('portfolio-lang');
+  }
+  
+  setStoredLang(lang) {
+    localStorage.setItem('portfolio-lang', lang);
+  }
+  
+  async loadTranslations() {
     try {
-      await this.loadConfig();
-      this.renderPage();
+      const response = await fetch(`./locales/${this.currentLang}.json`);
+      this.translations = await response.json();
     } catch (error) {
-      console.error('Failed to load config:', error);
+      console.error('Failed to load translations:', error);
+      // Fallback to Korean
+      if (this.currentLang !== 'ko') {
+        this.currentLang = 'ko';
+        await this.loadTranslations();
+      }
     }
   }
   
-  async loadConfig() {
-    const response = await fetch('./config.json');
-    this.config = await response.json();
+  renderLanguageToggle() {
+    // Create language toggle button
+    const langToggle = document.createElement('div');
+    langToggle.className = 'lang-toggle';
+    langToggle.innerHTML = `
+      <button class="lang-btn ${this.currentLang === 'ko' ? 'active' : ''}" data-lang="ko">
+        한국어
+      </button>
+      <button class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" data-lang="en">
+        English
+      </button>
+    `;
+    
+    // Insert before theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.parentNode.insertBefore(langToggle, themeToggle);
+    } else {
+      document.body.appendChild(langToggle);
+    }
+  }
+  
+  setupEventListeners() {
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('lang-btn')) {
+        const newLang = e.target.dataset.lang;
+        if (newLang !== this.currentLang) {
+          this.switchLanguage(newLang);
+        }
+      }
+    });
+  }
+  
+  async switchLanguage(newLang) {
+    this.currentLang = newLang;
+    this.setStoredLang(newLang);
+    
+    await this.loadTranslations();
+    this.updateActiveLangButton();
+    this.renderPage();
+    
+    // Restart typing animation with new language
+    if (window.startTypingAnimation) {
+      setTimeout(() => {
+        window.startTypingAnimation();
+      }, 100);
+    }
+  }
+  
+  updateActiveLangButton() {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.lang === this.currentLang) {
+        btn.classList.add('active');
+      }
+    });
   }
   
   renderPage() {
@@ -30,7 +104,7 @@ class ConfigLoader {
   }
   
   updateMeta() {
-    const { meta } = this.config;
+    const { meta } = this.translations;
     document.title = meta.title;
     
     // Update meta tags
@@ -53,13 +127,7 @@ class ConfigLoader {
   }
   
   updateHero() {
-    const { hero } = this.config;
-    
-    // Update typing animation text (will be handled by existing typing animation)
-    const line1 = document.getElementById('line1');
-    const line2 = document.getElementById('line2');
-    if (line1) line1.setAttribute('data-text', hero.greeting + ' ');
-    if (line2) line2.setAttribute('data-text', hero.name);
+    const { hero } = this.translations;
     
     // Update subtitle
     const subtitle = document.querySelector('.hero h2');
@@ -74,7 +142,7 @@ class ConfigLoader {
   }
   
   updateAbout() {
-    const { about, personal } = this.config;
+    const { about, personal } = this.translations;
     
     // Update section title
     const title = document.querySelector('#about .section-title');
@@ -98,7 +166,7 @@ class ConfigLoader {
   }
   
   updateProjects() {
-    const { projects } = this.config;
+    const { projects, ui } = this.translations;
     
     // Update section title
     const title = document.querySelector('#projects .section-title');
@@ -116,7 +184,7 @@ class ConfigLoader {
             <div class="project-content">
               <h3>${project.title}</h3>
               <p>${project.description}</p>
-              <a href="${project.link}" class="project-link">GitHub</a>
+              <a href="${project.link}" class="project-link">${ui.github}</a>
             </div>
           </div>
         </div>
@@ -125,7 +193,7 @@ class ConfigLoader {
   }
   
   updateSkills() {
-    const { skills } = this.config;
+    const { skills } = this.translations;
     
     // Update section title
     const title = document.querySelector('#skills .section-title');
@@ -146,7 +214,7 @@ class ConfigLoader {
   }
   
   updateBlog() {
-    const { blog } = this.config;
+    const { blog, ui } = this.translations;
     
     // Update section title
     const title = document.querySelector('#blog .section-title');
@@ -167,7 +235,7 @@ class ConfigLoader {
             <div class="blog-content">
               <h3>${post.title}</h3>
               <p>${post.description}</p>
-              <a href="${post.link}" class="blog-link">Read More</a>
+              <a href="${post.link}" class="blog-link">${ui.readMore}</a>
             </div>
           </div>
         </article>
@@ -176,7 +244,7 @@ class ConfigLoader {
   }
   
   updateFooter() {
-    const { footer, social } = this.config;
+    const { footer, social } = this.translations;
     
     // Update social links
     const githubLink = document.querySelector('a[aria-label="github"]');
@@ -192,67 +260,13 @@ class ConfigLoader {
     }
   }
   
-  // Utility method to update typing animation with config data
-  updateTypingAnimation() {
-    const { hero } = this.config;
-    if (window.startTypingAnimation) {
-      // Update the typing animation function to use config data
-      const line1 = document.getElementById('line1');
-      const line2 = document.getElementById('line2');
-      
-      // Store original typing function
-      if (!window.originalStartTypingAnimation) {
-        window.originalStartTypingAnimation = window.startTypingAnimation;
-      }
-      
-      // Override with config-aware version
-      window.startTypingAnimation = async function() {
-        const line1 = document.getElementById('line1');
-        const line2 = document.getElementById('line2');
-        
-        line1.textContent = '';
-        line2.textContent = '';
-        line1.style.width = '0';
-        line2.style.width = '0';
-        
-        if (window.isMobile && window.isMobile()) {
-          line2.style.display = 'block';
-          
-          line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
-          line1.classList.add('blink');
-          await window.typeText(line1, hero.greeting, 120, false);
-          await new Promise(resolve => setTimeout(resolve, 300));
-          
-          line1.style.borderRight = 'none';
-          line1.classList.remove('blink');
-          line2.style.borderRight = '3px solid var(--accent-color)';
-          line2.classList.add('blink');
-          await window.typeText(line2, hero.name, 120, true);
-          
-        } else {
-          line2.style.display = 'none';
-          line1.style.borderRight = '3px solid var(--typing-cursor-primary)';
-          line1.classList.add('blink');
-          
-          await window.typeText(line1, hero.greeting + ' ', 100, false);
-          line1.style.borderRightColor = 'var(--accent-color)';
-          
-          const currentText = line1.textContent;
-          await window.typeTextContinue(line1, currentText, hero.name, 100, true);
-        }
-        
-        setTimeout(() => {
-          line1.classList.remove('blink');
-          line2.classList.remove('blink');
-          line1.style.borderRight = 'none';
-          line2.style.borderRight = 'none';
-        }, 2000);
-      };
-    }
+  // Get current translations (for typing animation)
+  getCurrentTranslations() {
+    return this.translations;
   }
 }
 
-// Initialize config loader when DOM is ready
+// Initialize I18n manager
 document.addEventListener('DOMContentLoaded', () => {
-  window.configLoader = new ConfigLoader();
+  window.i18nManager = new I18nManager();
 });
