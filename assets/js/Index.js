@@ -175,7 +175,62 @@ class ThemeManager {
   }
 }
 
-// Initialize theme manager when DOM is loaded
+// Navigation Menu Management
+class NavManager {
+  constructor() {
+    this.navToggle = document.getElementById('nav-toggle');
+    this.navList = document.getElementById('nav-list');
+    this.navLinks = document.querySelectorAll('.nav-link');
+    
+    this.init();
+  }
+  
+  init() {
+    if (this.navToggle) {
+      this.navToggle.addEventListener('click', () => this.toggleNav());
+    }
+    
+    // Close nav when clicking on a link
+    this.navLinks.forEach(link => {
+      link.addEventListener('click', () => this.closeNav());
+    });
+    
+    // Close nav when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-menu')) {
+        this.closeNav();
+      }
+    });
+    
+    // Smooth scroll for navigation links
+    this.navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+  
+  toggleNav() {
+    this.navList.classList.toggle('active');
+  }
+  
+  closeNav() {
+    this.navList.classList.remove('active');
+  }
+}
+
+// Initialize managers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   new ThemeManager();
+  new NavManager();
 });
