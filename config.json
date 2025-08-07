@@ -1,0 +1,109 @@
+{
+  "personal": {
+    "name": "Wooyong Lee",
+    "title": "Backend Developer",
+    "email": "your.email@example.com",
+    "phone": "+82-10-0000-0000",
+    "location": "Seoul, South Korea",
+    "profileImage": "assets/images/tigerchopchop.jpg",
+    "resume": "#",
+    "description": "I'm passionate about building clean, scalable systems."
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Wooyong Lee",
+    "subtitle": "Backend Developer",
+    "ctaText": "View Resume",
+    "ctaLink": "#"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm passionate about building clean, scalable systems.",
+    "details": [
+      "Currently learning and developing with <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>Trading Algorithms</strong>.",
+      "I value simplicity, performance, and meaningful data."
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": [
+      {
+        "name": "Backend",
+        "skills": ["Java", "Spring", "SQL"]
+      },
+      {
+        "name": "Data & ML",
+        "skills": ["Python", "PyTorch"]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "items": [
+      {
+        "title": "Auto Trading Bot",
+        "description": "Python, PyTorch 기반의 리밸런싱 시스템",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["Python", "PyTorch", "Trading"]
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "React, TypeScript 기반의 반응형 웹사이트",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["React", "TypeScript", "Web"]
+      },
+      {
+        "title": "Data Analytics",
+        "description": "Java, Spring Boot 기반의 데이터 분석 플랫폼",
+        "image": "assets/images/tigerchopchop.jpg",
+        "link": "#",
+        "tags": ["Java", "Spring Boot", "Analytics"]
+      }
+    ]
+  },
+  "blog": {
+    "title": "Blog Posts",
+    "posts": [
+      {
+        "title": "Spring Boot와 JPA를 활용한 RESTful API 설계",
+        "description": "효율적인 백엔드 API 설계 방법과 JPA를 통한 데이터베이스 연동 최적화 전략에 대해 다룹니다.",
+        "date": "2024.12.15",
+        "link": "#",
+        "tags": ["Java", "Spring"]
+      },
+      {
+        "title": "알고리즘 트레이딩 시스템 구축기",
+        "description": "Python과 PyTorch를 활용하여 자동매매 시스템을 구축한 경험과 백테스팅 결과를 공유합니다.",
+        "date": "2024.11.28",
+        "link": "#",
+        "tags": ["Algorithm", "Python"]
+      },
+      {
+        "title": "대용량 데이터 처리를 위한 SQL 최적화",
+        "description": "인덱스 설계부터 쿼리 최적화까지, 대용량 데이터베이스에서의 성능 향상 방법을 정리했습니다.",
+        "date": "2024.11.10",
+        "link": "#",
+        "tags": ["Database", "SQL"]
+      }
+    ]
+  },
+  "social": {
+    "github": "https://github.com/dev365code",
+    "linkedin": "https://www.linkedin.com/in/yong125/",
+    "email": "your.email@example.com",
+    "website": "#"
+  },
+  "footer": {
+    "copyright": "© 2025 - Coded by",
+    "author": "Wooyong Lee",
+    "authorLink": "https://github.com/dev365code"
+  },
+  "meta": {
+    "title": "This Is Me - Wooyong Lee Portfolio",
+    "description": "Backend Developer passionate about building clean, scalable systems with Java, Spring, and modern technologies.",
+    "keywords": "Backend Developer, Java, Spring, SQL, Portfolio, Wooyong Lee",
+    "favicon": "favicon.png"
+  }
+}

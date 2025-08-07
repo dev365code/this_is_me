@@ -112,7 +112,15 @@ window.addEventListener('resize', () => {
 });
 
 window.addEventListener('load', () => {
-  setTimeout(startTypingAnimation, 500);
+  // Wait for config to load, then start typing animation
+  setTimeout(() => {
+    if (window.configLoader && window.configLoader.config) {
+      startTypingAnimation();
+    } else {
+      // Fallback with default values if config not loaded
+      setTimeout(startTypingAnimation, 1000);
+    }
+  }, 500);
 });
 
 // Theme Management
