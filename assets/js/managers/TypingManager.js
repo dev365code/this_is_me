@@ -62,11 +62,15 @@ class TypingManager {
    * Schedule initial animation with delay
    */
   scheduleInitialAnimation() {
+    console.log('TypingManager: Scheduling initial animation');
     setTimeout(() => {
       const translations = this.stateManager.getState('translations');
+      console.log('TypingManager: Checking translations:', translations);
       if (translations && Object.keys(translations).length > 0) {
+        console.log('TypingManager: Starting animation with translations');
         this.startAnimation();
       } else {
+        console.log('TypingManager: No translations, using fallback');
         // Fallback with default values if translations not loaded
         setTimeout(() => this.startAnimation(), 1000);
       }

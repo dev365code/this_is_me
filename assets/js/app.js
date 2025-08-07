@@ -90,6 +90,8 @@ class App {
       { name: 'nav', class: window.NavManager, required: true },
       { name: 'typing', class: window.TypingManager, required: false }
     ];
+    
+    console.log('App: Initializing managers...');
 
     for (const config of managerConfig) {
       try {
@@ -155,6 +157,14 @@ class App {
         }, 1000);
       }
     });
+
+    // Start typing animation after all managers are ready
+    setTimeout(() => {
+      if (this.managers.typing) {
+        console.log('App: Starting typing animation manually');
+        this.managers.typing.startAnimation();
+      }
+    }, 1500);
   }
 
   /**
