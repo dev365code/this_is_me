@@ -219,6 +219,7 @@
   </div>
 </footer>
 
+<!-- Load AOS Animation Library -->
 <script src="assets/vendor/aos/aos.js"></script>
 <script>
   AOS.init({
@@ -227,7 +228,21 @@
     easing: 'ease-in-out',
   });
 </script>
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/Index.js"></script>
+
+<!-- Load Core Systems First -->
+<script src="assets/js/core/EventBus.js"></script>
+<script src="assets/js/core/StateManager.js"></script>
+
+<!-- Load Utilities -->
+<script src="assets/js/utils/helpers.js"></script>
+
+<!-- Load Managers -->
+<script src="assets/js/managers/I18nManager.js"></script>
+<script src="assets/js/managers/ThemeManager.js"></script>
+<script src="assets/js/managers/NavManager.js"></script>
+<script src="assets/js/managers/TypingManager.js"></script>
+
+<!-- Load Main Application -->
+<script src="assets/js/app.js"></script>
 </body>
 </html>

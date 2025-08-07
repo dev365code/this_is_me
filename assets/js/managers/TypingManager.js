@@ -31,13 +31,15 @@ class TypingManager {
     this.eventBus.on('typing:restart', () => this.restartAnimation());
     this.eventBus.on('typing:stop', () => this.stopAnimation());
 
+    // Bind event handlers
+    this.boundHandleResize = this.handleResize.bind(this);
+    this.boundScheduleInitialAnimation = this.scheduleInitialAnimation.bind(this);
+
     // Handle window resize with debouncing
-    window.addEventListener('resize', () => this.handleResize());
+    window.addEventListener('resize', this.boundHandleResize);
 
     // Start animation when page loads
-    window.addEventListener('load', () => {
-      this.scheduleInitialAnimation();
-    });
+    window.addEventListener('load', this.boundScheduleInitialAnimation);
   }
 
   setupStateSubscriptions() {
@@ -352,8 +354,8 @@ class TypingManager {
   destroy() {
     this.stopAnimation();
     clearTimeout(this.resizeTimer);
-    window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('load', this.scheduleInitialAnimation);
+    window.removeEventListener('resize', this.boundHandleResize);
+    window.removeEventListener('load', this.boundScheduleInitialAnimation);
   }
 }
 
