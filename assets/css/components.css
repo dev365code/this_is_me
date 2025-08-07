@@ -17,19 +17,6 @@
     font-size: clamp(1rem, 2.5vw, 1.8rem);
     margin-top: 1rem;
     animation: fadeInUp 1.4s ease-in-out;
-    min-height: 1.8rem; /* Reserve space to prevent layout shift */
-}
-
-/* Hide empty elements until content is loaded */
-.hero h2:empty,
-.hero .cta:empty {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.hero h2:not(:empty),
-.hero .cta:not(:empty) {
-    opacity: 1;
 }
 
 .hero .cta {
