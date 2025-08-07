@@ -20,8 +20,8 @@ async function typeText(element, text, speed = 100, isAccentColor = false) {
       element.style.color = '#81D8D0';
       element.style.borderRightColor = 'var(--accent-color)';
     } else {
-      element.style.color = '#ffffff';
-      element.style.borderRightColor = '#ffffff';
+      element.style.color = '#000000';
+      element.style.borderRightColor = '#000000';
     }
     
     const timer = setInterval(() => {
@@ -49,7 +49,7 @@ async function typeTextContinue(element, existingText, newText, speed = 100, isA
     const timer = setInterval(() => {
       if (i < newText.length) {
         const fullText = existingText + newText.substring(0, i + 1);
-        element.innerHTML = `<span style="color: #ffffff">${existingText}</span><span style="color: var(--accent-color)">${newText.substring(0, i + 1)}</span>`;
+        element.innerHTML = `<span style="color: #000000">${existingText}</span><span style="color: var(--accent-color)">${newText.substring(0, i + 1)}</span>`;
         element.style.width = (fullText.length) + 'ch';
         i++;
       } else {
@@ -72,7 +72,7 @@ async function startTypingAnimation() {
   if (isMobile()) {
     line2.style.display = 'block';
     
-    line1.style.borderRight = '3px solid #ffffff';
+    line1.style.borderRight = '3px solid #000000';
     line1.classList.add('blink');
     await typeText(line1, "Hi, I'm", 120, false);
     await new Promise(resolve => setTimeout(resolve, 300));
@@ -85,7 +85,7 @@ async function startTypingAnimation() {
     
   } else {
     line2.style.display = 'none';
-    line1.style.borderRight = '3px solid #ffffff';
+    line1.style.borderRight = '3px solid #000000';
     line1.classList.add('blink');
     
     await typeText(line1, "Hi, I'm ", 100, false);
@@ -100,8 +100,8 @@ async function startTypingAnimation() {
     line2.classList.remove('blink');
     line1.style.borderRight = 'none';
     line2.style.borderRight = 'none';
-  }, 2000000); // 200000에서 2000으로 수정
-} // 이 닫는 괄호가 빠져있었어요!
+  }, 2000);
+}
 
 let resizeTimer;
 window.addEventListener('resize', () => {

@@ -4,21 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>This Is Me</title>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/projects.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Local Fonts and Libraries -->
+  <link rel="stylesheet" href="assets/fonts/source-code-pro.css">
+  <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/font-awesome-4.7.0.min.css">
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <section class="hero">
-  <h1 class="typing-container">Hi, I'm <span>Wooyong Lee</span></h1>
+  <h1 class="typing-container">
+    <span id="line1"></span><span id="line2"></span>
+  </h1>
   <h2>Backend Developer</h2>
   <a class="cta" href="#">View Resume</a>
 </section>
@@ -27,7 +30,7 @@
   <div class="container">
     <h2 class="section-title">About Me</h2>
     <div class="about-content">
-      <img src="image/tigerchopchop.jpg" alt="Profile" class="profile-image" />
+      <img src="assets/images/tigerchopchop.jpg" alt="Profile" class="profile-image" />
       <div class="about-text">
         <p>I'm passionate about building clean, scalable systems.</p>
         <p>Currently learning and developing with <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>Trading Algorithms</strong>.</p>
@@ -44,7 +47,7 @@
       <div class="project-card" data-aos="zoom-in">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="image/tigerchopchop.jpg" alt="Auto Trading Bot" />
+            <img src="assets/images/tigerchopchop.jpg" alt="Auto Trading Bot" />
           </div>
           <div class="project-content">
             <h3>Auto Trading Bot</h3>
@@ -57,7 +60,7 @@
       <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="image/tigerchopchop.jpg" alt="Project 2" />
+            <img src="assets/images/tigerchopchop.jpg" alt="Project 2" />
           </div>
           <div class="project-content">
             <h3>Portfolio Website</h3>
@@ -70,7 +73,7 @@
       <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="image/tigerchopchop.jpg" alt="Project 3" />
+            <img src="assets/images/tigerchopchop.jpg" alt="Project 3" />
           </div>
           <div class="project-content">
             <h3>Data Analytics</h3>
@@ -123,11 +126,11 @@
       </a>
     </div>
     <hr>
-    <p class="footer__text">© 2025 - Coded by <b href="https://github.com/dev365code" target="_blank" rel="noopener noreferrer">Wooyong Lee</b></p>
+    <p class="footer__text">© 2025 - Coded by <a href="https://github.com/dev365code" target="_blank" rel="noopener noreferrer">Wooyong Lee</a></p>
   </div>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
 <script>
   AOS.init({
     duration: 800,
@@ -135,5 +138,6 @@
     easing: 'ease-in-out',
   });
 </script>
+<script src="assets/js/Index.js"></script>
 </body>
 </html>

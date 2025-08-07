@@ -1,0 +1,106 @@
+/* Hero Section */
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    margin-bottom: 0.5rem;
+}
+
+.hero h2 {
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    margin-top: 1rem;
+    animation: fadeInUp 1.4s ease-in-out;
+}
+
+.hero .cta {
+    padding: 10px 22px;
+    background-color: var(--accent-color);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1.5rem;
+    animation: fadeInUp 1.8s ease-in-out;
+    transition: background-color 0.3s ease;
+}
+
+.hero .cta:hover {
+    background-color: #00b4b2;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+}
+
+.about-text {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-text {
+        text-align: left;
+        margin-left: 40px;
+    }
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.skill-category h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.skill-tag {
+    background: rgba(129, 216, 208, 0.2);
+    color: var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--accent-color);
+}
