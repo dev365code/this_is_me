@@ -1,15 +1,15 @@
 /* Enhanced Responsive Design */
 
-/* Navigation Menu */
+/* Unified Menu System */
 .nav-menu {
     position: fixed;
     top: 20px;
-    left: 20px;
+    right: 20px;
     z-index: 1001;
 }
 
 .nav-toggle {
-    display: none;
+    display: flex;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -31,25 +31,44 @@
 }
 
 .nav-list {
-    display: flex;
-    gap: 20px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    min-width: 200px;
     list-style: none;
     margin: 0;
     padding: 0;
     background: var(--bg-color);
     border: 2px solid var(--accent-color);
-    border-radius: 25px;
-    padding: 10px 20px;
+    border-radius: 15px;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.nav-list.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-item {
+    border-bottom: 1px solid var(--card-border);
+}
+
+.nav-item:last-child {
+    border-bottom: none;
 }
 
 .nav-link {
+    display: block;
     color: var(--accent-color);
     text-decoration: none;
     font-weight: 600;
-    padding: 8px 15px;
-    border-radius: 15px;
+    padding: 12px 20px;
     transition: all 0.3s ease;
     font-family: 'Source Code Pro', monospace;
     font-size: 0.9rem;
@@ -58,69 +77,114 @@
 .nav-link:hover {
     background: var(--accent-color);
     color: var(--bg-color);
-    transform: translateY(-2px);
 }
 
-/* Mobile Navigation */
+.nav-item:first-child .nav-link {
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+}
+
+.nav-item:last-child .nav-link {
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+
+/* Menu Controls */
+.menu-controls {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-control-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: 'Source Code Pro', monospace;
+}
+
+/* Language Toggle in Menu */
+.menu-lang-toggle {
+    display: flex;
+    gap: 5px;
+}
+
+.menu-lang-btn {
+    padding: 4px 8px;
+    border: 1px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.menu-lang-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.menu-lang-btn.active {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* Theme Toggle in Menu */
+.menu-theme-toggle {
+    width: 40px;
+    height: 24px;
+    border: 2px solid var(--accent-color);
+    border-radius: 20px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-theme-toggle::before {
+    content: '🌙';
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.menu-theme-toggle.light::before {
+    content: '☀️';
+    left: 16px;
+}
+
+.menu-theme-toggle:hover {
+    background: var(--accent-color);
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .nav-toggle {
-        display: flex;
-    }
-    
-    .nav-list {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        flex-direction: column;
-        gap: 0;
-        min-width: 150px;
-        padding: 0;
-        border-radius: 15px;
-        transform: translateY(-10px);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-list.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .nav-link {
-        padding: 12px 20px;
-        border-radius: 0;
-        border-bottom: 1px solid var(--card-border);
-    }
-    
-    .nav-link:first-child {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-    
-    .nav-link:last-child {
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border-bottom: none;
-    }
-    
     .nav-menu {
         top: 15px;
-        left: 15px;
-    }
-}
-
-/* Adjust theme toggle and lang toggle positions */
-@media (max-width: 768px) {
-    .theme-toggle {
-        top: 75px;
         right: 15px;
     }
     
-    .lang-toggle {
-        top: 75px;
-        right: 70px;
+    .nav-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .nav-list {
+        min-width: 180px;
     }
 }
 

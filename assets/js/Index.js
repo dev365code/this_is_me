@@ -135,16 +135,17 @@ window.addEventListener('load', () => {
 // Theme Management
 class ThemeManager {
   constructor() {
-    this.themeToggle = document.getElementById('theme-toggle');
-    this.themeIcon = document.getElementById('theme-icon');
-    this.currentTheme = this.getStoredTheme() || 'dark';
+    this.themeToggle = document.getElementById('menu-theme-toggle');
+    this.currentTheme = this.getStoredTheme() || 'light'; // Default to light theme
     
     this.init();
   }
   
   init() {
     this.setTheme(this.currentTheme);
-    this.themeToggle.addEventListener('click', () => this.toggleTheme());
+    if (this.themeToggle) {
+      this.themeToggle.addEventListener('click', () => this.toggleTheme());
+    }
   }
   
   getStoredTheme() {
@@ -159,11 +160,17 @@ class ThemeManager {
     this.currentTheme = theme;
     
     if (theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-      this.themeIcon.className = 'fa fa-sun-o';
+      document.documentElement.removeAttribute('data-theme'); // Light is default in CSS
+      if (this.themeToggle) {
+        this.themeToggle.classList.add('light');
+        this.themeToggle.classList.remove('dark');
+      }
     } else {
-      document.documentElement.removeAttribute('data-theme');
-      this.themeIcon.className = 'fa fa-moon-o';
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (this.themeToggle) {
+        this.themeToggle.classList.add('dark');
+        this.themeToggle.classList.remove('light');
+      }
     }
     
     this.setStoredTheme(theme);

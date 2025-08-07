@@ -21,23 +21,35 @@
   <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<!-- Theme Toggle Button -->
-<!-- Navigation Menu -->
+<!-- Unified Navigation Menu -->
 <nav class="nav-menu" id="nav-menu">
   <div class="nav-toggle" id="nav-toggle">
     <i class="fa fa-bars"></i>
   </div>
-  <ul class="nav-list" id="nav-list">
-    <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#projects" class="nav-link">Projects</a></li>
-    <li><a href="#skills" class="nav-link">Skills</a></li>
-    <li><a href="#blog" class="nav-link">Blog</a></li>
-  </ul>
+  <div class="nav-list" id="nav-list">
+    <!-- Menu Controls -->
+    <div class="menu-controls">
+      <div class="menu-control-group">
+        <span class="control-label">Language</span>
+        <div class="menu-lang-toggle">
+          <button class="menu-lang-btn" data-lang="ko">한국어</button>
+          <button class="menu-lang-btn active" data-lang="en">English</button>
+        </div>
+      </div>
+      <div class="menu-control-group">
+        <span class="control-label">Theme</span>
+        <button class="menu-theme-toggle light" id="menu-theme-toggle"></button>
+      </div>
+    </div>
+    <!-- Navigation Links -->
+    <ul style="list-style: none; margin: 0; padding: 0;">
+      <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+      <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+      <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+      <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+    </ul>
+  </div>
 </nav>
-
-<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-  <i class="fa fa-moon-o" id="theme-icon"></i>
-</button>
 <section class="hero">
   <h1 class="typing-container">
     <span id="line1"></span><span id="line2"></span>

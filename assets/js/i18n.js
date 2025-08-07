@@ -1,7 +1,7 @@
 // Internationalization System
 class I18nManager {
   constructor() {
-    this.currentLang = this.getStoredLang() || 'ko';
+    this.currentLang = this.getStoredLang() || 'en'; // Default to English
     this.translations = {};
     this.configLoader = null;
     this.init();
@@ -9,8 +9,8 @@ class I18nManager {
   
   async init() {
     await this.loadTranslations();
-    this.renderLanguageToggle();
     this.setupEventListeners();
+    this.updateMenuLanguageButtons();
   }
   
   getStoredLang() {
@@ -27,39 +27,28 @@ class I18nManager {
       this.translations = await response.json();
     } catch (error) {
       console.error('Failed to load translations:', error);
-      // Fallback to Korean
-      if (this.currentLang !== 'ko') {
-        this.currentLang = 'ko';
+      // Fallback to English
+      if (this.currentLang !== 'en') {
+        this.currentLang = 'en';
         await this.loadTranslations();
       }
     }
   }
   
-  renderLanguageToggle() {
-    // Create language toggle button
-    const langToggle = document.createElement('div');
-    langToggle.className = 'lang-toggle';
-    langToggle.innerHTML = `
-      <button class="lang-btn ${this.currentLang === 'ko' ? 'active' : ''}" data-lang="ko">
-        한국어
-      </button>
-      <button class="lang-btn ${this.currentLang === 'en' ? 'active' : ''}" data-lang="en">
-        English
-      </button>
-    `;
-    
-    // Insert before theme toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (themeToggle) {
-      themeToggle.parentNode.insertBefore(langToggle, themeToggle);
-    } else {
-      document.body.appendChild(langToggle);
-    }
+  updateMenuLanguageButtons() {
+    // Update existing menu language buttons
+    const menuLangButtons = document.querySelectorAll('.menu-lang-btn');
+    menuLangButtons.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.lang === this.currentLang) {
+        btn.classList.add('active');
+      }
+    });
   }
   
   setupEventListeners() {
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('lang-btn')) {
+      if (e.target.classList.contains('menu-lang-btn')) {
         const newLang = e.target.dataset.lang;
         if (newLang !== this.currentLang) {
           this.switchLanguage(newLang);
@@ -85,12 +74,7 @@ class I18nManager {
   }
   
   updateActiveLangButton() {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.dataset.lang === this.currentLang) {
-        btn.classList.add('active');
-      }
-    });
+    this.updateMenuLanguageButtons();
   }
   
   renderPage() {
