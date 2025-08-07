@@ -244,5 +244,22 @@
 
 <!-- Load Main Application -->
 <script src="assets/js/app.js"></script>
+
+<!-- Ensure typing animation starts -->
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    console.log('Manual trigger: Starting typing animation');
+    if (window.startTypingAnimation) {
+      window.startTypingAnimation();
+    } else if (window.portfolioApp) {
+      const typingManager = window.portfolioApp.getManager('typing');
+      if (typingManager) {
+        typingManager.startAnimation();
+      }
+    }
+  }, 2000);
+});
+</script>
 </body>
 </html>

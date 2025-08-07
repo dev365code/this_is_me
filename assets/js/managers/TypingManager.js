@@ -365,3 +365,10 @@ class TypingManager {
 
 // Export for use in main app
 window.TypingManager = TypingManager;
+
+// Make startTypingAnimation available globally for backward compatibility
+window.startTypingAnimation = function() {
+  if (window.portfolioApp && window.portfolioApp.getManager('typing')) {
+    window.portfolioApp.getManager('typing').startAnimation();
+  }
+};
