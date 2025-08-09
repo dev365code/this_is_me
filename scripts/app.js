@@ -100,7 +100,8 @@ class App {
       { name: 'i18n', class: window.I18nManager, required: true },
       { name: 'theme', class: window.ThemeManager, required: true },
       { name: 'nav', class: window.NavManager, required: true },
-      { name: 'typing', class: window.TypingManager, required: false }
+      { name: 'typing', class: window.TypingManager, required: false },
+      { name: 'blog', class: window.BlogManager, required: false }
     ];
 
     for (const config of managerConfig) {
