@@ -1,14 +1,25 @@
 /**
- * I18nManager - Internationalization system
- * Handles language switching, translation loading, and content updates
- * Integrates with StateManager and EventBus for reactive updates
+ * I18nManager - 국제화(다국어) 시스템 관리자
+ * 
+ * 주요 기능:
+ * - 언어 전환 및 번역 파일 동적 로딩 (en.json, ko.json)
+ * - DOM 콘텐츠 실시간 업데이트 (메타, 히어로, 어바웃, 프로젝트, 스킬, 블로그, 푸터)
+ * - 언어 버튼 상태 관리 및 localStorage 지속성
+ * - StateManager, EventBus와 연동하여 반응형 업데이트
+ * - 폴백 번역 시스템으로 오류 상황 대응
+ * 
+ * 지원 언어: 영어(en), 한국어(ko)
+ * 번역 파일 위치: ./languages/{언어코드}.json
  */
 class I18nManager {
   constructor() {
-    this.stateManager = window.stateManager;
-    this.eventBus = window.eventBus;
-    this.translations = {};
-    this.isLoading = false;
+    // 외부 의존성
+    this.stateManager = window.stateManager;  // 전역 상태 관리자
+    this.eventBus = window.eventBus;          // 이벤트 버스
+    
+    // 내부 상태
+    this.translations = {};                   // 현재 로드된 번역 데이터
+    this.isLoading = false;                  // 번역 로딩 상태 플래그
     
     this.init();
   }
@@ -21,6 +32,7 @@ class I18nManager {
     const currentLang = this.stateManager.getState('language');
     await this.loadTranslations(currentLang);
     this.updateMenuLanguageButtons();
+    this.renderPage(); // 초기 번역으로 페이지 렌더링
   }
 
   setupEventListeners() {
@@ -81,7 +93,7 @@ class I18nManager {
     this.eventBus.emit('i18n:loadingStart', { lang });
     
     try {
-      const response = await fetch(`./locales/${lang}.json`);
+      const response = await fetch(`./languages/${lang}.json`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

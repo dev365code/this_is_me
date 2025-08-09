@@ -6,7 +6,7 @@ class StateManager {
   constructor() {
     this.state = {
       theme: 'light',
-      language: 'en',
+      language: 'ko',
       isNavOpen: false,
       isTypingAnimationComplete: false,
       translations: {}

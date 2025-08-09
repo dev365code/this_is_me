@@ -10,8 +10,10 @@
     "description": "I'm passionate about building clean, scalable systems."
   },
   "hero": {
-    "greeting": "Hi, I'm",
+    "line1": "Hi, I'm",
+    "line2": "Wooyong Lee",
     "name": "Wooyong Lee",
+    "ending": "",
     "subtitle": "Backend Developer",
     "ctaText": "View Resume",
     "ctaLink": "#"
@@ -28,12 +30,20 @@
     "title": "Skills",
     "categories": [
       {
-        "name": "Backend",
-        "skills": ["Java", "Spring", "SQL"]
+        "name": "Programming Language",
+        "skills": ["Java", "Python", "JavaScript", "HTML/CSS", "SQL"]
       },
       {
-        "name": "Data & ML",
-        "skills": ["Python", "PyTorch"]
+        "name": "Framework",
+        "skills": ["Spring Framework", "MyBatis", "FastAPI"]
+      },
+      {
+        "name": "AI/ML",
+        "skills": ["OpenAI GPT-4o", "text-embedding-ada-002"]
+      },
+      {
+        "name": "Database",
+        "skills": ["Oracle", "MySQL", "PostgreSQL", "pgvector", "Redis"]
       }
     ]
   },

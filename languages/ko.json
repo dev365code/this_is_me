@@ -10,8 +10,10 @@
     "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다."
   },
   "hero": {
-    "greeting": "안녕하세요, 저는",
+    "line1": "안녕하세요,",
+    "line2": "이우용 입니다.",
     "name": "이우용",
+    "ending": "입니다.",
     "subtitle": "백엔드 개발자",
     "ctaText": "이력서 보기",
     "ctaLink": "#"
@@ -28,12 +30,20 @@
     "title": "기술 스택",
     "categories": [
       {
-        "name": "백엔드",
-        "skills": ["Java", "Spring", "SQL"]
+        "name": "Programming Language",
+        "skills": ["Java", "Python", "JavaScript", "HTML/CSS", "SQL"]
       },
       {
-        "name": "데이터 & ML",
-        "skills": ["Python", "PyTorch"]
+        "name": "Framework",
+        "skills": ["Spring Framework", "MyBatis", "FastAPI"]
+      },
+      {
+        "name": "AI/ML",
+        "skills": ["OpenAI GPT-4o", "text-embedding-ada-002"]
+      },
+      {
+        "name": "Database",
+        "skills": ["Oracle", "MySQL", "PostgreSQL", "pgvector", "Redis"]
       }
     ]
   },

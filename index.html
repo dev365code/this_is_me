@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>This Is Me</title>
-  <link rel="stylesheet" href="assets/css/theme.css" />
-  <link rel="stylesheet" href="assets/css/index.css" />
-  <link rel="stylesheet" href="assets/css/animations.css" />
-  <link rel="stylesheet" href="assets/css/components.css" />
-  <link rel="stylesheet" href="assets/css/projects.css" />
-  <link rel="stylesheet" href="assets/css/blog.css" />
-  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="styles/theme.css" />
+  <link rel="stylesheet" href="styles/index.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/projects.css" />
+  <link rel="stylesheet" href="styles/blog.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
 
   <!-- Local Fonts and Libraries -->
-  <link rel="stylesheet" href="assets/fonts/source-code-pro.css">
-  <link rel="stylesheet" href="assets/vendor/aos/aos.css">
-  <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/vendor/fontawesome/font-awesome-4.7.0.min.css">
-  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="fonts/source-code-pro.css">
+  <link rel="stylesheet" href="libraries/aos/aos.css">
+  <link rel="stylesheet" href="libraries/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="libraries/fontawesome/font-awesome-4.7.0.min.css">
+  <script src="libraries/bootstrap/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!-- Unified Navigation Menu -->
@@ -32,8 +32,8 @@
       <div class="menu-control-group">
         <span class="control-label">Language</span>
         <div class="menu-lang-toggle">
-          <button class="menu-lang-btn" data-lang="ko">한국어</button>
-          <button class="menu-lang-btn active" data-lang="en">English</button>
+          <button class="menu-lang-btn active" data-lang="ko">한국어</button>
+          <button class="menu-lang-btn" data-lang="en">English</button>
         </div>
       </div>
       <div class="menu-control-group">
@@ -52,7 +52,14 @@
 </nav>
 <section class="hero">
   <h1 class="typing-container">
-    <span id="line1"></span><span id="line2"></span>
+    <div class="row no-gutters justify-content-center">
+      <div class="col-12 col-md-auto">
+        <span id="line1" class="typing-line"></span>
+      </div>
+      <div class="col-12 col-md-auto">
+        <span id="line2" class="typing-line"></span>
+      </div>
+    </div>
   </h1>
   <h2>Backend Developer</h2>
   <a class="cta" href="#">View Resume</a>
@@ -62,7 +69,7 @@
   <div class="container">
     <h2 class="section-title">About Me</h2>
     <div class="about-content">
-      <img src="assets/images/tigerchopchop.jpg" alt="Profile" class="profile-image" />
+      <img src="images/tigerchopchop.jpg" alt="Profile" class="profile-image" />
       <div class="about-text">
         <p>I'm passionate about building clean, scalable systems.</p>
         <p>Currently learning and developing with <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>Trading Algorithms</strong>.</p>
@@ -79,7 +86,7 @@
       <div class="project-card" data-aos="zoom-in">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="assets/images/tigerchopchop.jpg" alt="Auto Trading Bot" />
+            <img src="images/tigerchopchop.jpg" alt="Auto Trading Bot" />
           </div>
           <div class="project-content">
             <h3>Auto Trading Bot</h3>
@@ -92,7 +99,7 @@
       <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="assets/images/tigerchopchop.jpg" alt="Project 2" />
+            <img src="images/tigerchopchop.jpg" alt="Project 2" />
           </div>
           <div class="project-content">
             <h3>Portfolio Website</h3>
@@ -105,7 +112,7 @@
       <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
         <div class="project-wrapper">
           <div class="project-image">
-            <img src="assets/images/tigerchopchop.jpg" alt="Project 3" />
+            <img src="images/tigerchopchop.jpg" alt="Project 3" />
           </div>
           <div class="project-content">
             <h3>Data Analytics</h3>
@@ -220,7 +227,7 @@
 </footer>
 
 <!-- Load AOS Animation Library -->
-<script src="assets/vendor/aos/aos.js"></script>
+<script src="libraries/aos/aos.js"></script>
 <script>
   AOS.init({
     duration: 800,
@@ -230,36 +237,16 @@
 </script>
 
 <!-- Load Core Systems First -->
-<script src="assets/js/core/EventBus.js"></script>
-<script src="assets/js/core/StateManager.js"></script>
-
-<!-- Load Utilities -->
-<script src="assets/js/utils/helpers.js"></script>
+<script src="scripts/core/EventBus.js"></script>
+<script src="scripts/core/StateManager.js"></script>
 
 <!-- Load Managers -->
-<script src="assets/js/managers/I18nManager.js"></script>
-<script src="assets/js/managers/ThemeManager.js"></script>
-<script src="assets/js/managers/NavManager.js"></script>
-<script src="assets/js/managers/TypingManager.js"></script>
+<script src="scripts/managers/I18nManager.js"></script>
+<script src="scripts/managers/ThemeManager.js"></script>
+<script src="scripts/managers/NavManager.js"></script>
+<script src="scripts/managers/TypingManager.js"></script>
 
 <!-- Load Main Application -->
-<script src="assets/js/app.js"></script>
-
-<!-- Ensure typing animation starts -->
-<script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    console.log('Manual trigger: Starting typing animation');
-    if (window.startTypingAnimation) {
-      window.startTypingAnimation();
-    } else if (window.portfolioApp) {
-      const typingManager = window.portfolioApp.getManager('typing');
-      if (typingManager) {
-        typingManager.startAnimation();
-      }
-    }
-  }, 2000);
-});
-</script>
+<script src="scripts/app.js"></script>
 </body>
 </html>

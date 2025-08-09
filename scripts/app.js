@@ -1,14 +1,31 @@
 /**
- * Main Application Entry Point
- * Initializes all managers and coordinates the application lifecycle
+ * App - 메인 애플리케이션 진입점
+ * 
+ * 주요 역할:
+ * - 모든 매니저들의 초기화 및 생명주기 관리
+ * - 매니저 간 통신 조율 및 의존성 관리
+ * - 전역 이벤트 처리 및 에러 핸들링
+ * - 키보드 단축키 및 시스템 이벤트 관리
+ * 
+ * 초기화 순서:
+ * 1. 코어 시스템 (EventBus, StateManager) 확인
+ * 2. 매니저들 순차 초기화 (I18n → Theme → Nav → Typing)
+ * 3. 매니저 간 통신 설정
+ * 4. 글로벌 이벤트 리스너 등록
+ * 5. 애플리케이션 준비 완료 이벤트 발생
  */
 
 class App {
   constructor() {
+    // 매니저 인스턴스들을 저장하는 객체
     this.managers = {};
-    this.isInitialized = false;
-    this.eventBus = null;
-    this.stateManager = null;
+    
+    // 애플리케이션 상태
+    this.isInitialized = false;      // 초기화 완료 여부
+    
+    // 코어 시스템 참조 (HTML에서 먼저 로드됨)
+    this.eventBus = null;            // 이벤트 버스 인스턴스
+    this.stateManager = null;        // 상태 관리자 인스턴스
     
     this.init();
   }
@@ -18,8 +35,6 @@ class App {
    */
   async init() {
     try {
-      console.log('Initializing Portfolio App...');
-      
       // Wait for DOM to be ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => this.start());
@@ -53,8 +68,6 @@ class App {
       // Emit ready event
       this.eventBus.emit('app:ready');
       
-      console.log('Portfolio App initialized successfully');
-      
     } catch (error) {
       console.error('Failed to start app:', error);
       this.handleInitError(error);
@@ -77,7 +90,6 @@ class App {
     this.eventBus.on('app:restart', () => this.restart());
     this.eventBus.on('app:destroy', () => this.destroy());
     
-    console.log('Core systems initialized');
   }
 
   /**
@@ -90,8 +102,6 @@ class App {
       { name: 'nav', class: window.NavManager, required: true },
       { name: 'typing', class: window.TypingManager, required: false }
     ];
-    
-    console.log('App: Initializing managers...');
 
     for (const config of managerConfig) {
       try {
@@ -104,7 +114,6 @@ class App {
           }
         }
 
-        console.log(`Initializing ${config.name} manager...`);
         this.managers[config.name] = new config.class();
         
         // Wait a bit for manager initialization
@@ -121,32 +130,20 @@ class App {
 
     // Set up inter-manager communication
     this.setupManagerCommunication();
-    
-    console.log('All managers initialized');
   }
 
   /**
    * Set up communication between managers
    */
   setupManagerCommunication() {
-    // Language changes should trigger typing animation restart
-    this.eventBus.on('i18n:languageChanged', () => {
-      if (this.managers.typing) {
-        setTimeout(() => {
-          this.managers.typing.restartAnimation();
-        }, 100);
-      }
-    });
+    // Language changes are handled directly in TypingManager
 
     // Navigation state changes
     this.eventBus.on('nav:stateChanged', ({ isOpen }) => {
       this.stateManager.setState('isNavOpen', isOpen);
     });
 
-    // Theme changes
-    this.eventBus.on('theme:changed', ({ newTheme }) => {
-      console.log(`Theme changed to: ${newTheme}`);
-    });
+    // Theme changes are handled by ThemeManager
 
     // Typing animation events
     this.eventBus.on('typing:completed', () => {
@@ -161,7 +158,6 @@ class App {
     // Start typing animation after all managers are ready
     setTimeout(() => {
       if (this.managers.typing) {
-        console.log('App: Starting typing animation manually');
         this.managers.typing.startAnimation();
       }
     }, 1500);
@@ -203,7 +199,6 @@ class App {
       this.handleKeyboardShortcuts(e);
     });
 
-    console.log('Global event listeners set up');
   }
 
   /**
@@ -289,7 +284,6 @@ class App {
    * Restart the application
    */
   async restart() {
-    console.log('Restarting app...');
     
     try {
       // Destroy current instance
@@ -307,13 +301,11 @@ class App {
    * Destroy the application and cleanup
    */
   async destroy() {
-    console.log('Destroying app...');
     
     try {
       // Destroy all managers
       for (const [name, manager] of Object.entries(this.managers)) {
         if (manager && typeof manager.destroy === 'function') {
-          console.log(`Destroying ${name} manager...`);
           manager.destroy();
         }
       }
@@ -332,8 +324,6 @@ class App {
       }
       
       this.isInitialized = false;
-      
-      console.log('App destroyed');
       
     } catch (error) {
       console.error('Error during app destruction:', error);
@@ -385,6 +375,3 @@ const app = new App();
 
 // Make app instance globally available for debugging
 window.portfolioApp = app;
-
-// Log startup message
-console.log('Portfolio App starting...');
