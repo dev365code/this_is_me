@@ -93,30 +93,53 @@ class I18nManager {
     this.eventBus.emit('i18n:loadingStart', { lang });
     
     try {
-      const response = await fetch(`./languages/${lang}.json`);
+      // Try multiple possible paths for GitHub Pages compatibility
+      const possiblePaths = [
+        `./languages/${lang}.json`,
+        `languages/${lang}.json`,
+        `/languages/${lang}.json`
+      ];
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      let response;
+      let lastError;
+      
+      for (const path of possiblePaths) {
+        try {
+          response = await fetch(path);
+          if (response.ok) {
+            break;
+          }
+          lastError = new Error(`HTTP ${response.status} for ${path}`);
+        } catch (error) {
+          lastError = error;
+          continue;
+        }
       }
       
-      this.translations = await response.json();
+      if (!response || !response.ok) {
+        throw lastError || new Error(`Failed to load translations for ${lang}`);
+      }
+      
+      const data = await response.json();
+      
+      // Validate that we got valid translation data
+      if (!data || typeof data !== 'object') {
+        throw new Error('Invalid translation data format');
+      }
+      
+      this.translations = data;
       this.stateManager.setState('translations', this.translations);
       
+      console.log(`Successfully loaded ${lang} translations`);
       this.eventBus.emit('i18n:loadingSuccess', { lang, translations: this.translations });
       
     } catch (error) {
-      console.error('Failed to load translations:', error);
+      console.error(`Failed to load ${lang} translations:`, error);
       
-      // Fallback to English if not already trying English
-      if (lang !== 'en') {
-        console.warn(`Falling back to English translations`);
-        await this.loadTranslations('en');
-        this.stateManager.setState('language', 'en');
-      } else {
-        // Use minimal fallback translations
-        this.translations = this.getFallbackTranslations();
-        this.stateManager.setState('translations', this.translations);
-      }
+      // Use fallback translations appropriate for the requested language
+      console.warn(`Using fallback translations for ${lang}`);
+      this.translations = this.getFallbackTranslations();
+      this.stateManager.setState('translations', this.translations);
       
       this.eventBus.emit('i18n:loadingError', { lang, error });
     } finally {
@@ -130,24 +153,77 @@ class I18nManager {
    * @returns {Object} Fallback translation data
    */
   getFallbackTranslations() {
+    const currentLang = this.getCurrentLanguage();
+    
+    if (currentLang === 'ko') {
+      return {
+        meta: {
+          title: "이우용 - 포트폴리오",
+          description: "백엔드 개발자 포트폴리오",
+          keywords: "백엔드 개발자, Java, Spring, 포트폴리오",
+          favicon: "./favicon.png"
+        },
+        hero: {
+          line1: "안녕하세요,",
+          line2: "이우용 입니다.",
+          name: "이우용",
+          subtitle: "백엔드 개발자",
+          ctaText: "프로젝트 보기",
+          ctaLink: "#projects"
+        },
+        about: {
+          title: "소개",
+          description: "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다.",
+          details: ["현대적인 기술로 의미 있는 솔루션을 만들어갑니다."]
+        },
+        projects: {
+          title: "프로젝트",
+          items: []
+        },
+        skills: {
+          title: "기술 스택",
+          categories: []
+        },
+        blog: {
+          title: "블로그",
+          posts: []
+        },
+        footer: {
+          copyright: "© 2025",
+          author: "이우용",
+          authorLink: "#"
+        },
+        ui: {
+          github: "GitHub",
+          readMore: "자세히 보기"
+        },
+        social: {
+          github: "#",
+          linkedin: "#"
+        }
+      };
+    }
+    
+    // English fallback
     return {
       meta: {
         title: "Wooyong Lee - Portfolio",
-        description: "Full Stack Developer Portfolio",
-        keywords: "developer, portfolio, javascript, react, node.js",
+        description: "Backend Developer Portfolio",
+        keywords: "backend developer, Java, Spring, portfolio",
         favicon: "./favicon.png"
       },
       hero: {
-        greeting: "Hi, I'm",
+        line1: "Hi, I'm",
+        line2: "Wooyong Lee",
         name: "Wooyong Lee",
-        subtitle: "Full Stack Developer",
+        subtitle: "Backend Developer",
         ctaText: "View My Work",
         ctaLink: "#projects"
       },
       about: {
         title: "About Me",
-        description: "I'm a passionate developer creating digital solutions.",
-        details: ["Building modern web applications with cutting-edge technologies."]
+        description: "I'm passionate about building clean and scalable systems.",
+        details: ["Creating meaningful solutions with modern technologies."]
       },
       projects: {
         title: "Projects",
@@ -162,7 +238,7 @@ class I18nManager {
         posts: []
       },
       footer: {
-        copyright: "© 2024",
+        copyright: "© 2025",
         author: "Wooyong Lee",
         authorLink: "#"
       },
