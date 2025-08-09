@@ -197,14 +197,16 @@
 
 /* Hero Section Responsive */
 .hero {
-    min-height: 70vh;
+    height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
     .hero {
-        min-height: 60vh;
+        height: 100vh;
         padding: 15px;
+        box-sizing: border-box;
     }
     
     .hero h2 {
