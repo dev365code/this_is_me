@@ -202,6 +202,8 @@ class TypingManager {
       this.line1.style.borderRight = 'none';
       this.line1.style.borderRightColor = '';
       this.line1.style.color = '';
+      // 가능한 잔여 스타일 제거
+      this.line1.removeAttribute('style');
     }
     
     if (this.line2) {
@@ -214,6 +216,9 @@ class TypingManager {
       this.line2.style.borderRight = 'none';
       this.line2.style.borderRightColor = '';
       this.line2.style.color = '';
+      this.line2.style.display = 'none';
+      // 가능한 잔여 스타일 제거 후 display만 다시 설정
+      this.line2.removeAttribute('style');
       this.line2.style.display = 'none';
     }
   }
@@ -298,15 +303,25 @@ class TypingManager {
     
     return new Promise((resolve) => {
       let i = 0;
+      
+      // 요소 완전 초기화
       element.textContent = '';
+      element.innerHTML = '';
+      
+      // 스타일 설정
       element.style.color = color;
       element.style.whiteSpace = 'nowrap';
       element.style.overflow = 'visible';
       element.style.width = 'auto';
       
+      // 커서 설정
       if (showCursor) {
-        element.style.borderRight = `2px solid ${color}`;
+        const borderColor = color.startsWith('var(') ? color : color;
+        element.style.borderRight = `2px solid ${borderColor}`;
         element.classList.add('blink');
+      } else {
+        element.style.borderRight = 'none';
+        element.classList.remove('blink');
       }
       
       const timer = setInterval(() => {
@@ -391,8 +406,16 @@ class TypingManager {
    * Restart animation (useful for language changes)
    */
   async restartAnimation() {
+    // 현재 애니메이션을 완전히 중지
     this.stopAnimation();
-    await this.delay(100);
+    
+    // 요소들을 완전히 초기화
+    this.resetElements();
+    
+    // 약간의 지연 후 새로운 애니메이션 시작
+    await this.delay(200);
+    
+    // 새로운 애니메이션 시작
     this.startAnimation();
   }
 
