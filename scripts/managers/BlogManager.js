@@ -17,7 +17,7 @@ class BlogManager {
     
     // 설정
     this.tistoryRssUrl = 'https://arex.tistory.com/rss';
-    this.proxyUrl = 'https://api.rss2json.com/v1/api.json';
+    this.proxyUrl = 'https://api.allorigins.win/get';
     this.maxPosts = 6; // 최대 표시할 포스트 수
     this.cacheKey = 'tistory-blog-cache';
     this.cacheExpiry = 30 * 60 * 1000; // 30분 캐시
@@ -31,10 +31,12 @@ class BlogManager {
   }
 
   async init() {
+    console.log('🔥 BlogManager 초기화 시작');
     this.setupEventListeners();
     
     // 초기 블로그 포스트 로드
     await this.loadBlogPosts();
+    console.log('✅ BlogManager 초기화 완료');
   }
 
   setupEventListeners() {
@@ -67,10 +69,12 @@ class BlogManager {
     this.eventBus.emit('blog:loadingStart');
     
     try {
-      console.log('티스토리 RSS 피드 로딩 중...');
+      // AllOrigins 프록시 사용 (CORS 문제 해결)
+      const fullUrl = `${this.proxyUrl}?url=${encodeURIComponent(this.tistoryRssUrl)}`;
+      console.log('🌐 티스토리 RSS 피드 로딩 중...', fullUrl);
       
-      // RSS-to-JSON 프록시 서비스 사용 (CORS 문제 해결)
-      const response = await fetch(`${this.proxyUrl}?rss_url=${encodeURIComponent(this.tistoryRssUrl)}&api_key=no-key&count=${this.maxPosts}`);
+      const response = await fetch(fullUrl);
+      console.log('📡 RSS 프록시 응답:', response.status, response.statusText);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -78,12 +82,16 @@ class BlogManager {
       
       const data = await response.json();
       
-      if (data.status !== 'ok') {
-        throw new Error(`RSS parsing failed: ${data.message || 'Unknown error'}`);
+      if (!data.contents) {
+        throw new Error('RSS content not found in proxy response');
       }
       
+      // XML 파싱
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+      
       // RSS 데이터를 포트폴리오 형식으로 변환
-      this.blogPosts = this.parseRssData(data);
+      this.blogPosts = this.parseRssXml(xmlDoc);
       
       // 캐시에 저장
       this.setCachedData(this.blogPosts);
@@ -92,12 +100,12 @@ class BlogManager {
       this.updateBlogSection();
       
       this.lastFetch = Date.now();
-      console.log(`티스토리에서 ${this.blogPosts.length}개의 포스트를 성공적으로 로드했습니다.`);
+      console.log(`✅ 티스토리에서 ${this.blogPosts.length}개의 포스트를 성공적으로 로드했습니다.`);
       
       this.eventBus.emit('blog:loadingSuccess', { posts: this.blogPosts });
       
     } catch (error) {
-      console.error('티스토리 RSS 로드 실패:', error);
+      console.error('❌ 티스토리 RSS 로드 실패:', error);
       
       // 폴백: 정적 데이터 사용
       this.loadFallbackPosts();
@@ -110,7 +118,47 @@ class BlogManager {
   }
 
   /**
-   * RSS 데이터를 포트폴리오 형식으로 파싱
+   * RSS XML을 파싱하여 포트폴리오 형식으로 변환
+   * @param {Document} xmlDoc - 파싱된 XML Document
+   * @returns {Array} 파싱된 블로그 포스트 배열
+   */
+  parseRssXml(xmlDoc) {
+    const items = xmlDoc.querySelectorAll('item');
+    const posts = [];
+    
+    for (let i = 0; i < Math.min(items.length, this.maxPosts); i++) {
+      const item = items[i];
+      
+      const title = item.querySelector('title')?.textContent || '제목 없음';
+      const link = item.querySelector('link')?.textContent || '#';
+      const description = item.querySelector('description')?.textContent || '';
+      const pubDate = item.querySelector('pubDate')?.textContent || '';
+      const categories = Array.from(item.querySelectorAll('category')).map(cat => cat.textContent);
+      
+      // HTML 태그 제거 및 설명 정리
+      const cleanDescription = this.cleanHtmlAndTruncate(description, 150);
+      
+      // 날짜 포맷 변경
+      const formattedDate = this.formatDate(pubDate);
+      
+      // 카테고리에서 태그 추출
+      const tags = this.extractTags(categories);
+      
+      posts.push({
+        title: title,
+        description: cleanDescription,
+        date: formattedDate,
+        link: link,
+        tags: tags,
+        source: 'tistory'
+      });
+    }
+    
+    return posts;
+  }
+
+  /**
+   * RSS 데이터를 포트폴리오 형식으로 파싱 (레거시 - RSS2JSON용)
    * @param {Object} rssData - RSS2JSON에서 받은 데이터
    * @returns {Array} 파싱된 블로그 포스트 배열
    */
