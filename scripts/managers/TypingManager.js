@@ -252,7 +252,9 @@ class TypingManager {
     this.line1.style.borderRight = 'none';
     this.line1.classList.remove('blink');
     
-    // 두 번째 줄을 미리 구조화된 HTML로 설정
+    // 두 번째 줄을 미리 구조화된 HTML로 설정 (완전 초기화 후)
+    this.line2.innerHTML = ''; // 강제 완전 초기화
+    this.line2.textContent = ''; // 추가 보장
     this.setupLine2Structure(line2Parts);
     
     // 첫 번째 부분 (이름) - 티파니민트
@@ -285,6 +287,11 @@ class TypingManager {
     
     console.log('🏗️ line2 구조 설정 전:', this.line2.innerHTML);
     console.log('📊 파트 개수:', line2Parts.length, line2Parts);
+    
+    // 구조 변경 전 기존 span들을 강제로 완전 제거
+    while (this.line2.firstChild) {
+      this.line2.removeChild(this.line2.firstChild);
+    }
     
     if (line2Parts.length === 1) {
       // 단일 색상인 경우 (영어)
