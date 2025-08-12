@@ -21,17 +21,17 @@
 /* Dark Theme */
 [data-theme="dark"] {
     --bg-color: #000000;
-    --text-color: #000000;  /* 주간모드와 동일한 검은색 */
-    --text-secondary: #000000;  /* 주간모드와 동일한 검은색 */
-    --text-muted: #000000;  /* 주간모드와 동일한 검은색 */
+    --text-color: #ffffff;  /* 다크모드에서 흰색 글씨 */
+    --text-secondary: #ffffff;  /* 다크모드에서 흰색 글씨 */
+    --text-muted: #ffffff;  /* 다크모드에서 흰색 글씨 */
     --accent-color: #00D7D0;  /* 티파니민트색 동일 */
     --card-bg: rgba(0, 215, 208, 0.05);
     --card-border: rgba(0, 215, 208, 0.2);
     --footer-bg: #757575;  /* 푸터 배경색 유지 */
     --footer-text: #aaa;   /* 푸터 텍스트색 유지 */
-    --typing-primary: #000000;  /* 주간모드와 동일한 검은색 */
+    --typing-primary: #ffffff;  /* 다크모드에서 흰색 글씨 */
     --typing-accent: #00D7D0;   /* Wooyong Lee 글자색 */
-    --typing-cursor-primary: #000000;  /* 주간모드와 동일한 검은색 */
+    --typing-cursor-primary: #ffffff;  /* 다크모드에서 흰색 커서 */
     --typing-cursor-accent: #00D7D0;   /* Wooyong Lee 커서색 */
 }
 
