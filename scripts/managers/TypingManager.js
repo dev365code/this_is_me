@@ -193,33 +193,25 @@ class TypingManager {
    */
   resetElements() {
     if (this.line1) {
+      // 모든 내용과 스타일 완전 제거
       this.line1.textContent = '';
       this.line1.innerHTML = '';
-      this.line1.style.width = 'auto';
-      this.line1.style.overflow = 'visible';
-      this.line1.style.whiteSpace = 'nowrap';
-      this.line1.classList.remove('blink');
-      this.line1.style.borderRight = 'none';
-      this.line1.style.borderRightColor = '';
-      this.line1.style.color = '';
-      // 가능한 잔여 스타일 제거
+      this.line1.className = 'typing-line'; // 원래 클래스만 유지
       this.line1.removeAttribute('style');
     }
     
     if (this.line2) {
+      // line2는 더 철저하게 초기화 (span 구조 때문에)
       this.line2.textContent = '';
       this.line2.innerHTML = '';
-      this.line2.style.width = 'auto';
-      this.line2.style.overflow = 'visible';
-      this.line2.style.whiteSpace = 'nowrap';
-      this.line2.classList.remove('blink');
-      this.line2.style.borderRight = 'none';
-      this.line2.style.borderRightColor = '';
-      this.line2.style.color = '';
-      this.line2.style.display = 'none';
-      // 가능한 잔여 스타일 제거 후 display만 다시 설정
+      this.line2.className = 'typing-line'; // 원래 클래스만 유지
       this.line2.removeAttribute('style');
+      // 기본 숨김 상태로 초기화
       this.line2.style.display = 'none';
+      
+      // 내부 span들도 완전히 제거되었는지 확인
+      const spans = this.line2.querySelectorAll('span');
+      spans.forEach(span => span.remove());
     }
   }
 
@@ -330,6 +322,12 @@ class TypingManager {
           i++;
         } else {
           clearInterval(timer);
+          // 애니메이션이 중단된 경우 요소 정리
+          if (!this.isAnimating) {
+            element.textContent = '';
+            element.style.borderRight = 'none';
+            element.classList.remove('blink');
+          }
           resolve();
         }
       }, speed);
