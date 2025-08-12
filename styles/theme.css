@@ -35,6 +35,13 @@
     --typing-cursor-accent: #00D7D0;   /* Wooyong Lee 커서색 */
 }
 
+/* Dark mode section backgrounds - 특정 섹션들만 검은색 배경 */
+[data-theme="dark"] .hero,
+[data-theme="dark"] #projects,
+[data-theme="dark"] #blog {
+    background-color: #000000 !important;
+}
+
 /* Theme transition for smooth switching */
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
