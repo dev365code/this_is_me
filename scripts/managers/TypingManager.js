@@ -192,15 +192,21 @@ class TypingManager {
    * Reset animation elements to clean initial state
    */
   resetElements() {
+    console.log('🧹 요소 초기화 시작');
+    
     if (this.line1) {
+      console.log('📝 line1 초기화 전:', this.line1.textContent, this.line1.innerHTML);
       // 모든 내용과 스타일 완전 제거
       this.line1.textContent = '';
       this.line1.innerHTML = '';
       this.line1.className = 'typing-line'; // 원래 클래스만 유지
       this.line1.removeAttribute('style');
+      console.log('✅ line1 초기화 완료');
     }
     
     if (this.line2) {
+      console.log('📝 line2 초기화 전:', this.line2.textContent, this.line2.innerHTML);
+      
       // line2는 더 철저하게 초기화 (span 구조 때문에)
       this.line2.textContent = '';
       this.line2.innerHTML = '';
@@ -211,8 +217,13 @@ class TypingManager {
       
       // 내부 span들도 완전히 제거되었는지 확인
       const spans = this.line2.querySelectorAll('span');
+      console.log('🔍 제거할 span 개수:', spans.length);
       spans.forEach(span => span.remove());
+      
+      console.log('✅ line2 초기화 완료:', this.line2.textContent, this.line2.innerHTML);
     }
+    
+    console.log('🎯 요소 초기화 완료');
   }
 
   /**
@@ -272,13 +283,20 @@ class TypingManager {
   setupLine2Structure(line2Parts) {
     if (!this.line2) return;
     
+    console.log('🏗️ line2 구조 설정 전:', this.line2.innerHTML);
+    console.log('📊 파트 개수:', line2Parts.length, line2Parts);
+    
     if (line2Parts.length === 1) {
       // 단일 색상인 경우 (영어)
       this.line2.innerHTML = '<span class="part1"></span>';
+      console.log('🇺🇸 영어 구조 설정 완료');
     } else {
       // 두 색상인 경우 (한국어)
       this.line2.innerHTML = '<span class="part1"></span><span class="part2"></span>';
+      console.log('🇰🇷 한국어 구조 설정 완료');
     }
+    
+    console.log('✅ line2 구조 설정 후:', this.line2.innerHTML);
   }
 
   /**
@@ -404,6 +422,8 @@ class TypingManager {
    * Restart animation (useful for language changes)
    */
   async restartAnimation() {
+    console.log('🔄 언어 변경으로 인한 애니메이션 재시작');
+    
     // 현재 애니메이션을 완전히 중지
     this.stopAnimation();
     
@@ -411,9 +431,11 @@ class TypingManager {
     this.resetElements();
     
     // 약간의 지연 후 새로운 애니메이션 시작
+    console.log('⏳ 200ms 대기 중...');
     await this.delay(200);
     
     // 새로운 애니메이션 시작
+    console.log('▶️ 새로운 애니메이션 시작');
     this.startAnimation();
   }
 
@@ -421,8 +443,10 @@ class TypingManager {
    * Stop current animation
    */
   stopAnimation() {
+    console.log('🛑 애니메이션 중지 시작');
     this.isAnimating = false;
     this.resetElements();
+    console.log('✅ 애니메이션 중지 완료');
   }
 
   /**
