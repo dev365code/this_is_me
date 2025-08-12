@@ -74,10 +74,11 @@ class TypingManager {
    * - StateManager의 상태 변화에 반응하여 애니메이션 업데이트
    */
   setupStateSubscriptions() {
-    // 언어 변경 시 애니메이션 재시작
-    this.stateManager.subscribe('language', () => {
-      // 언어가 바뀌면 항상 애니메이션을 재시작하여 새로운 텍스트 표시
-      this.restartAnimation();
+    // 언어 변경 시 애니메이션 재시작 (타이핑 중이 아닐 때만)
+    this.stateManager.subscribe('language', (newLang, oldLang) => {
+      if (newLang !== oldLang && !this.isAnimating) {
+        this.restartAnimation();
+      }
     });
 
     // 번역 데이터 업데이트 감지
@@ -161,6 +162,7 @@ class TypingManager {
     
     // 애니메이션 상태 설정 및 이벤트 발생
     this.isAnimating = true;
+    this.setLanguageButtonsEnabled(false); // 언어 버튼 비활성화
     this.eventBus.emit('typing:started');
     
     try {
@@ -183,6 +185,7 @@ class TypingManager {
     } finally {
       // 상태 정리 및 완료 이벤트 발생
       this.isAnimating = false;
+      this.setLanguageButtonsEnabled(true); // 언어 버튼 활성화
       this.stateManager.setState('isTypingAnimationComplete', true);
       this.eventBus.emit('typing:completed');
     }
@@ -452,6 +455,7 @@ class TypingManager {
   stopAnimation() {
     console.log('🛑 애니메이션 중지 시작');
     this.isAnimating = false;
+    this.setLanguageButtonsEnabled(true); // 언어 버튼 활성화
     this.resetElements();
     console.log('✅ 애니메이션 중지 완료');
   }
@@ -474,6 +478,27 @@ class TypingManager {
   }
 
   /**
+   * 언어 버튼 활성화/비활성화 제어
+   * @param {boolean} enabled - 활성화 여부
+   */
+  setLanguageButtonsEnabled(enabled) {
+    const langButtons = document.querySelectorAll('.menu-lang-btn');
+    langButtons.forEach(button => {
+      if (enabled) {
+        button.disabled = false;
+        button.style.opacity = '1';
+        button.style.cursor = 'pointer';
+        button.style.pointerEvents = 'auto';
+      } else {
+        button.disabled = true;
+        button.style.opacity = '0.5';
+        button.style.cursor = 'not-allowed';
+        button.style.pointerEvents = 'none';
+      }
+    });
+  }
+
+  /**
    * Cleanup event listeners and timers
    */
   destroy() {
@@ -481,6 +506,8 @@ class TypingManager {
     clearTimeout(this.resizeTimer);
     window.removeEventListener('resize', this.boundHandleResize);
     window.removeEventListener('load', this.boundScheduleInitialAnimation);
+    // 언어 버튼 활성화 복원
+    this.setLanguageButtonsEnabled(true);
   }
 }
 
