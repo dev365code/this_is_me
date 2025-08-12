@@ -139,9 +139,12 @@ class App {
   setupManagerCommunication() {
     // Language changes are handled directly in TypingManager
 
-    // Navigation state changes
+    // Navigation state changes (prevent infinite loop)
     this.eventBus.on('nav:stateChanged', ({ isOpen }) => {
-      this.stateManager.setState('isNavOpen', isOpen);
+      const currentState = this.stateManager.getState('isNavOpen');
+      if (currentState !== isOpen) {
+        this.stateManager.setState('isNavOpen', isOpen);
+      }
     });
 
     // Theme changes are handled by ThemeManager

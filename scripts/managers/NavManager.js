@@ -63,10 +63,14 @@ class NavManager {
   }
 
   setupStateSubscriptions() {
-    // Subscribe to nav state changes
-    this.stateManager.subscribe('isNavOpen', (isOpen) => {
-      this.updateNavVisibility(isOpen);
-      this.eventBus.emit('nav:stateChanged', { isOpen });
+    // Subscribe to nav state changes (prevent infinite loop)
+    this.stateManager.subscribe('isNavOpen', (isOpen, oldValue) => {
+      // Only update if the value actually changed
+      if (isOpen !== oldValue) {
+        this.updateNavVisibility(isOpen);
+        // Don't emit event here to prevent circular calls
+        // this.eventBus.emit('nav:stateChanged', { isOpen });
+      }
     });
   }
 
