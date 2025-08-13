@@ -156,7 +156,7 @@
 
 /* Theme Toggle in Menu */
 .menu-theme-toggle {
-    width: 130px; /* 한국어 시작~English 끝까지 맞춤 (55px + 6px + 55px + 14px) */
+    width: 130px; /* 언어 버튼 그룹 총 너비와 정확히 맞춤 */
     height: 28px; /* 언어 버튼과 높이 맞춤 */
     border: 2px solid var(--accent-color);
     border-radius: 20px;
@@ -165,7 +165,8 @@
     position: relative;
     transition: all 0.3s ease;
     flex-shrink: 0; /* 크기 고정 */
-    margin-left: 16px; /* 오른쪽으로 더 이동해서 한국어 버튼과 시작점 맞춤 */
+    margin-left: 15px; /* 오른쪽으로 이동해서 한국어 시작점 맞춤 */
+    margin-right: -7px; /* English 끝점과 맞춤 */
 }
 
 .menu-theme-toggle::before {
