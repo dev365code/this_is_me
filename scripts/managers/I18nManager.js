@@ -287,6 +287,7 @@ class I18nManager {
     }
 
     this.updateMeta();
+    this.updateNavigation(); // 네비게이션 업데이트 추가
     this.updateHero();
     this.updateAbout();
     this.updateProjects();
@@ -511,6 +512,24 @@ class I18nManager {
     }
     
     return value;
+  }
+
+  /**
+   * Update navigation menu text
+   */
+  updateNavigation() {
+    const { navigation } = this.translations;
+    if (!navigation) return;
+    
+    // Update all elements with data-translate attributes
+    const translatableElements = document.querySelectorAll('[data-translate]');
+    translatableElements.forEach(element => {
+      const translateKey = element.getAttribute('data-translate');
+      const translation = this.t(translateKey);
+      if (translation && translation !== translateKey) {
+        element.textContent = translation;
+      }
+    });
   }
 
   /**

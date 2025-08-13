@@ -121,5 +121,13 @@
     "github": "GitHub",
     "viewAll": "전체 보기",
     "backToTop": "맨 위로"
+  },
+  "navigation": {
+    "about": "소개",
+    "projects": "프로젝트",
+    "skills": "기술",
+    "blog": "블로그",
+    "language": "언어",
+    "theme": "테마"
   }
 }

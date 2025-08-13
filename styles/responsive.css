@@ -91,33 +91,41 @@
 
 /* Menu Controls */
 .menu-controls {
-    padding: 15px 20px;
+    padding: 18px 20px;
     border-bottom: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .menu-control-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 28px; /* 일정한 높이로 정렬 */
 }
 
 .control-label {
     font-size: 0.8rem;
     color: var(--text-secondary);
     font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+    flex-shrink: 0; /* 라벨 크기 고정 */
+    width: 70px; /* 라벨 너비 늘림 - Theme와 Language 균형 맞춤 */
+    text-align: center; /* 가운데 정렬로 Language와 Theme 중앙 맞춤 */
+    margin-left: -8px; /* 왼쪽으로 4칸 이동 */
 }
 
 /* Language Toggle in Menu */
 .menu-lang-toggle {
     display: flex;
-    gap: 5px;
+    gap: 6px;
+    align-items: center;
+    margin-right: -6px; /* English 버튼 오른쪽 공간 3칸 줄이기 */
 }
 
 .menu-lang-btn {
-    padding: 4px 8px;
+    padding: 6px 10px;
     border: 1px solid var(--accent-color);
     background: transparent;
     color: var(--accent-color);
@@ -125,8 +133,15 @@
     font-size: 0.7rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    border-radius: 10px;
+    border-radius: 12px;
     font-family: 'Source Code Pro', monospace;
+    min-width: 55px; /* 한국어 텍스트 짤림 방지로 너비 늘림 */
+    text-align: center;
+    height: 28px; /* 테마 토글과 높이 맞춤 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
 }
 
 .menu-lang-btn:hover {
@@ -141,29 +156,34 @@
 
 /* Theme Toggle in Menu */
 .menu-theme-toggle {
-    width: 40px;
-    height: 24px;
+    width: 130px; /* 한국어 시작~English 끝까지 맞춤 (55px + 6px + 55px + 14px) */
+    height: 28px; /* 언어 버튼과 높이 맞춤 */
     border: 2px solid var(--accent-color);
     border-radius: 20px;
     background: transparent;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
+    flex-shrink: 0; /* 크기 고정 */
+    margin-left: 16px; /* 오른쪽으로 더 이동해서 한국어 버튼과 시작점 맞춤 */
 }
 
 .menu-theme-toggle::before {
     content: '🌙';
     position: absolute;
-    left: 2px;
+    left: 25%; /* 왼쪽 절반의 가운데 (130px의 25% = 32.5px) */
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.8rem;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .menu-theme-toggle.light::before {
     content: '☀️';
-    left: 16px;
+    left: 75%; /* 오른쪽 절반의 가운데 (130px의 75% = 97.5px) */
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: auto;
 }
 
 .menu-theme-toggle:hover {

@@ -30,13 +30,12 @@ a {
 
 
 
-/* Colored Sections */
+/* Colored Sections - 깔끔한 직사각형 */
 .section-colored {
     position: relative;
     background: var(--accent-color);
     color: var(--bg-color);
-    padding: 100px 20px;
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+    padding: 100px 30px;
     z-index: 1;
 }
 
@@ -62,8 +61,7 @@ a {
     position: relative;
     background: var(--accent-color);
     color: var(--bg-color);
-    padding: 100px 20px;
-    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
+    padding: 100px 30px;
     z-index: 1;
 }
 
@@ -83,6 +81,21 @@ a {
 .section-colored_1 a {
     color: var(--bg-color);
     text-decoration: underline;
+}
+
+/* 반응형 패딩 최적화 */
+@media (max-width: 768px) {
+    .section-colored,
+    .section-colored_1 {
+        padding: 80px 25px; /* 모바일에서 패딩 줄임 */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-colored,
+    .section-colored_1 {
+        padding: 60px 20px; /* 매우 작은 화면에서 더 컴팩트 */
+    }
 }
 
 /* Footer */

@@ -121,5 +121,13 @@
     "github": "GitHub",
     "viewAll": "View All",
     "backToTop": "Back to Top"
+  },
+  "navigation": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "blog": "Blog",
+    "language": "Language",
+    "theme": "Theme"
   }
 }

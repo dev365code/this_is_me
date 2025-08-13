@@ -42,6 +42,39 @@
     background-color: #000000 !important;
 }
 
+/* Dark mode: 프로젝트 섹션 텍스트 색상 수정 */
+[data-theme="dark"] .project-content h3:hover,
+[data-theme="dark"] .project-card:hover .project-content h3 {
+    color: #ffffff !important; /* 다크모드에서 프로젝트 제목 마우스오버 시 흰색 */
+}
+
+[data-theme="dark"] .project-content p {
+    color: #ffffff !important; /* 다크모드에서 프로젝트 설명 텍스트 흰색 */
+}
+
+/* Dark mode: 블로그 섹션 텍스트 색상 수정 */
+[data-theme="dark"] .blog-date {
+    color: #ffffff !important; /* 다크모드에서 블로그 날짜 흰색 */
+}
+
+[data-theme="dark"] .blog-content p {
+    color: #ffffff !important; /* 다크모드에서 블로그 내용 텍스트 흰색 */
+}
+
+/* Dark mode: 네비게이션 메뉴 텍스트 색상 수정 */
+[data-theme="dark"] .control-label {
+    color: #ffffff !important; /* 다크모드에서 Language, Theme 라벨 흰색 */
+}
+
+[data-theme="dark"] .nav-link {
+    color: #ffffff !important; /* 다크모드에서 About, Projects, Skills, Blog 링크 흰색 */
+}
+
+/* 네비게이션 링크 가운데 정렬 */
+.nav-link {
+    text-align: center !important; /* About, Projects, Skills, Blog 가운데 정렬 */
+}
+
 /* Theme transition for smooth switching */
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
