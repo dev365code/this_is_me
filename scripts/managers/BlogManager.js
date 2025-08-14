@@ -57,16 +57,27 @@ class BlogManager {
   async loadBlogPosts() {
     if (this.isLoading) return;
     
-    // 캐시 확인
+    // 캐시 확인 - 캐시된 데이터가 있으면 먼저 표시
     const cachedData = this.getCachedData();
     if (cachedData) {
       this.blogPosts = cachedData;
       this.updateBlogSection();
-      return;
+      console.log('📋 캐시된 블로그 포스트 표시');
+      
+      // 캐시가 최근 것이면 새로 로드하지 않음
+      if (this.isCacheRecent()) {
+        return;
+      }
     }
     
     this.isLoading = true;
     this.eventBus.emit('blog:loadingStart');
+    
+    // Add loading visual feedback
+    const blogSection = document.querySelector('#blog');
+    if (blogSection) {
+      blogSection.classList.add('blog-section-loading');
+    }
     
     try {
       // AllOrigins 프록시 사용 (CORS 문제 해결)
@@ -91,13 +102,21 @@ class BlogManager {
       const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
       
       // RSS 데이터를 포트폴리오 형식으로 변환
-      this.blogPosts = this.parseRssXml(xmlDoc);
+      const newPosts = this.parseRssXml(xmlDoc);
       
-      // 캐시에 저장
-      this.setCachedData(this.blogPosts);
-      
-      // 블로그 섹션 업데이트
-      this.updateBlogSection();
+      // 새 데이터가 기존 캐시와 다른 경우에만 업데이트
+      if (!this.arePostsEqual(this.blogPosts, newPosts)) {
+        this.blogPosts = newPosts;
+        
+        // 캐시에 저장
+        this.setCachedData(this.blogPosts);
+        
+        // 블로그 섹션 업데이트
+        this.updateBlogSection();
+        console.log(`🔄 새로운 블로그 포스트로 업데이트: ${this.blogPosts.length}개`);
+      } else {
+        console.log('📋 블로그 포스트 변경 없음');
+      }
       
       this.lastFetch = Date.now();
       console.log(`✅ 티스토리에서 ${this.blogPosts.length}개의 포스트를 성공적으로 로드했습니다.`);
@@ -113,6 +132,13 @@ class BlogManager {
       this.eventBus.emit('blog:loadingError', { error });
     } finally {
       this.isLoading = false;
+      
+      // Remove loading visual feedback
+      const blogSection = document.querySelector('#blog');
+      if (blogSection) {
+        blogSection.classList.remove('blog-section-loading');
+      }
+      
       this.eventBus.emit('blog:loadingEnd');
     }
   }
@@ -262,6 +288,44 @@ class BlogManager {
       localStorage.removeItem(this.cacheKey);
       return null;
     }
+  }
+
+  /**
+   * 캐시가 최근 것인지 확인 (5분 이내)
+   * @returns {boolean} 캐시가 최근 것인지 여부
+   */
+  isCacheRecent() {
+    try {
+      const cached = localStorage.getItem(this.cacheKey);
+      if (!cached) return false;
+      
+      const { timestamp } = JSON.parse(cached);
+      const fiveMinutes = 5 * 60 * 1000;
+      
+      return Date.now() - timestamp < fiveMinutes;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  /**
+   * 두 포스트 배열이 같은지 비교
+   * @param {Array} posts1 - 첫 번째 포스트 배열
+   * @param {Array} posts2 - 두 번째 포스트 배열
+   * @returns {boolean} 같은지 여부
+   */
+  arePostsEqual(posts1, posts2) {
+    if (!posts1 || !posts2) return false;
+    if (posts1.length !== posts2.length) return false;
+    
+    // 제목과 날짜로 비교 (간단한 비교)
+    for (let i = 0; i < posts1.length; i++) {
+      if (posts1[i].title !== posts2[i].title || posts1[i].date !== posts2[i].date) {
+        return false;
+      }
+    }
+    
+    return true;
   }
 
   /**

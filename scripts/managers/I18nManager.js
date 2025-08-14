@@ -28,11 +28,15 @@ class I18nManager {
     this.setupEventListeners();
     this.setupStateSubscriptions();
     
-    // Load initial translations
+    // Load initial translations and wait for completion
     const currentLang = this.stateManager.getState('language');
     await this.loadTranslations(currentLang);
-    this.updateMenuLanguageButtons();
-    this.renderPage(); // 초기 번역으로 페이지 렌더링
+    
+    // Only update UI after translations are fully loaded
+    if (this.isReady()) {
+      this.updateMenuLanguageButtons();
+      this.renderPage(); // 초기 번역으로 페이지 렌더링
+    }
   }
 
   setupEventListeners() {
@@ -79,6 +83,13 @@ class I18nManager {
     if (newLang === this.getCurrentLanguage() || this.isLoading) return;
     
     this.eventBus.emit('i18n:switchingLanguage', { newLang });
+    
+    // Add loading visual feedback
+    document.body.classList.add('language-switching');
+    
+    // Update button states immediately for visual feedback
+    this.updateMenuLanguageButtons(newLang);
+    
     this.stateManager.setState('language', newLang);
   }
 
@@ -144,6 +155,10 @@ class I18nManager {
       this.eventBus.emit('i18n:loadingError', { lang, error });
     } finally {
       this.isLoading = false;
+      
+      // Remove loading visual feedback
+      document.body.classList.remove('language-switching');
+      
       this.eventBus.emit('i18n:loadingEnd', { lang });
     }
   }
@@ -264,14 +279,15 @@ class I18nManager {
 
   /**
    * Update active language buttons in menu
+   * @param {string} lang - Language to set as active (optional, uses current language if not provided)
    */
-  updateMenuLanguageButtons() {
+  updateMenuLanguageButtons(lang = null) {
     const menuLangButtons = document.querySelectorAll('.menu-lang-btn');
-    const currentLang = this.getCurrentLanguage();
+    const targetLang = lang || this.getCurrentLanguage();
     
     menuLangButtons.forEach(btn => {
       btn.classList.remove('active');
-      if (btn.dataset.lang === currentLang) {
+      if (btn.dataset.lang === targetLang) {
         btn.classList.add('active');
       }
     });

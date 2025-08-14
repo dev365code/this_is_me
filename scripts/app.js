@@ -96,41 +96,68 @@ class App {
    * Initialize all managers in proper order
    */
   async initManagers() {
-    const managerConfig = [
+    // Phase 1: Core managers (essential for basic functionality)
+    const coreManagers = [
       { name: 'i18n', class: window.I18nManager, required: true },
       { name: 'theme', class: window.ThemeManager, required: true },
-      { name: 'nav', class: window.NavManager, required: true },
+      { name: 'nav', class: window.NavManager, required: true }
+    ];
+
+    console.log('🚀 Initializing core managers...');
+    for (const config of coreManagers) {
+      try {
+        if (!config.class) {
+          throw new Error(`Required manager class not found: ${config.name}`);
+        }
+
+        console.log(`📝 Initializing ${config.name} manager...`);
+        this.managers[config.name] = new config.class();
+        
+        // Wait for core manager initialization
+        await this.delay(100);
+        console.log(`✅ ${config.name} manager initialized`);
+        
+      } catch (error) {
+        console.error(`❌ Failed to initialize ${config.name} manager:`, error);
+        throw error; // Core managers are required
+      }
+    }
+
+    // Set up inter-manager communication first
+    this.setupManagerCommunication();
+
+    // Phase 2: Enhanced managers (can be initialized asynchronously)
+    const enhancedManagers = [
       { name: 'typing', class: window.TypingManager, required: false },
       { name: 'blog', class: window.BlogManager, required: false }
     ];
 
-    for (const config of managerConfig) {
+    console.log('🎨 Initializing enhanced managers...');
+    // Initialize enhanced managers without blocking
+    this.initEnhancedManagers(enhancedManagers);
+  }
+
+  /**
+   * Initialize enhanced managers asynchronously
+   * @param {Array} managers - Array of manager configurations
+   */
+  async initEnhancedManagers(managers) {
+    for (const config of managers) {
       try {
         if (!config.class) {
-          if (config.required) {
-            throw new Error(`Required manager class not found: ${config.name}`);
-          } else {
-            console.warn(`Optional manager not available: ${config.name}`);
-            continue;
-          }
+          console.warn(`Optional manager not available: ${config.name}`);
+          continue;
         }
 
+        console.log(`🎨 Initializing ${config.name} manager...`);
         this.managers[config.name] = new config.class();
-        
-        // Wait a bit for manager initialization
-        await this.delay(50);
+        console.log(`✅ ${config.name} manager initialized`);
         
       } catch (error) {
-        console.error(`Failed to initialize ${config.name} manager:`, error);
-        
-        if (config.required) {
-          throw error;
-        }
+        console.error(`⚠️ Failed to initialize ${config.name} manager:`, error);
+        // Enhanced managers are optional, so continue
       }
     }
-
-    // Set up inter-manager communication
-    this.setupManagerCommunication();
   }
 
   /**
