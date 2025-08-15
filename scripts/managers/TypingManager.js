@@ -74,9 +74,10 @@ class TypingManager {
    * - StateManager의 상태 변화에 반응하여 애니메이션 업데이트
    */
   setupStateSubscriptions() {
-    // 언어 변경 시 애니메이션 재시작 (타이핑 중이 아닐 때만)
+    // 언어 변경 시 애니메이션 강제 재시작 (타이핑 중이어도 중단하고 재시작)
     this.stateManager.subscribe('language', (newLang, oldLang) => {
-      if (newLang !== oldLang && !this.isAnimating) {
+      if (newLang !== oldLang) {
+        console.log('🔄 언어 변경 감지:', oldLang, '->', newLang);
         this.restartAnimation();
       }
     });
@@ -96,18 +97,20 @@ class TypingManager {
    * - 번역 데이터 로딩 상태를 확인하여 적절한 타이밍에 시작
    */
   scheduleInitialAnimation() {
-    // 500ms 후에 애니메이션 시작 여부 판단
+    // 초기 애니메이션을 더 늦게 시작하여 언어 변경과의 충돌 방지
     setTimeout(() => {
       const translations = this.stateManager.getState('translations');
       
       if (translations && Object.keys(translations).length > 0) {
-        // 번역 데이터가 준비되어 있으면 즉시 시작
+        // 번역 데이터가 준비되어 있으면 시작
+        console.log('📝 번역 데이터 준비완료, 타이핑 애니메이션 시작');
         this.startAnimation();
       } else {
-        // 번역 데이터가 없으면 추가로 1초 기다린 후 폴백으로 시작
-        setTimeout(() => this.startAnimation(), 1000);
+        // 번역 데이터가 없으면 추가로 기다린 후 폴백으로 시작
+        console.log('⏳ 번역 데이터 대기 중, 폴백으로 시작');
+        setTimeout(() => this.startAnimation(), 800);
       }
-    }, 500);
+    }, 1200); // 500ms → 1200ms로 증가하여 초기 로딩 완료 후 시작
   }
 
   /**

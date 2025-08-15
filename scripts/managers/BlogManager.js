@@ -64,8 +64,9 @@ class BlogManager {
       this.updateBlogSection();
       console.log('📋 캐시된 블로그 포스트 표시');
       
-      // 캐시가 최근 것이면 새로 로드하지 않음
-      if (this.isCacheRecent()) {
+      // 캐시 시간을 5분에서 2분으로 단축하여 더 자주 업데이트
+      if (this.isCacheRecent(2)) {
+        console.log('⏰ 캐시가 2분 이내로 최신이므로 새로고침 스킵');
         return;
       }
     }
@@ -80,29 +81,78 @@ class BlogManager {
     }
     
     try {
-      // AllOrigins 프록시 사용 (CORS 문제 해결)
-      const fullUrl = `${this.proxyUrl}?url=${encodeURIComponent(this.tistoryRssUrl)}`;
-      console.log('🌐 티스토리 RSS 피드 로딩 중...', fullUrl);
+      // 여러 프록시 서비스 시도하여 안정성 향상
+      const proxyUrls = [
+        `${this.proxyUrl}?url=${encodeURIComponent(this.tistoryRssUrl)}`,
+        `https://cors-anywhere.herokuapp.com/${this.tistoryRssUrl}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(this.tistoryRssUrl)}`
+      ];
       
-      const response = await fetch(fullUrl);
-      console.log('📡 RSS 프록시 응답:', response.status, response.statusText);
+      let response, data, xmlDoc, newPosts;
+      let lastError;
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // 프록시 서비스들을 순차적으로 시도
+      for (let i = 0; i < proxyUrls.length; i++) {
+        try {
+          console.log(`🌐 프록시 ${i + 1} 시도: ${proxyUrls[i]}`);
+          response = await fetch(proxyUrls[i], {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'User-Agent': 'Mozilla/5.0 (compatible; BlogFetcher/1.0)'
+            }
+          });
+          
+          console.log(`📡 프록시 ${i + 1} 응답:`, response.status, response.statusText);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          // 프록시 서비스에 따라 응답 형식이 다름
+          if (i === 0) {
+            // AllOrigins
+            data = await response.json();
+            if (!data.contents) {
+              throw new Error('RSS content not found in AllOrigins response');
+            }
+            xmlDoc = new DOMParser().parseFromString(data.contents, 'text/xml');
+          } else if (i === 1) {
+            // CORS Anywhere
+            const textData = await response.text();
+            xmlDoc = new DOMParser().parseFromString(textData, 'text/xml');
+          } else {
+            // CodeTabs
+            const textData = await response.text();
+            xmlDoc = new DOMParser().parseFromString(textData, 'text/xml');
+          }
+          
+          // XML 파싱 오류 확인
+          if (xmlDoc.documentElement.nodeName === 'parsererror') {
+            throw new Error('XML parsing failed');
+          }
+          
+          // RSS 데이터를 포트폴리오 형식으로 변환
+          newPosts = this.parseRssXml(xmlDoc);
+          
+          if (newPosts && newPosts.length > 0) {
+            console.log(`✅ 프록시 ${i + 1}에서 성공적으로 ${newPosts.length}개 포스트 로드`);
+            break; // 성공하면 다음 프록시 시도 안함
+          } else {
+            throw new Error('No posts found in RSS feed');
+          }
+          
+        } catch (error) {
+          console.warn(`❌ 프록시 ${i + 1} 실패:`, error.message);
+          lastError = error;
+          continue; // 다음 프록시 시도
+        }
       }
       
-      const data = await response.json();
-      
-      if (!data.contents) {
-        throw new Error('RSS content not found in proxy response');
+      // 모든 프록시가 실패한 경우
+      if (!newPosts || newPosts.length === 0) {
+        throw lastError || new Error('All proxy services failed');
       }
-      
-      // XML 파싱
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
-      
-      // RSS 데이터를 포트폴리오 형식으로 변환
-      const newPosts = this.parseRssXml(xmlDoc);
       
       // 새 데이터가 기존 캐시와 다른 경우에만 업데이트
       if (!this.arePostsEqual(this.blogPosts, newPosts)) {
@@ -291,18 +341,19 @@ class BlogManager {
   }
 
   /**
-   * 캐시가 최근 것인지 확인 (5분 이내)
+   * 캐시가 최근 것인지 확인 (기본 5분, 매개변수로 조정 가능)
+   * @param {number} minutes - 확인할 시간(분)
    * @returns {boolean} 캐시가 최근 것인지 여부
    */
-  isCacheRecent() {
+  isCacheRecent(minutes = 5) {
     try {
       const cached = localStorage.getItem(this.cacheKey);
       if (!cached) return false;
       
       const { timestamp } = JSON.parse(cached);
-      const fiveMinutes = 5 * 60 * 1000;
+      const timeThreshold = minutes * 60 * 1000;
       
-      return Date.now() - timestamp < fiveMinutes;
+      return Date.now() - timestamp < timeThreshold;
     } catch (error) {
       return false;
     }

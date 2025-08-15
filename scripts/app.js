@@ -186,7 +186,15 @@ class App {
       }
     });
 
-    // Start typing animation after all managers are ready
+    // BlogManager 초기화 후 즉시 블로그 포스트 로드 시작
+    if (this.managers.blog) {
+      // 백그라운드에서 블로그 포스트 로드 (타이핑 애니메이션과 병렬 진행)
+      this.managers.blog.loadBlogPosts().catch(error => {
+        console.warn('초기 블로그 로드 실패:', error);
+      });
+    }
+
+    // Start typing animation after all managers are ready (타이밍 조정됨)
     setTimeout(() => {
       if (this.managers.typing) {
         this.managers.typing.startAnimation();

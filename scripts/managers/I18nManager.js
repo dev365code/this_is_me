@@ -82,6 +82,7 @@ class I18nManager {
   async switchLanguage(newLang) {
     if (newLang === this.getCurrentLanguage() || this.isLoading) return;
     
+    console.log('🌐 언어 변경 시작:', this.getCurrentLanguage(), '->', newLang);
     this.eventBus.emit('i18n:switchingLanguage', { newLang });
     
     // Add loading visual feedback
@@ -90,6 +91,7 @@ class I18nManager {
     // Update button states immediately for visual feedback
     this.updateMenuLanguageButtons(newLang);
     
+    // 언어 상태 변경 (이때 TypingManager의 subscribe가 트리거됨)
     this.stateManager.setState('language', newLang);
   }
 
