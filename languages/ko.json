@@ -5,7 +5,7 @@
     "email": "your.email@example.com",
     "phone": "+82-10-0000-0000",
     "location": "서울, 대한민국",
-    "profileImage": "assets/images/tigerchopchop.jpg",
+    "profileImage": "images/tigerchopchop.jpg",
     "resume": "#",
     "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다."
   },
@@ -56,21 +56,21 @@
       {
         "title": "자동매매 봇",
         "description": "Python, PyTorch 기반의 리밸런싱 시스템",
-        "image": "assets/images/tigerchopchop.jpg",
+        "image": "images/tigerchopchop.jpg",
         "link": "#",
         "tags": ["Python", "PyTorch", "Trading"]
       },
       {
         "title": "포트폴리오 웹사이트",
         "description": "React, TypeScript 기반의 반응형 웹사이트",
-        "image": "assets/images/tigerchopchop.jpg",
+        "image": "images/tigerchopchop.jpg",
         "link": "#",
         "tags": ["React", "TypeScript", "Web"]
       },
       {
         "title": "데이터 분석 플랫폼",
         "description": "Java, Spring Boot 기반의 데이터 분석 플랫폼",
-        "image": "assets/images/tigerchopchop.jpg",
+        "image": "images/tigerchopchop.jpg",
         "link": "#",
         "tags": ["Java", "Spring Boot", "Analytics"]
       }
