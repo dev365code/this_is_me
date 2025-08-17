@@ -13,7 +13,7 @@ class BlogManager {
     // 외부 의존성
     this.stateManager = window.stateManager;
     this.eventBus = window.eventBus;
-    this.i18nManager = window.i18nManager;
+    // i18nManager는 나중에 참조 (초기화 순서 때문에)
     
     // 설정
     this.tistoryRssUrl = 'https://arex.tistory.com/rss';
@@ -34,9 +34,15 @@ class BlogManager {
     console.log('🔥 BlogManager 초기화 시작');
     this.setupEventListeners();
     
-    // 초기 블로그 포스트 로드
-    await this.loadBlogPosts();
-    console.log('✅ BlogManager 초기화 완료');
+    // I18nManager가 준비될 때까지 기다린 후 블로그 로드
+    setTimeout(async () => {
+      try {
+        await this.loadBlogPosts();
+        console.log('✅ BlogManager 초기화 완료');
+      } catch (error) {
+        console.error('❌ BlogManager 초기화 실패:', error);
+      }
+    }, 500); // I18nManager 초기화 완료 대기
   }
 
   setupEventListeners() {

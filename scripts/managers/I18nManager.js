@@ -30,12 +30,15 @@ class I18nManager {
     
     // Load initial translations and wait for completion
     const currentLang = this.stateManager.getState('language');
+    console.log('🌐 I18nManager 초기화: 현재 언어 =', currentLang);
+    
     await this.loadTranslations(currentLang);
     
     // Only update UI after translations are fully loaded
     if (this.isReady()) {
       this.updateMenuLanguageButtons();
       this.renderPage(); // 초기 번역으로 페이지 렌더링
+      console.log('✅ I18nManager 초기화 완료');
     }
   }
 
@@ -58,7 +61,8 @@ class I18nManager {
   setupStateSubscriptions() {
     // Subscribe to language state changes
     this.stateManager.subscribe('language', async (newLang, oldLang) => {
-      if (newLang !== oldLang) {
+      if (newLang !== oldLang && !this.isLoading) {
+        console.log('🔄 언어 상태 변경 감지:', oldLang, '->', newLang);
         await this.loadTranslations(newLang);
         this.renderPage();
         this.updateMenuLanguageButtons();

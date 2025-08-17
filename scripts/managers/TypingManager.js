@@ -76,9 +76,13 @@ class TypingManager {
   setupStateSubscriptions() {
     // 언어 변경 시 애니메이션 강제 재시작 (타이핑 중이어도 중단하고 재시작)
     this.stateManager.subscribe('language', (newLang, oldLang) => {
-      if (newLang !== oldLang) {
-        console.log('🔄 언어 변경 감지:', oldLang, '->', newLang);
-        this.restartAnimation();
+      // 실제 언어가 변경되었고, 초기화가 아닌 경우에만 재시작
+      if (newLang !== oldLang && oldLang !== undefined) {
+        console.log('🔄 TypingManager: 언어 변경 감지:', oldLang, '->', newLang);
+        // 약간의 지연을 두어 I18nManager가 번역을 완료한 후 재시작
+        setTimeout(() => {
+          this.restartAnimation();
+        }, 100);
       }
     });
 

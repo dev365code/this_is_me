@@ -6,7 +6,7 @@ class StateManager {
   constructor() {
     this.state = {
       theme: 'light',
-      language: 'ko',
+      language: 'ko', // 기본값을 한국어로 통일
       isNavOpen: false,
       isTypingAnimationComplete: false,
       translations: {}
@@ -162,7 +162,7 @@ class StateManager {
   reset() {
     this.state = {
       theme: 'light',
-      language: 'en',
+      language: 'ko', // 기본값을 한국어로 통일
       isNavOpen: false,
       isTypingAnimationComplete: false,
       translations: {}
