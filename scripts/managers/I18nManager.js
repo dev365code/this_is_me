@@ -556,7 +556,7 @@ class I18nManager {
       const translateKey = element.getAttribute('data-translate');
       const translation = this.t(translateKey);
       if (translation && translation !== translateKey) {
-        element.textContent = translation;
+        element.innerHTML = translation;
       }
     });
   }

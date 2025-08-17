@@ -21,11 +21,12 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm passionate about building clean, scalable systems that solve real-world problems.",
+    "description": "",
     "details": [
-      "What drives me is the thrill of turning complex challenges into elegant solutions. I believe every bug is a learning opportunity, and every new technology is a chance to grow. When I encounter obstacles, I approach them with curiosity and persistence until I find the answer.",
-      "Currently mastering <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, and <strong>algorithmic trading systems</strong>.",
-      "I value clean code, performance optimization, and meaningful innovation."
+      "I prioritize team objectives and deliverables, building trust through consistent execution and contributing effectively via proactive communication and collaboration.",
+      "I embrace change and innovation, never hesitating to refactor and rebuild when a better solution emerges.",
+      "With <strong>5 years of IT operations and data analytics experience</strong>, I specialize in <strong>large-scale data processing</strong> and system optimization.",
+      "I leverage <strong>data-driven methodologies</strong> to identify problems and deliver measurable improvements, with a focus on continuous performance optimization."
     ],
     "resumeText": "View Resume"
   },

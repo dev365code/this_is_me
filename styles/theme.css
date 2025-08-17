@@ -80,6 +80,14 @@
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
+/* Preserve button animations - override global transition */
+.hero .know-more-btn::before,
+.about-text .resume-btn::before,
+.hero .know-more-btn:not(:hover)::before,
+.about-text .resume-btn:not(:hover)::before {
+    transition: left 0.4s ease !important;
+}
+
 /* Footer always fixed styling - no theme transitions */
 .footer, footer {
     background-color: #757575 !important;
@@ -107,16 +115,7 @@
     color: #aaa !important;
 }
 
-/* Dark theme specific button styles for better visibility */
-[data-theme="dark"] .about-text .resume-btn {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
-[data-theme="dark"] .hero .know-more-btn {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
+/* Dark theme button styles are now handled in components.css */
 
 /* Smooth transition for typing animation colors */
 .typing-container,
