@@ -15,16 +15,19 @@
     "name": "이우용",
     "ending": "입니다.",
     "subtitle": "백엔드 개발자",
-    "ctaText": "이력서 보기",
-    "ctaLink": "#"
+    "description": "호기심과 끈기로 문제를 해결하는 개발자",
+    "ctaText": "더 알아보기",
+    "ctaLink": "#about"
   },
   "about": {
     "title": "소개",
-    "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다.",
+    "description": "현실적인 문제를 해결하는 깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다.",
     "details": [
-      "현재 <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, <strong>트레이딩 알고리즘</strong>을 학습하고 개발하고 있습니다.",
-      "단순함, 성능, 그리고 의미 있는 데이터를 중요하게 생각합니다."
-    ]
+      "저를 이끄는 원동력은 복잡한 문제를 우아한 해결책으로 바꾸는 즐거움입니다. 모든 버그는 학습의 기회이고, 모든 새로운 기술은 성장할 기회라고 믿습니다. 장애물을 만났을 때는 답을 찾을 때까지 호기심과 끈기로 접근합니다.",
+      "현재 <strong>Java</strong>, <strong>Spring</strong>, <strong>SQL</strong>, <strong>알고리즘 트레이딩 시스템</strong>을 마스터하고 있습니다.",
+      "깔끔한 코드, 성능 최적화, 그리고 의미 있는 혁신을 중요하게 생각합니다."
+    ],
+    "resumeText": "이력서 보기"
   },
   "skills": {
     "title": "기술 스택",

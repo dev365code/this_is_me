@@ -363,7 +363,10 @@ class I18nManager {
     const subtitle = document.querySelector('.hero h2');
     if (subtitle) subtitle.textContent = hero.subtitle;
     
-    const cta = document.querySelector('.hero .cta');
+    const description = document.querySelector('.hero .hero-subtitle');
+    if (description) description.textContent = hero.description;
+    
+    const cta = document.querySelector('.hero .know-more-btn');
     if (cta) {
       cta.textContent = hero.ctaText;
       cta.href = hero.ctaLink;
@@ -393,9 +396,13 @@ class I18nManager {
       const detailsHtml = about.details ? 
         about.details.map(detail => `<p>${detail}</p>`).join('') : '';
       
+      const resumeButton = about.resumeText ? 
+        `<a class="resume-btn" href="#" target="_blank">${about.resumeText}</a>` : '';
+      
       aboutText.innerHTML = `
         <p>${about.description}</p>
         ${detailsHtml}
+        ${resumeButton}
       `;
     }
   }

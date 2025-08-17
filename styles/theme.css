@@ -22,8 +22,8 @@
 [data-theme="dark"] {
     --bg-color: #000000;
     --text-color: #000000;  /* 다른 글씨들은 그대로 검은색 유지 */
-    --text-secondary: #000000;  /* 다른 글씨들은 그대로 검은색 유지 */
-    --text-muted: #000000;  /* 다른 글씨들은 그대로 검은색 유지 */
+    --text-secondary: #ffffff;  /* 서브 텍스트는 다크모드에서 흰색 */
+    --text-muted: #cccccc;  /* 희미한 텍스트는 회색 */
     --accent-color: #00D7D0;  /* 티파니민트색 동일 */
     --card-bg: rgba(0, 215, 208, 0.05);
     --card-border: rgba(0, 215, 208, 0.2);
@@ -105,6 +105,17 @@
 
 .footer .social-links a, footer .social-links a {
     color: #aaa !important;
+}
+
+/* Dark theme specific button styles for better visibility */
+[data-theme="dark"] .about-text .resume-btn {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .hero .know-more-btn {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 /* Smooth transition for typing animation colors */
