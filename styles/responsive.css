@@ -530,4 +530,4 @@
     .skill-tag, .blog-tag {
         border: 2px solid var(--accent-color);
     }
-}
+}/* Performance optimization for mobile devices */
