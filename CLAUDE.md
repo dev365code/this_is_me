@@ -149,3 +149,31 @@ When modifying translations:
 - Test both languages after changes
 - Use HTML markup in translation values where needed (I18nManager renders with `innerHTML`)
 - Keep fallback translations in I18nManager.js updated for offline scenarios
+
+### Typing Animation System
+The TypingManager implements sophisticated responsive typing animations:
+
+**Architecture**:
+- **Responsive Layout**: Desktop shows single line, mobile splits into two lines
+- **Language Integration**: Automatically updates content when language changes
+- **Theme Awareness**: Text colors adapt to current theme (tiffany mint for names, theme colors for other text)
+- **Character Timing**: Natural typing rhythm with proper delays between characters
+- **Cursor Animation**: Animated cursor with color transitions and smooth movement
+
+**Critical Dependencies**:
+- Must initialize AFTER I18nManager for proper language support
+- Requires theme variables from ThemeManager for color consistency
+- Uses RequestAnimationFrame for smooth 60fps animations
+
+### CSS Variable System
+All theming uses CSS custom properties defined in `styles/theme.css`:
+- Theme switching is instantaneous via CSS variable updates
+- Components reference theme variables for consistent styling
+- Dark/light mode transitions are handled automatically
+- Button animations inherit theme colors dynamically
+
+### Mobile Responsiveness Architecture
+- **Breakpoints**: Mobile-first design with key breakpoints at 768px, 1024px, 1440px
+- **Navigation**: Mobile menu with overlay and body scroll prevention
+- **Typing Animation**: Responsive text flow (single line → two lines on mobile)
+- **Touch Interactions**: Optimized for mobile gestures and touch targets
