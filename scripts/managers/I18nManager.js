@@ -38,6 +38,7 @@ class I18nManager {
     if (this.isReady()) {
       this.updateMenuLanguageButtons();
       this.renderPage(); // 초기 번역으로 페이지 렌더링
+      this.enableLanguageButtons(); // 언어 버튼 활성화
       console.log('✅ I18nManager 초기화 완료');
     }
   }
@@ -63,10 +64,11 @@ class I18nManager {
     this.stateManager.subscribe('language', async (newLang, oldLang) => {
       if (newLang !== oldLang && !this.isLoading) {
         console.log('🔄 언어 상태 변경 감지:', oldLang, '->', newLang);
-        await this.loadTranslations(newLang);
-        this.renderPage();
-        this.updateMenuLanguageButtons();
-        this.eventBus.emit('i18n:languageChanged', { newLang, oldLang });
+        // switchLanguage에서 이미 처리하므로 여기서는 중복 실행 방지
+        // await this.loadTranslations(newLang);
+        // this.renderPage();
+        // this.updateMenuLanguageButtons();
+        // this.eventBus.emit('i18n:languageChanged', { newLang, oldLang });
       }
     });
   }
@@ -86,6 +88,18 @@ class I18nManager {
   async switchLanguage(newLang) {
     if (newLang === this.getCurrentLanguage() || this.isLoading) return;
     
+    // 초기 로딩이 완료되지 않았다면 잠시 대기
+    const appReady = this.stateManager.getState('appReady');
+    if (!appReady) {
+      console.log('⏳ 앱 초기화 대기 중...');
+      // 앱이 준비될 때까지 최대 3초 대기
+      let waitCount = 0;
+      while (!this.stateManager.getState('appReady') && waitCount < 30) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        waitCount++;
+      }
+    }
+    
     console.log('🌐 언어 변경 시작:', this.getCurrentLanguage(), '->', newLang);
     this.eventBus.emit('i18n:switchingLanguage', { newLang });
     
@@ -95,8 +109,21 @@ class I18nManager {
     // Update button states immediately for visual feedback
     this.updateMenuLanguageButtons(newLang);
     
-    // 언어 상태 변경 (이때 TypingManager의 subscribe가 트리거됨)
+    // 언어 상태 변경
     this.stateManager.setState('language', newLang);
+    
+    // 번역 데이터 로딩 완료를 기다린 후 타이핑 애니메이션 재시작
+    await this.loadTranslations(newLang);
+    this.renderPage();
+    this.updateMenuLanguageButtons();
+    
+    // 번역 데이터 업데이트 후 타이핑 매니저에게 재시작 신호
+    this.eventBus.emit('i18n:languageChanged', { newLang, oldLang: this.getCurrentLanguage() });
+    
+    // 타이핑 애니메이션 강제 재시작 (더 긴 대기시간)
+    setTimeout(() => {
+      this.eventBus.emit('typing:restart');
+    }, 300);
   }
 
   /**
@@ -470,25 +497,61 @@ class I18nManager {
     if (title) title.textContent = blog.title;
     
     const blogGrid = document.querySelector('.blog-grid');
-    if (blogGrid && blog.posts && blog.posts.length > 0) {
-      blogGrid.innerHTML = blog.posts.map((post, index) => `
-        <article class="blog-card" data-aos="zoom-in" ${index > 0 ? `data-aos-delay="${index * 200}"` : ''}>
-          <div class="blog-wrapper">
-            <div class="blog-header">
-              <span class="blog-date">${post.date}</span>
-              <div class="blog-tags">
-                ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+    if (blogGrid) {
+      // 실제 블로그 데이터가 있으면 표시, 없으면 스켈레톤 UI 표시
+      if (blog.posts && blog.posts.length > 0) {
+        blogGrid.innerHTML = blog.posts.map((post, index) => `
+          <article class="blog-card" data-aos="zoom-in" ${index > 0 ? `data-aos-delay="${index * 200}"` : ''}>
+            <div class="blog-wrapper">
+              <div class="blog-header">
+                <span class="blog-date">${post.date}</span>
+                <div class="blog-tags">
+                  ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                </div>
+              </div>
+              <div class="blog-content">
+                <h3>${post.title}</h3>
+                <p>${post.description}</p>
+                <a href="${post.link}" class="blog-link">${ui?.readMore || 'Read More'}</a>
               </div>
             </div>
-            <div class="blog-content">
-              <h3>${post.title}</h3>
-              <p>${post.description}</p>
-              <a href="${post.link}" class="blog-link">${ui?.readMore || 'Read More'}</a>
+          </article>
+        `).join('');
+        
+        // 스켈레톤 클래스 제거
+        blogGrid.classList.remove('blog-loading');
+      } else {
+        // 블로그 데이터가 없으면 스켈레톤 UI 표시
+        this.showBlogSkeleton(blogGrid);
+      }
+    }
+  }
+
+  /**
+   * Show blog skeleton loading UI
+   * @param {Element} blogGrid - Blog grid container
+   */
+  showBlogSkeleton(blogGrid) {
+    blogGrid.classList.add('blog-loading');
+    blogGrid.innerHTML = Array.from({ length: 3 }, (_, index) => `
+      <article class="blog-card blog-skeleton" data-aos="zoom-in" ${index > 0 ? `data-aos-delay="${index * 200}"` : ''}>
+        <div class="blog-wrapper">
+          <div class="blog-header">
+            <div class="skeleton-date"></div>
+            <div class="skeleton-tags">
+              <div class="skeleton-tag"></div>
+              <div class="skeleton-tag"></div>
             </div>
           </div>
-        </article>
-      `).join('');
-    }
+          <div class="blog-content">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-link"></div>
+          </div>
+        </div>
+      </article>
+    `).join('');
   }
 
   /**
@@ -567,6 +630,32 @@ class I18nManager {
    */
   isReady() {
     return this.translations && Object.keys(this.translations).length > 0;
+  }
+
+  /**
+   * Enable language buttons
+   */
+  enableLanguageButtons() {
+    const langButtons = document.querySelectorAll('.menu-lang-btn');
+    langButtons.forEach(button => {
+      button.disabled = false;
+      button.style.opacity = '1';
+      button.style.cursor = 'pointer';
+      button.style.pointerEvents = 'auto';
+    });
+  }
+
+  /**
+   * Disable language buttons during loading
+   */
+  disableLanguageButtons() {
+    const langButtons = document.querySelectorAll('.menu-lang-btn');
+    langButtons.forEach(button => {
+      button.disabled = true;
+      button.style.opacity = '0.6';
+      button.style.cursor = 'not-allowed';
+      button.style.pointerEvents = 'none';
+    });
   }
 
   /**

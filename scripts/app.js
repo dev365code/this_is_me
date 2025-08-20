@@ -65,6 +65,9 @@ class App {
       // Mark as initialized
       this.isInitialized = true;
       
+      // Set app ready state for other managers
+      this.stateManager.setState('appReady', true);
+      
       // Emit ready event
       this.eventBus.emit('app:ready');
       

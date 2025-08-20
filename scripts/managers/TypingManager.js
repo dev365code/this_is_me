@@ -79,10 +79,7 @@ class TypingManager {
       // 실제 언어가 변경되었고, 초기화가 아닌 경우에만 재시작
       if (newLang !== oldLang && oldLang !== undefined) {
         console.log('🔄 TypingManager: 언어 변경 감지:', oldLang, '->', newLang);
-        // 약간의 지연을 두어 I18nManager가 번역을 완료한 후 재시작
-        setTimeout(() => {
-          this.restartAnimation();
-        }, 100);
+        // I18nManager에서 직접 재시작 신호를 보내므로 여기서는 대기
       }
     });
 
