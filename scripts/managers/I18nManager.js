@@ -479,7 +479,9 @@ class I18nManager {
         <div class="skill-category">
           <h3>${category.name}</h3>
           <div class="skill-tags">
-            ${category.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+            ${category.skills.map(skill => `
+              <span class="skill-tag">${skill}</span>
+            `).join('')}
           </div>
         </div>
       `).join('');

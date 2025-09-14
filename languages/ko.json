@@ -33,20 +33,20 @@
     "title": "기술 스택",
     "categories": [
       {
-        "name": "Programming Language",
-        "skills": ["Java", "Python", "JavaScript", "HTML/CSS", "SQL"]
+        "name": "Languages",
+        "skills": ["Java", "Python", "SQL", "JavaScript", "CSS", "HTML"]
       },
       {
-        "name": "Framework",
-        "skills": ["Spring Framework", "MyBatis", "FastAPI"]
-      },
-      {
-        "name": "AI/ML",
-        "skills": ["OpenAI GPT-4o", "text-embedding-ada-002"]
+        "name": "Frameworks",
+        "skills": ["Spring", "Spring Boot", "Spring Security", "MyBatis", "Spring Data JPA", "LangChain", "FastAPI", "REST API"]
       },
       {
         "name": "Database",
-        "skills": ["Oracle", "MySQL", "PostgreSQL", "pgvector", "Redis"]
+        "skills": ["Oracle", "MySQL", "PostgreSQL", "Redis"]
+      },
+      {
+        "name": "Tools",
+        "skills": ["IntelliJ IDEA", "VScode", "Docker", "Linux", "AWS EC2", "Git", "GitHub", "Gradle", "Maven", "Postman", "Swagger"]
       }
     ]
   },

@@ -183,49 +183,177 @@ html body .hero .know-more-btn {
     }
 }
 
-/* Skills Section */
+/* Skills Section - Compact 2x2 Grid Layout */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 800px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 .skill-category {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.skill-category:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 215, 208, 0.15);
 }
 
 .skill-category h3 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 8px;
 }
 
+.skill-category h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--accent-color);
+    border-radius: 1px;
+    opacity: 0.8;
+}
+
+/* Skills Tags - Compact Style */
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 6px;
     justify-content: center;
+    align-items: center;
 }
 
 .skill-tag {
-    background: rgba(0, 215, 208, 0.2);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid var(--accent-color);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-color);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.skill-tag:hover::before {
+    left: 0;
 }
 
 .skill-tag:hover {
-    background: var(--accent-color);
-    color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 215, 208, 0.3);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 215, 208, 0.2);
 }
+
+/* Dark mode support */
+[data-theme="dark"] .skill-category {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .skill-category:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .skill-category h3 {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .skill-tag {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .skill-tag:hover {
+    color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .skill-category {
+        padding: 14px 16px;
+    }
+    
+    .skill-category h3 {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    
+    .skill-tags {
+        gap: 5px;
+    }
+    
+    .skill-tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        padding: 0 10px;
+    }
+    
+    .skill-category {
+        padding: 12px 14px;
+    }
+    
+    .skill-tag {
+        font-size: 0.65rem;
+        padding: 2px 7px;
+    }
+}
+
+/* Tablet landscape - 3 columns when there's space */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+}
+
+
