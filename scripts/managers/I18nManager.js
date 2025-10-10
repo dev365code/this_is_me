@@ -419,17 +419,20 @@ class I18nManager {
     }
     
     const aboutText = document.querySelector('.about-text');
-    if (aboutText && about.description) {
-      const detailsHtml = about.details ? 
+    if (aboutText) {
+      const detailsHtml = about.details ?
         about.details.map(detail => `<p>${detail}</p>`).join('') : '';
-      
-      const resumeButton = about.resumeText ? 
-        `<a class="resume-btn" href="#" target="_blank">${about.resumeText}</a>` : '';
-      
+
+      const resumeButtons = (about.resumeText || about.detailText) ?
+        `<div class="resume-buttons">
+          ${about.resumeText ? `<a class="resume-btn" href="${about.resumeLink || '#'}" target="_blank">${about.resumeText}</a>` : ''}
+          ${about.detailText ? `<a class="resume-btn resume-btn-secondary" href="${about.detailLink || '#'}" target="_blank">${about.detailText}</a>` : ''}
+        </div>` : '';
+
       aboutText.innerHTML = `
-        <p>${about.description}</p>
+        ${about.description ? `<p>${about.description}</p>` : ''}
         ${detailsHtml}
-        ${resumeButton}
+        ${resumeButtons}
       `;
     }
   }
@@ -455,7 +458,11 @@ class I18nManager {
             <div class="project-content">
               <h3>${project.title}</h3>
               <p>${project.description}</p>
-              <a href="${project.link}" class="project-link">${ui?.github || 'GitHub'}</a>
+              <div class="project-links">
+                <a href="${project.link}" class="project-link" target="_blank">${ui?.github || 'GitHub'}</a>
+                <a href="${project.pptLink}" class="project-link" target="_blank">${ui?.ppt || 'PPT'}</a>
+                <a href="${project.videoLink || '#'}" class="project-link" target="_blank">${ui?.video || '시연 영상'}</a>
+              </div>
             </div>
           </div>
         </div>

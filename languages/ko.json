@@ -5,7 +5,7 @@
     "email": "your.email@example.com",
     "phone": "+82-10-0000-0000",
     "location": "서울, 대한민국",
-    "profileImage": "images/tigerchopchop.jpg",
+    "profileImage": "images/wooyong_non_color.jpeg",
     "resume": "#",
     "description": "깔끔하고 확장 가능한 시스템 구축에 열정을 가지고 있습니다."
   },
@@ -27,7 +27,10 @@
       "<strong>IT기획·운영 및 데이터 분석 분야에서 5년간</strong> 근무하며 <strong>자금세탁방지(AML/CTF) 시스템</strong>의 대용량 데이터 분석과 최적화 업무를 담당했습니다.",
       "데이터 기반으로 문제를 정의하고 <strong>측정 가능한 결과로 개선하는 방식</strong>을 추구하며, 지속적인 성능 향상에 집중합니다."
     ],
-    "resumeText": "이력서 보기"
+    "resumeText": "이력서 보기",
+    "resumeLink": "https://drive.google.com/file/d/1xzQ-mwANeh4I_NrunAzFv8EXcagDGF1G/view?usp=sharing",
+    "detailText": "이력서 상세",
+    "detailLink": "https://drive.google.com/file/d/1sJm69_Uk9H_U_zA8QswXIRVM7_m6fnQe/view?usp=sharing"
   },
   "skills": {
     "title": "기술 스택",
@@ -54,25 +57,31 @@
     "title": "프로젝트",
     "items": [
       {
-        "title": "자동매매 봇",
-        "description": "Python, PyTorch 기반의 리밸런싱 시스템",
-        "image": "images/tigerchopchop.jpg",
-        "link": "#",
-        "tags": ["Python", "PyTorch", "Trading"]
+        "title": "카카오 알림톡 AI 자동 생성 시스템",
+        "description": "LangChain/RAG 기반 AI 시스템 | Spring Boot ↔ Flask 통합 | 기업 연계 프로젝트",
+        "image": "images/Jober_main.png",
+        "link": "https://github.com/dev365code/Final-1team-BE",
+        "pptLink": "https://drive.google.com/file/d/1fgZLqPDqvo3M6JN8_yhv5hr82up9hEZ9/view?usp=sharing",
+        "videoLink": "https://drive.google.com/file/d/1EJB_CIkWzJ1AeI4oHFpssdJiRmuqeHKY/view?usp=sharing",
+        "tags": ["Spring Boot", "LangChain", "RAG"]
       },
       {
-        "title": "포트폴리오 웹사이트",
-        "description": "React, TypeScript 기반의 반응형 웹사이트",
-        "image": "images/tigerchopchop.jpg",
-        "link": "#",
-        "tags": ["React", "TypeScript", "Web"]
+        "title": "Bitcoin AI 챗봇",
+        "description": "LangChain + RAG | Redis 캐싱 시스템 | Plotly 실시간 차트",
+        "image": "images/Bitcoin_AI.png",
+        "link": "https://github.com/dev365code/backend12/tree/main/Langchain_Bitcoin",
+        "pptLink": "https://drive.google.com/file/d/18KXTrR-9XVQ8wJ2bxSK_x5u4Dal7Tt3Z/view?usp=sharing",
+        "videoLink": "https://drive.google.com/file/d/16RCjSar7jvvqp91uYT6RmNLzS69ywC_U/view?usp=sharing",
+        "tags": ["Python", "FastAPI", "Redis"]
       },
       {
-        "title": "데이터 분석 플랫폼",
-        "description": "Java, Spring Boot 기반의 데이터 분석 플랫폼",
-        "image": "images/tigerchopchop.jpg",
-        "link": "#",
-        "tags": ["Java", "Spring Boot", "Analytics"]
+        "title": "축구 용품 쇼핑몰",
+        "description": "Spring MVC 기반 풀스택 프로젝트 | 세션 인증 시스템",
+        "image": "images/soccer_main.png",
+        "link": "https://github.com/dev365code/backend12/tree/main/Toy_Project1-2-3",
+        "pptLink": "https://drive.google.com/file/d/1IqfeCILcyuRggMAUDG4if65zHL9yMPNv/view?usp=sharing",
+        "videoLink": "https://drive.google.com/file/d/1vzmRoigzfTrRC_vE0OyMvPgxRQc-scMu/view?usp=sharing",
+        "tags": ["Spring MVC", "MyBatis", "MySQL"]
       }
     ]
   },
@@ -122,6 +131,8 @@
   "ui": {
     "readMore": "자세히 보기",
     "github": "GitHub",
+    "ppt": "PPT",
+    "video": "시연 영상",
     "viewAll": "전체 보기",
     "backToTop": "맨 위로"
   },

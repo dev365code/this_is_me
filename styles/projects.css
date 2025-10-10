@@ -78,6 +78,13 @@
     flex: 1;
 }
 
+/* Project links container */
+.project-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .project-link {
     display: inline-block;
     padding: 10px 20px;
@@ -90,6 +97,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    flex: 1;
+    min-width: 100px;
 }
 
 .project-link::before {
@@ -120,12 +129,21 @@
         gap: 20px;
         padding: 0 10px;
     }
-    
+
     .project-image {
         height: 180px;
     }
-    
+
     .project-content {
         padding: 20px;
+    }
+
+    .project-links {
+        gap: 8px;
+    }
+
+    .project-link {
+        font-size: 0.9rem;
+        padding: 8px 16px;
     }
 }
