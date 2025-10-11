@@ -461,6 +461,7 @@ class I18nManager {
               <div class="project-links">
                 <a href="${project.link}" class="project-link" target="_blank">${ui?.github || 'GitHub'}</a>
                 <a href="${project.pptLink}" class="project-link" target="_blank">${ui?.ppt || 'PPT'}</a>
+                ${project.websiteLink ? `<a href="${project.websiteLink}" class="project-link" target="_blank">${ui?.website || 'Website'}</a>` : ''}
                 <a href="${project.videoLink || '#'}" class="project-link" target="_blank">${ui?.video || '시연 영상'}</a>
               </div>
             </div>

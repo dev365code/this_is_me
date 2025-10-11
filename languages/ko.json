@@ -62,6 +62,7 @@
         "image": "images/Jober_main.png",
         "link": "https://github.com/dev365code/Final-1team-BE",
         "pptLink": "https://drive.google.com/file/d/1fgZLqPDqvo3M6JN8_yhv5hr82up9hEZ9/view?usp=sharing",
+        "websiteLink": "https://www.jober-1team.com/agent",
         "videoLink": "https://drive.google.com/file/d/1EJB_CIkWzJ1AeI4oHFpssdJiRmuqeHKY/view?usp=sharing",
         "tags": ["Spring Boot", "LangChain", "RAG"]
       },
@@ -132,6 +133,7 @@
     "readMore": "자세히 보기",
     "github": "GitHub",
     "ppt": "PPT",
+    "website": "Website",
     "video": "시연 영상",
     "viewAll": "전체 보기",
     "backToTop": "맨 위로"
