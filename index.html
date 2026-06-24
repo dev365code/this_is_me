@@ -6,15 +6,15 @@
   <title>This Is Me - 이우용 포트폴리오</title>
 
   <!-- SEO -->
-  <meta name="description" content="Java, Spring 등 현대적인 기술로 깔끔하고 확장 가능한 시스템 구축에 열정을 가진 백엔드 개발자 이우용의 포트폴리오입니다." />
-  <meta name="keywords" content="백엔드 개발자, Java, Spring, SQL, 포트폴리오, 이우용, Wooyong Lee, Backend Developer" />
+  <meta name="description" content="데이터 수집·정제·적재 파이프라인과 RAG·시계열 인프라를 직접 구축하는 데이터 엔지니어 이우용의 포트폴리오입니다." />
+  <meta name="keywords" content="데이터 엔지니어, 데이터 분석, Python, SQL, ETL, Airflow, RAG, 시계열, 포트폴리오, 이우용, Wooyong Lee, Data Engineer" />
   <meta name="author" content="Wooyong Lee" />
   <link rel="canonical" href="https://dev365code.github.io/this_is_me/" />
 
   <!-- Open Graph (LinkedIn, KakaoTalk, Facebook 미리보기) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="This Is Me - 이우용 포트폴리오" />
-  <meta property="og:description" content="Java, Spring 기반 백엔드 개발자 이우용의 포트폴리오. 카카오 알림톡 AI 생성 시스템, Bitcoin AI 챗봇 등 프로젝트를 확인하세요." />
+  <meta property="og:description" content="데이터 엔지니어 이우용의 포트폴리오. Shannon's Demon 자동매매·시계열 파이프라인, 카카오 알림톡 RAG 시스템 등을 확인하세요." />
   <meta property="og:url" content="https://dev365code.github.io/this_is_me/" />
   <meta property="og:image" content="https://dev365code.github.io/this_is_me/images/wooyong_non_color.jpeg" />
   <meta property="og:locale" content="ko_KR" />
@@ -23,7 +23,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="This Is Me - 이우용 포트폴리오" />
-  <meta name="twitter:description" content="Java, Spring 기반 백엔드 개발자 이우용의 포트폴리오." />
+  <meta name="twitter:description" content="데이터 엔지니어 이우용의 포트폴리오." />
   <meta name="twitter:image" content="https://dev365code.github.io/this_is_me/images/wooyong_non_color.jpeg" />
 
   <link rel="stylesheet" href="styles/theme.css" />
@@ -84,7 +84,7 @@
       </div>
     </div>
   </h1>
-  <h2>Backend Developer</h2>
+  <h2>Data Engineer</h2>
   <p class="hero-subtitle">Building solutions through curiosity and persistence</p>
   <a class="know-more-btn" href="#about">Know more</a>
 </section>
@@ -96,11 +96,11 @@
       <img src="images/wooyong_non_color.jpeg" alt="이우용" class="profile-image" />
       <div class="about-text">
         <p data-translate="about.details.0">변화와 새로운 시도를 두려워하지 않고, 더 나은 방향이 있다면 과감하게 고치고 다시 빌딩합니다.</p>
-        <p data-translate="about.details.1"><strong>IT기획·운영 및 데이터 분석 분야에서 5년간</strong> 근무하며 <strong>자금세탁방지(AML/CTF) 시스템</strong>의 대용량 데이터 분석과 최적화 업무를 담당했습니다.</p>
-        <p data-translate="about.details.2">데이터 기반으로 문제를 정의하고 <strong>측정 가능한 결과로 개선하는 방식</strong>을 추구하며, 지속적인 성능 향상에 집중합니다.</p>
+        <p data-translate="about.details.1"><strong>IT기획·운영과 데이터 분석 분야에서 5년간</strong> 근무하며 <strong>자금세탁방지(AML/CTF) 시스템</strong>의 대용량 데이터 분석과 룰 설계를 담당했습니다.</p>
+        <p data-translate="about.details.2">데이터 분석 업무를 진행할 땐 SQL 로직을 만들어 개발팀에 넘겼지만, 지금은 <strong>수집·정제·적재를 맡아 자동화 파이프라인을 구축하는 데이터 엔지니어</strong>로 일하고 있습니다.</p>
         <div class="resume-buttons">
-          <a class="resume-btn" href="https://drive.google.com/file/d/1xzQ-mwANeh4I_NrunAzFv8EXcagDGF1G/view?usp=sharing" target="_blank" rel="noopener noreferrer" data-translate="about.resumeText">이력서 보기</a>
-          <a class="resume-btn resume-btn-secondary" href="https://drive.google.com/file/d/1sJm69_Uk9H_U_zA8QswXIRVM7_m6fnQe/view?usp=sharing" target="_blank" rel="noopener noreferrer" data-translate="about.detailText">이력서 상세</a>
+          <a class="resume-btn" href="https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws" target="_blank" rel="noopener noreferrer" data-translate="about.resumeText">이력서 보기</a>
+          <a class="resume-btn resume-btn-secondary" href="https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws" target="_blank" rel="noopener noreferrer" data-translate="about.detailText">경력기술서</a>
         </div>
       </div>
     </div>
@@ -112,6 +112,21 @@
     <h2 class="section-title">Projects</h2>
     <div class="project-grid">
       <div class="project-card" data-aos="zoom-in">
+        <div class="project-wrapper">
+          <div class="project-image">
+            <img src="images/shannon.svg" alt="Shannon's Demon 자동매매·시계열 파이프라인" />
+          </div>
+          <div class="project-content">
+            <h3>Shannon's Demon 자동매매·시계열 파이프라인</h3>
+            <p>실자본 멀티브로커 자동매매 | 코인 1분봉 9년+·해외주식 시계열 ~90GB 단독 구축 | TDD·통계검증·자가복구</p>
+            <div class="project-links">
+              <span class="project-link" style="cursor:default;opacity:.7;">🔒 코드 비공개 (실자본 운영)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
         <div class="project-wrapper">
           <div class="project-image">
             <img src="images/Jober_main.png" alt="카카오 알림톡 AI 자동 생성 시스템" />
@@ -129,7 +144,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
         <div class="project-wrapper">
           <div class="project-image">
             <img src="images/Bitcoin_AI.png" alt="Bitcoin AI 챗봇" />
@@ -141,23 +156,6 @@
               <a href="https://github.com/dev365code/backend12/tree/main/Langchain_Bitcoin" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="https://drive.google.com/file/d/18KXTrR-9XVQ8wJ2bxSK_x5u4Dal7Tt3Z/view?usp=sharing" class="project-link" target="_blank" rel="noopener noreferrer">PPT</a>
               <a href="https://drive.google.com/file/d/16RCjSar7jvvqp91uYT6RmNLzS69ywC_U/view?usp=sharing" class="project-link" target="_blank" rel="noopener noreferrer">시연 영상</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
-        <div class="project-wrapper">
-          <div class="project-image">
-            <img src="images/soccer_main.png" alt="축구 용품 쇼핑몰" />
-          </div>
-          <div class="project-content">
-            <h3>축구 용품 쇼핑몰</h3>
-            <p>Spring MVC 기반 풀스택 프로젝트 | 세션 인증 시스템</p>
-            <div class="project-links">
-              <a href="https://github.com/dev365code/backend12/tree/main/Toy_Project1-2-3" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href="https://drive.google.com/file/d/1IqfeCILcyuRggMAUDG4if65zHL9yMPNv/view?usp=sharing" class="project-link" target="_blank" rel="noopener noreferrer">PPT</a>
-              <a href="https://drive.google.com/file/d/1vzmRoigzfTrRC_vE0OyMvPgxRQc-scMu/view?usp=sharing" class="project-link" target="_blank" rel="noopener noreferrer">시연 영상</a>
             </div>
           </div>
         </div>

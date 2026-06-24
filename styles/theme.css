@@ -125,5 +125,5 @@
 
 /* Dark mode specific styles for hero section only */
 [data-theme="dark"] .hero h2 {
-    color: #ffffff !important;  /* "백엔드 개발자", "Backend Developer" 만 흰색 */
+    color: #ffffff !important;  /* 직무 부제(예: "Data Engineer") 흰색 */
 }

@@ -1,20 +1,20 @@
 {
   "personal": {
     "name": "Wooyong Lee",
-    "title": "Backend Developer",
+    "title": "Data Engineer",
     "email": "",
     "phone": "",
     "location": "Seoul, South Korea",
     "profileImage": "images/wooyong_non_color.jpeg",
     "resume": "#",
-    "description": "I'm passionate about building clean, scalable systems."
+    "description": "I build data collection, cleansing, and loading pipelines."
   },
   "hero": {
     "line1": "Hi, I'm",
     "line2": "Wooyong Lee",
     "name": "Wooyong Lee",
     "ending": "",
-    "subtitle": "Backend Developer",
+    "subtitle": "Data Engineer",
     "description": "Building solutions through curiosity and persistence",
     "ctaText": "Know more",
     "ctaLink": "#about"
@@ -24,32 +24,32 @@
     "description": "",
     "details": [
       "I embrace change and innovation, never hesitating to refactor and rebuild when a better solution emerges.",
-      "With <strong>5 years of IT operations and data analytics experience</strong>, I specialize in <strong>large-scale data processing</strong> and system optimization.",
-      "I leverage <strong>data-driven methodologies</strong> to identify problems and deliver measurable improvements, with a focus on continuous performance optimization."
+      "With <strong>5 years in IT planning/operations and data analytics</strong>, I handled large-scale data analysis and rule design for an <strong>anti-money-laundering (AML/CTF) system</strong>.",
+      "I used to write SQL logic and hand it to the dev team; now I <strong>build the collection, cleansing, and loading pipelines myself as a data engineer</strong>."
     ],
     "resumeText": "View Resume",
-    "resumeLink": "https://drive.google.com/file/d/1xzQ-mwANeh4I_NrunAzFv8EXcagDGF1G/view?usp=sharing",
-    "detailText": "Full Details",
-    "detailLink": "https://drive.google.com/file/d/1sJm69_Uk9H_U_zA8QswXIRVM7_m6fnQe/view?usp=sharing"
+    "resumeLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws",
+    "detailText": "Career Details",
+    "detailLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws"
   },
   "skills": {
     "title": "Skills",
     "categories": [
       {
         "name": "Languages",
-        "skills": ["Java", "Python", "SQL", "JavaScript", "CSS", "HTML"]
+        "skills": ["Python", "SQL", "Java", "JavaScript"]
       },
       {
         "name": "Frameworks",
-        "skills": ["Spring", "Spring Boot", "Spring Security", "MyBatis", "Spring Data JPA", "LangChain", "FastAPI", "REST API"]
+        "skills": ["FastAPI", "REST API", "LangChain", "Spring Boot", "XGBoost"]
       },
       {
         "name": "Database",
-        "skills": ["Oracle", "MySQL", "PostgreSQL", "Redis"]
+        "skills": ["MySQL", "PostgreSQL", "ChromaDB", "Redis", "Oracle"]
       },
       {
-        "name": "Tools",
-        "skills": ["IntelliJ IDEA", "VScode", "Docker", "Linux", "AWS EC2", "Git", "GitHub", "Gradle", "Maven", "Postman", "Swagger"]
+        "name": "Infra & DevOps",
+        "skills": ["Azure", "Airflow", "Kubernetes (AKS)", "Docker", "Linux", "AWS", "Git"]
       }
     ]
   },
@@ -90,24 +90,24 @@
     "title": "Blog Posts",
     "posts": [
       {
-        "title": "Designing RESTful APIs with Spring Boot and JPA",
-        "description": "Covers efficient backend API design methods and database integration optimization strategies using JPA.",
+        "title": "Building a RAG Preprocessing Pipeline",
+        "description": "How I designed a pipeline to parse, chunk, and embed tens of thousands of documents and improved retrieval quality.",
         "date": "2024.12.15",
-        "link": "#",
-        "tags": ["Java", "Spring"]
+        "link": "https://arex.tistory.com",
+        "tags": ["RAG", "Pipeline"]
       },
       {
-        "title": "Building an Algorithmic Trading System",
-        "description": "Sharing experiences building an automated trading system with Python and PyTorch, including backtesting results.",
+        "title": "Building the Shannon's Demon Trading System",
+        "description": "How I built a multi-broker auto-trading engine from pure math and backtested it on 9+ years of time-series data.",
         "date": "2024.11.28",
-        "link": "#",
-        "tags": ["Algorithm", "Python"]
+        "link": "https://arex.tistory.com",
+        "tags": ["Python", "Time-Series"]
       },
       {
         "title": "SQL Optimization for Large-Scale Data Processing",
         "description": "From index design to query optimization, methods for improving performance in large-scale databases.",
         "date": "2024.11.10",
-        "link": "#",
+        "link": "https://arex.tistory.com",
         "tags": ["Database", "SQL"]
       }
     ]
@@ -125,8 +125,8 @@
   },
   "meta": {
     "title": "This Is Me - Wooyong Lee Portfolio",
-    "description": "Backend Developer passionate about building clean, scalable systems with Java, Spring, and modern technologies.",
-    "keywords": "Backend Developer, Java, Spring, SQL, Portfolio, Wooyong Lee",
+    "description": "Data engineer building data collection, cleansing, and loading pipelines with RAG and time-series infrastructure.",
+    "keywords": "Data Engineer, Data Analysis, Python, SQL, ETL, Airflow, RAG, Portfolio, Wooyong Lee",
     "favicon": "favicon.png"
   },
   "ui": {

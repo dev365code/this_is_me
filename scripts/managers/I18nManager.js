@@ -201,15 +201,15 @@ class I18nManager {
       return {
         meta: {
           title: "이우용 - 포트폴리오",
-          description: "백엔드 개발자 포트폴리오",
-          keywords: "백엔드 개발자, Java, Spring, 포트폴리오",
+          description: "데이터 엔지니어 포트폴리오",
+          keywords: "데이터 엔지니어, Python, SQL, 포트폴리오",
           favicon: "./favicon.png"
         },
         hero: {
           line1: "안녕하세요,",
           line2: "이우용 입니다.",
           name: "이우용",
-          subtitle: "백엔드 개발자",
+          subtitle: "데이터 엔지니어",
           ctaText: "프로젝트 보기",
           ctaLink: "#projects"
         },
@@ -250,15 +250,15 @@ class I18nManager {
     return {
       meta: {
         title: "Wooyong Lee - Portfolio",
-        description: "Backend Developer Portfolio",
-        keywords: "backend developer, Java, Spring, portfolio",
+        description: "Data Engineer Portfolio",
+        keywords: "data engineer, Python, SQL, portfolio",
         favicon: "./favicon.png"
       },
       hero: {
         line1: "Hi, I'm",
         line2: "Wooyong Lee",
         name: "Wooyong Lee",
-        subtitle: "Backend Developer",
+        subtitle: "Data Engineer",
         ctaText: "View My Work",
         ctaLink: "#projects"
       },
