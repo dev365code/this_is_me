@@ -28,9 +28,9 @@
       "I used to write SQL logic and hand it to the dev team; now I <strong>build the collection, cleansing, and loading pipelines myself as a data engineer</strong>."
     ],
     "resumeText": "View Resume",
-    "resumeLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws",
+    "resumeLink": "https://drive.google.com/file/d/1FEY0vr-Ydp3S_AoQOtLuYxL9jSjfRr1l/view?usp=sharing",
     "detailText": "Career Details",
-    "detailLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws"
+    "detailLink": "https://drive.google.com/file/d/1MBl9-1QWYw_3b64pbbtIytXnuhZCcEjR/view?usp=sharing"
   },
   "skills": {
     "title": "Skills",
@@ -56,6 +56,14 @@
   "projects": {
     "title": "Projects",
     "items": [
+      {
+        "title": "Shannon's Demon Auto-Trading & Time-Series Pipeline",
+        "description": "Real-capital multi-broker auto-trading | 9yr+ 1-min crypto · ~90GB equity time-series built solo | TDD · statistical validation · self-recovery",
+        "image": "images/shannon.svg",
+        "link": "",
+        "locked": "🔒 Code private (live capital)",
+        "tags": ["Python", "ETL", "Time-Series"]
+      },
       {
         "title": "Kakao Alimtalk AI Generator",
         "description": "LangChain/RAG-based AI System | Spring Boot ↔ Flask Integration | Enterprise Project",

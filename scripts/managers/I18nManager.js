@@ -453,10 +453,11 @@ class I18nManager {
               <h3>${project.title}</h3>
               <p>${project.description}</p>
               <div class="project-links">
-                <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.github || 'GitHub'}</a>
+                ${project.link ? `<a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.github || 'GitHub'}</a>` : ''}
                 ${project.pptLink ? `<a href="${project.pptLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.ppt || 'PPT'}</a>` : ''}
                 ${project.websiteLink ? `<a href="${project.websiteLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.website || 'Website'}</a>` : ''}
                 ${project.videoLink ? `<a href="${project.videoLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.video || '시연 영상'}</a>` : ''}
+                ${project.locked ? `<span class="project-link" style="cursor:default;opacity:.7;">${project.locked}</span>` : ''}
               </div>
             </div>
           </div>

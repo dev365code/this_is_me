@@ -28,9 +28,9 @@
       "데이터 분석 업무를 진행할 땐 SQL 로직을 만들어 개발팀에 넘겼지만, 지금은 <strong>수집·정제·적재를 맡아 자동화 파이프라인을 구축하는 데이터 엔지니어</strong>로 일하고 있습니다."
     ],
     "resumeText": "이력서 보기",
-    "resumeLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws",
+    "resumeLink": "https://drive.google.com/file/d/1FEY0vr-Ydp3S_AoQOtLuYxL9jSjfRr1l/view?usp=sharing",
     "detailText": "경력기술서",
-    "detailLink": "https://drive.google.com/drive/folders/1Bar2BhDx5LNYsGfZ-tu1AZ1O7Ek_Sqws"
+    "detailLink": "https://drive.google.com/file/d/1MBl9-1QWYw_3b64pbbtIytXnuhZCcEjR/view?usp=sharing"
   },
   "skills": {
     "title": "기술 스택",
@@ -56,6 +56,14 @@
   "projects": {
     "title": "프로젝트",
     "items": [
+      {
+        "title": "Shannon's Demon 자동매매·시계열 파이프라인",
+        "description": "실자본 멀티브로커 자동매매 | 코인 1분봉 9년+·해외주식 시계열 ~90GB 단독 구축 | TDD·통계검증·자가복구",
+        "image": "images/shannon.svg",
+        "link": "",
+        "locked": "🔒 코드 비공개 (실자본 운영)",
+        "tags": ["Python", "ETL", "Time-Series"]
+      },
       {
         "title": "카카오 알림톡 AI 자동 생성 시스템",
         "description": "LangChain/RAG 기반 AI 시스템 | Spring Boot ↔ Flask 통합 | 기업 연계 프로젝트",
