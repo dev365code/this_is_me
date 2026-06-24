@@ -88,66 +88,62 @@ class BlogManager {
     
     try {
       // 여러 프록시 서비스 시도하여 안정성 향상
-      const proxyUrls = [
-        `${this.proxyUrl}?url=${encodeURIComponent(this.tistoryRssUrl)}`,
-        `https://cors-anywhere.herokuapp.com/${this.tistoryRssUrl}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(this.tistoryRssUrl)}`
+      // type: 'json' = AllOrigins({ contents } JSON 래핑), 'text' = 원문 XML 그대로 반환
+      const proxies = [
+        { url: `${this.proxyUrl}?url=${encodeURIComponent(this.tistoryRssUrl)}`, type: 'json' },
+        { url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(this.tistoryRssUrl)}`, type: 'text' }
       ];
-      
+
       let response, data, xmlDoc, newPosts;
       let lastError;
-      
+
       // 프록시 서비스들을 순차적으로 시도
-      for (let i = 0; i < proxyUrls.length; i++) {
+      for (let i = 0; i < proxies.length; i++) {
+        const proxy = proxies[i];
         try {
-          console.log(`🌐 프록시 ${i + 1} 시도: ${proxyUrls[i]}`);
-          response = await fetch(proxyUrls[i], {
+          console.log(`🌐 프록시 ${i + 1} 시도: ${proxy.url}`);
+          response = await fetch(proxy.url, {
             method: 'GET',
             headers: {
-              'Accept': 'application/json, text/plain, */*',
-              'User-Agent': 'Mozilla/5.0 (compatible; BlogFetcher/1.0)'
+              'Accept': 'application/json, text/plain, */*'
             }
           });
-          
+
           console.log(`📡 프록시 ${i + 1} 응답:`, response.status, response.statusText);
-          
+
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-          
+
           // 프록시 서비스에 따라 응답 형식이 다름
-          if (i === 0) {
-            // AllOrigins
+          if (proxy.type === 'json') {
+            // AllOrigins: { contents: "<rss>...</rss>" }
             data = await response.json();
             if (!data.contents) {
               throw new Error('RSS content not found in AllOrigins response');
             }
             xmlDoc = new DOMParser().parseFromString(data.contents, 'text/xml');
-          } else if (i === 1) {
-            // CORS Anywhere
-            const textData = await response.text();
-            xmlDoc = new DOMParser().parseFromString(textData, 'text/xml');
           } else {
-            // CodeTabs
+            // 원문 XML을 그대로 반환하는 프록시 (CodeTabs 등)
             const textData = await response.text();
             xmlDoc = new DOMParser().parseFromString(textData, 'text/xml');
           }
-          
+
           // XML 파싱 오류 확인
           if (xmlDoc.documentElement.nodeName === 'parsererror') {
             throw new Error('XML parsing failed');
           }
-          
+
           // RSS 데이터를 포트폴리오 형식으로 변환
           newPosts = this.parseRssXml(xmlDoc);
-          
+
           if (newPosts && newPosts.length > 0) {
             console.log(`✅ 프록시 ${i + 1}에서 성공적으로 ${newPosts.length}개 포스트 로드`);
             break; // 성공하면 다음 프록시 시도 안함
           } else {
             throw new Error('No posts found in RSS feed');
           }
-          
+
         } catch (error) {
           console.warn(`❌ 프록시 ${i + 1} 실패:`, error.message);
           lastError = error;
@@ -296,6 +292,10 @@ class BlogManager {
   formatDate(dateString) {
     try {
       const date = new Date(dateString);
+      // new Date('invalid')는 throw하지 않고 Invalid Date를 반환하므로 직접 검사
+      if (isNaN(date.getTime())) {
+        return dateString || '날짜 미상';
+      }
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');

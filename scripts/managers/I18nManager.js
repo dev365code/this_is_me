@@ -60,17 +60,8 @@ class I18nManager {
   }
 
   setupStateSubscriptions() {
-    // Subscribe to language state changes
-    this.stateManager.subscribe('language', async (newLang, oldLang) => {
-      if (newLang !== oldLang && !this.isLoading) {
-        console.log('🔄 언어 상태 변경 감지:', oldLang, '->', newLang);
-        // switchLanguage에서 이미 처리하므로 여기서는 중복 실행 방지
-        // await this.loadTranslations(newLang);
-        // this.renderPage();
-        // this.updateMenuLanguageButtons();
-        // this.eventBus.emit('i18n:languageChanged', { newLang, oldLang });
-      }
-    });
+    // 언어 상태 변경은 switchLanguage()에서 직접 처리합니다.
+    // (이전에는 본문이 전부 주석 처리된 죽은 구독 코드가 있어 제거했습니다.)
   }
 
   /**
@@ -87,7 +78,10 @@ class I18nManager {
    */
   async switchLanguage(newLang) {
     if (newLang === this.getCurrentLanguage() || this.isLoading) return;
-    
+
+    // 변경 전 언어를 미리 캡처 (아래에서 setState 후엔 현재 언어가 newLang이 되므로)
+    const oldLang = this.getCurrentLanguage();
+
     // 초기 로딩이 완료되지 않았다면 잠시 대기
     const appReady = this.stateManager.getState('appReady');
     if (!appReady) {
@@ -118,7 +112,7 @@ class I18nManager {
     this.updateMenuLanguageButtons();
     
     // 번역 데이터 업데이트 후 타이핑 매니저에게 재시작 신호
-    this.eventBus.emit('i18n:languageChanged', { newLang, oldLang: this.getCurrentLanguage() });
+    this.eventBus.emit('i18n:languageChanged', { newLang, oldLang });
     
     // 타이핑 애니메이션 강제 재시작 (더 긴 대기시간)
     setTimeout(() => {
@@ -459,10 +453,10 @@ class I18nManager {
               <h3>${project.title}</h3>
               <p>${project.description}</p>
               <div class="project-links">
-                <a href="${project.link}" class="project-link" target="_blank">${ui?.github || 'GitHub'}</a>
-                <a href="${project.pptLink}" class="project-link" target="_blank">${ui?.ppt || 'PPT'}</a>
-                ${project.websiteLink ? `<a href="${project.websiteLink}" class="project-link" target="_blank">${ui?.website || 'Website'}</a>` : ''}
-                <a href="${project.videoLink || '#'}" class="project-link" target="_blank">${ui?.video || '시연 영상'}</a>
+                <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.github || 'GitHub'}</a>
+                ${project.pptLink ? `<a href="${project.pptLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.ppt || 'PPT'}</a>` : ''}
+                ${project.websiteLink ? `<a href="${project.websiteLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.website || 'Website'}</a>` : ''}
+                ${project.videoLink ? `<a href="${project.videoLink}" class="project-link" target="_blank" rel="noopener noreferrer">${ui?.video || '시연 영상'}</a>` : ''}
               </div>
             </div>
           </div>

@@ -1,232 +1,71 @@
-# 🌟 Developer Portfolio Template
+# This Is Me — 이우용 포트폴리오
 
-A modern, responsive portfolio website template for developers. Built with vanilla JavaScript, CSS, and HTML - no frameworks required!
+바닐라 JavaScript로 만든 개인 포트폴리오 웹사이트입니다. 빌드 도구·프레임워크 없이 동작하며, 매니저 패턴 기반 아키텍처와 다국어(한국어/영어), 다크/라이트 테마, 타이핑 애니메이션, 티스토리 RSS 블로그 연동을 지원합니다.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://your-demo-url.com)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
+🔗 **Live:** https://dev365code.github.io/this_is_me/
 
-## ✨ Features
+## ✨ 주요 기능
 
-### 🎨 **Modern Design**
-- Clean, professional glassmorphism design
-- Smooth animations and transitions
-- Typography optimized for readability
+- **다국어 지원** — 한국어 / 영어 실시간 전환 (`languages/*.json` 기반)
+- **다크 / 라이트 테마** — CSS 변수 기반 즉시 전환, localStorage 영속화
+- **반응형 디자인** — 모바일 우선(320px ~ 2560px+)
+- **타이핑 애니메이션** — 언어·테마 인지형 히어로 타이핑
+- **블로그 자동 연동** — 티스토리 RSS를 프록시로 가져와 카드로 표시(캐싱 포함)
+- **프레임워크 0** — 외부 의존성 최소화, 폰트·라이브러리 로컬 번들
 
-### 🌓 **Dark/Light Mode**
-- Toggle between dark and light themes
-- Automatic theme persistence in localStorage
-- Smooth theme transitions
+## 🧱 기술 스택
 
-### 🌍 **Multi-language Support** 
-- Korean (한국어) and English support
-- Easy language switching
-- Perfect for international job applications
+- HTML5 / CSS3 (CSS Custom Properties)
+- Vanilla JavaScript (ES6+, 클래스 기반 매니저 패턴)
+- AOS(스크롤 애니메이션), Bootstrap(유틸리티), Font Awesome(아이콘)
 
-### 📱 **Fully Responsive**
-- Mobile-first design approach
-- Optimized for all screen sizes (320px to 2560px+)
-- Touch-friendly interface on mobile devices
+## 🚀 로컬 실행
 
-### 🚀 **Performance Optimized**
-- No external dependencies except for icons
-- Local font files and assets
-- Optimized images and CSS
-
-### ♿ **Accessibility Features**
-- ARIA labels and semantic HTML
-- Keyboard navigation support
-- High contrast mode support
-- Reduced motion preferences
-
-### 🔧 **Easy Customization**
-- Simple JSON configuration files
-- Modular CSS architecture
-- Well-documented code structure
-
-## 🚀 Quick Start
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/developer-portfolio.git
-cd developer-portfolio
-```
-
-### 2. Customize Your Content
-Edit the language files in the `locales/` directory:
-
-- `locales/ko.json` - Korean content
-- `locales/en.json` - English content
-
-### 3. Add Your Images
-Replace images in the `assets/images/` directory:
-- `tigerchopchop.jpg` - Your profile photo
-
-### 4. Serve the Files
-You can use any static file server:
+빌드 과정이 없는 정적 사이트이므로 아무 정적 서버나 사용하면 됩니다.
 
 ```bash
-# Using Python
+# Python
 python -m http.server 8000
 
-# Using Node.js
+# Node.js
 npx serve .
-
-# Using PHP
-php -S localhost:8000
 ```
 
-### 5. Open in Browser
-Navigate to `http://localhost:8000`
+이후 브라우저에서 `http://localhost:8000` 접속.
 
-## 📁 Project Structure
+## 📁 프로젝트 구조
 
 ```
-developer-portfolio/
-├── assets/
-│   ├── css/
-│   │   ├── theme.css          # Theme variables and toggle
-│   │   ├── index.css          # Main styles
-│   │   ├── animations.css     # Animation styles
-│   │   ├── components.css     # Component styles
-│   │   ├── projects.css       # Project section styles
-│   │   ├── blog.css          # Blog section styles
-│   │   └── responsive.css     # Responsive design
-│   ├── js/
-│   │   ├── Index.js          # Main functionality
-│   │   └── i18n.js           # Internationalization
-│   ├── images/
-│   │   └── tigerchopchop.jpg # Profile image
-│   ├── fonts/                # Local font files
-│   └── vendor/               # Third-party assets
-├── locales/
-│   ├── ko.json               # Korean translations
-│   └── en.json               # English translations
-├── index.html                # Main HTML file
-└── README.md                 # This file
+this_is_me/
+├── index.html                  # 메인 HTML
+├── styles/                     # CSS (theme, components, animations, responsive 등)
+├── scripts/
+│   ├── core/                   # EventBus(pub/sub), StateManager(전역 상태)
+│   ├── managers/               # I18n, Theme, Nav, Typing, Blog 매니저
+│   └── app.js                  # 매니저 초기화·생명주기 오케스트레이션
+├── languages/                  # ko.json / en.json (모든 콘텐츠)
+├── images/                     # 프로필·프로젝트 이미지
+├── fonts/  libraries/          # 로컬 폰트 및 서드파티 자산
+└── favicon.png
 ```
 
-## 🎨 Customization Guide
+## 🛠 아키텍처 개요
 
-### Changing Colors
-Edit the CSS variables in `assets/css/theme.css`:
+- **EventBus** — 매니저 간 느슨한 결합을 위한 전역 pub/sub
+- **StateManager** — 테마·언어·블로그 캐시 등 전역 상태 + localStorage 영속화
+- **Managers** — `app.js`가 2단계로 초기화
+  - Phase 1(필수): `I18nManager` → `ThemeManager` → `NavManager`
+  - Phase 2(비동기·선택): `TypingManager`, `BlogManager`
+- **콘텐츠 관리** — 모든 텍스트/프로젝트/스킬은 `languages/{ko,en}.json`에 정의되고, `I18nManager`가 `data-translate` 속성과 동적 렌더링으로 주입
 
-```css
-:root {
-    --accent-color: #81D8D0;  /* Your brand color */
-    --bg-color: #121212;      /* Background color */
-    --text-color: #ffffff;    /* Text color */
-}
-```
+자세한 내부 구조는 `CLAUDE.md` 참고.
 
-### Adding New Sections
-1. Add HTML structure to `index.html`
-2. Add styles to appropriate CSS file
-3. Update both `ko.json` and `en.json` with content
-4. Update the i18n system in `assets/js/i18n.js`
+## 📬 Contact
 
-### Modifying Content
-All content is stored in JSON files in the `locales/` directory. Simply edit these files to update your portfolio content.
-
-#### Example: Adding a New Project
-Edit `locales/en.json` and `locales/ko.json`:
-
-```json
-{
-  \"projects\": {
-    \"items\": [
-      {
-        \"title\": \"Your New Project\",
-        \"description\": \"Project description\",
-        \"image\": \"assets/images/project-image.jpg\",
-        \"link\": \"https://github.com/username/project\",
-        \"tags\": [\"JavaScript\", \"React\"]
-      }
-    ]
-  }
-}
-```
-
-## 🌐 Multi-language Setup
-
-### Adding a New Language
-1. Create a new JSON file in `locales/` (e.g., `locales/ja.json` for Japanese)
-2. Copy the structure from `locales/en.json` and translate the content
-3. Update the language toggle in `assets/js/i18n.js`:
-
-```javascript
-// Add your language button
-langToggle.innerHTML = `
-  <button class=\"lang-btn\" data-lang=\"ko\">한국어</button>
-  <button class=\"lang-btn\" data-lang=\"en\">English</button>
-  <button class=\"lang-btn\" data-lang=\"ja\">日本語</button>
-`;
-```
-
-### Content Structure
-Each language file contains these sections:
-- `personal` - Personal information
-- `hero` - Main header content  
-- `about` - About section content
-- `skills` - Skills and technologies
-- `projects` - Project portfolio items
-- `blog` - Blog posts and articles
-- `social` - Social media links
-- `footer` - Footer information
-- `meta` - SEO metadata
-- `ui` - User interface text
-
-## 🚀 Deployment
-
-### GitHub Pages
-1. Push your code to GitHub
-2. Go to repository Settings → Pages
-3. Select source branch (usually `main`)
-4. Your site will be available at `https://username.github.io/repository-name`
-
-### Netlify
-1. Connect your GitHub repository to Netlify
-2. Build settings: Leave empty (static site)
-3. Deploy directory: Root (`/`)
-
-### Vercel
-1. Import your GitHub repository
-2. Framework preset: Other
-3. Build command: Leave empty
-4. Output directory: `./`
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-### Development Setup
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- GitHub: [@dev365code](https://github.com/dev365code)
+- LinkedIn: [yong125](https://www.linkedin.com/in/yong125/)
+- Blog: [arex.tistory.com](https://arex.tistory.com/)
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Font Awesome](https://fontawesome.com/) for icons
-- [Google Fonts](https://fonts.google.com/) for typography
-- [AOS](https://michalsnik.github.io/aos/) for scroll animations
-- [Bootstrap](https://getbootstrap.com/) for utility classes
-
-## 💬 Support
-
-If you have any questions or need help customizing your portfolio:
-
-- 📧 Email: your.email@example.com  
-- 💬 Open an [Issue](https://github.com/your-username/developer-portfolio/issues)
-- 🌟 Star this repository if it helped you!
-
----
-
-**Made with ❤️ for the developer community**
-
-> 💡 **Tip**: Don't forget to star ⭐ this repository if you found it helpful!
+MIT License — 자세한 내용은 [LICENSE](LICENSE) 참고.

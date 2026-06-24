@@ -2,8 +2,8 @@
   "personal": {
     "name": "Wooyong Lee",
     "title": "Backend Developer",
-    "email": "your.email@example.com",
-    "phone": "+82-10-0000-0000",
+    "email": "",
+    "phone": "",
     "location": "Seoul, South Korea",
     "profileImage": "images/wooyong_non_color.jpeg",
     "resume": "#",
@@ -115,7 +115,7 @@
   "social": {
     "github": "https://github.com/dev365code",
     "linkedin": "https://www.linkedin.com/in/yong125/",
-    "email": "your.email@example.com",
+    "email": "",
     "website": "#"
   },
   "footer": {
