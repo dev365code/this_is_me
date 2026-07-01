@@ -7,7 +7,7 @@
     "location": "서울, 대한민국",
     "profileImage": "images/wooyong_non_color.jpeg",
     "resume": "#",
-    "description": "데이터 수집·정제·적재 파이프라인을 직접 구축합니다."
+    "description": "분석에서 파이프라인, RAG까지 데이터를 끝까지 책임집니다."
   },
   "hero": {
     "line1": "안녕하세요,",
@@ -15,7 +15,7 @@
     "name": "이우용",
     "ending": "입니다.",
     "subtitle": "데이터 엔지니어",
-    "description": "데이터로 문제를 정의하고 파이프라인으로 해결합니다",
+    "description": "분석에서 파이프라인, RAG까지 — 데이터를 끝까지 책임집니다",
     "ctaText": "더 알아보기",
     "ctaLink": "#about"
   },
@@ -23,9 +23,10 @@
     "title": "소개",
     "description": "",
     "details": [
-      "변화와 새로운 시도를 두려워하지 않고, 더 나은 방향이 있다면 과감하게 고치고 다시 빌딩합니다.",
-      "<strong>IT기획·운영과 데이터 분석 분야에서 5년간</strong> 근무하며 <strong>자금세탁방지(AML/CTF) 시스템</strong>의 대용량 데이터 분석과 룰 설계를 담당했습니다.",
-      "데이터 분석 업무를 진행할 땐 SQL 로직을 만들어 개발팀에 넘겼지만, 지금은 <strong>수집·정제·적재를 맡아 자동화 파이프라인을 구축하는 데이터 엔지니어</strong>로 일하고 있습니다."
+      "변화를 두려워하지 않고, 더 나은 방향이 있으면 과감히 고치고 다시 만듭니다.",
+      "가상자산 거래소에서 <strong>하루 1억 건이 넘는 거래 데이터를 5년간 분석</strong>하며 이상거래 탐지 룰을 설계했고, 금융정보분석원 종합검사를 지적 없이 통과했습니다.",
+      "지금은 <strong>BRFrame에서 LG전자 글로벌 AI 챗봇(Q봇)의 데이터 파이프라인</strong>을 맡아, 수동 배치를 <strong>Airflow 24개 태스크로 자동화</strong>하고 문서 인식이 놓친 순서도를 <strong>GPT Vision으로 다시 만들어</strong> 검색 품질을 끌어올렸습니다.",
+      "분석으로 문제를 정의하고, 파이프라인으로 만들고, RAG로 쓰이게 하는 것 — <strong>데이터를 만드는 것부터 쓰이는 것까지 끝까지 책임지는 일</strong>을 합니다."
     ],
     "resumeText": "이력서 보기",
     "resumeLink": "https://drive.google.com/file/d/1FEY0vr-Ydp3S_AoQOtLuYxL9jSjfRr1l/view?usp=sharing",
@@ -40,22 +41,30 @@
         "skills": ["Python", "SQL", "Java", "JavaScript"]
       },
       {
-        "name": "Frameworks",
-        "skills": ["FastAPI", "REST API", "LangChain", "Spring Boot", "XGBoost"]
+        "name": "AI & Frameworks",
+        "skills": ["FastAPI", "LangChain", "RAG", "Azure OpenAI", "Claude Code", "XGBoost"]
       },
       {
         "name": "Database",
-        "skills": ["MySQL", "PostgreSQL", "ChromaDB", "Redis", "Oracle"]
+        "skills": ["MySQL", "PostgreSQL·pgvector", "ChromaDB", "Redis", "Oracle"]
       },
       {
         "name": "Infra & DevOps",
-        "skills": ["Azure", "Airflow", "Kubernetes (AKS)", "Docker", "Linux", "AWS", "Git"]
+        "skills": ["Airflow", "Kubernetes (AKS)", "Azure AI Search", "Document Intelligence", "Docker", "AWS", "Git"]
       }
     ]
   },
   "projects": {
     "title": "프로젝트",
     "items": [
+      {
+        "title": "LG전자 글로벌 Q봇 RAG 데이터 파이프라인",
+        "description": "영국·프랑스·베트남 등 다국가 LG 공식 사이트에 서비스되는 고객지원 RAG 챗봇 | 수동 배치→Airflow 24태스크 전처리 자동화 · DI 한계를 GPT Vision으로 보완 · Azure AI Search 인덱싱",
+        "image": "images/lg_qbot.svg",
+        "websiteLink": "https://www.lg.com/uk",
+        "locked": "🔒 사내 프로젝트 (코드 비공개)",
+        "tags": ["Airflow", "RAG", "Azure"]
+      },
       {
         "title": "Shannon's Demon 자동매매·시계열 파이프라인",
         "description": "실자본 멀티브로커 자동매매 | 코인 1분봉 9년+·해외주식 시계열 ~90GB 단독 구축 | TDD·통계검증·자가복구",
@@ -73,24 +82,6 @@
         "websiteLink": "https://www.jober-1team.com/agent",
         "videoLink": "https://drive.google.com/file/d/1EJB_CIkWzJ1AeI4oHFpssdJiRmuqeHKY/view?usp=sharing",
         "tags": ["Spring Boot", "LangChain", "RAG"]
-      },
-      {
-        "title": "Bitcoin AI 챗봇",
-        "description": "LangChain + RAG | Redis 캐싱 시스템 | Plotly 실시간 차트",
-        "image": "images/Bitcoin_AI.png",
-        "link": "https://github.com/dev365code/backend12/tree/main/Langchain_Bitcoin",
-        "pptLink": "https://drive.google.com/file/d/18KXTrR-9XVQ8wJ2bxSK_x5u4Dal7Tt3Z/view?usp=sharing",
-        "videoLink": "https://drive.google.com/file/d/16RCjSar7jvvqp91uYT6RmNLzS69ywC_U/view?usp=sharing",
-        "tags": ["Python", "FastAPI", "Redis"]
-      },
-      {
-        "title": "축구 용품 쇼핑몰",
-        "description": "Spring MVC 기반 풀스택 프로젝트 | 세션 인증 시스템",
-        "image": "images/soccer_main.png",
-        "link": "https://github.com/dev365code/backend12/tree/main/Toy_Project1-2-3",
-        "pptLink": "https://drive.google.com/file/d/1IqfeCILcyuRggMAUDG4if65zHL9yMPNv/view?usp=sharing",
-        "videoLink": "https://drive.google.com/file/d/1vzmRoigzfTrRC_vE0OyMvPgxRQc-scMu/view?usp=sharing",
-        "tags": ["Spring MVC", "MyBatis", "MySQL"]
       }
     ]
   },
@@ -127,14 +118,14 @@
     "website": "#"
   },
   "footer": {
-    "copyright": "© 2025 - Coded by",
+    "copyright": "© 2026 - Coded by",
     "author": "Wooyong Lee",
     "authorLink": "https://github.com/dev365code"
   },
   "meta": {
     "title": "This Is Me - 이우용 포트폴리오",
-    "description": "데이터 수집·정제·적재 파이프라인과 RAG·시계열 인프라를 직접 구축하는 데이터 엔지니어 이우용입니다.",
-    "keywords": "데이터 엔지니어, 데이터 분석, Python, SQL, ETL, Airflow, RAG, 포트폴리오, 이우용",
+    "description": "LG전자 글로벌 AI 챗봇의 RAG 데이터 파이프라인을 구축·운영하는 데이터 엔지니어 이우용. 5년 대용량 데이터 분석 기반.",
+    "keywords": "데이터 엔지니어, 데이터 분석, LG전자, RAG, Airflow, Azure, Python, SQL, ETL, GPT Vision, 포트폴리오, 이우용",
     "favicon": "favicon.png"
   },
   "ui": {

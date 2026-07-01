@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1e"/><stop offset="0.55" stop-color="#0d1b2a"/><stop offset="1" stop-color="#070b16"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.18"/><stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fg" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#2dd4bf"/>
+    </marker>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#glow)"/>
+
+  <text x="62" y="86" fill="#2dd4bf" font-size="40" font-weight="700" filter="url(#fg)">RAG</text>
+  <text x="64" y="112" fill="#7dd3fc" font-size="14" letter-spacing="3" opacity="0.85">RETRIEVAL-AUGMENTED PIPELINE</text>
+
+  <g filter="url(#fg)" opacity="0.9">
+    <circle cx="692" cy="90" r="40" fill="none" stroke="#22d3ee" stroke-width="1.4" opacity="0.7"/>
+    <ellipse cx="692" cy="90" rx="40" ry="15" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+    <ellipse cx="692" cy="90" rx="15" ry="40" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+    <line x1="652" y1="90" x2="732" y2="90" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+    <circle cx="676" cy="73" r="3" fill="#2dd4bf"/><circle cx="706" cy="80" r="3" fill="#2dd4bf"/>
+    <circle cx="702" cy="105" r="3" fill="#2dd4bf"/><circle cx="672" cy="101" r="3" fill="#2dd4bf"/>
+  </g>
+  <text x="602" y="156" fill="#64748b" font-size="12" letter-spacing="2">UK · FR · ES · EG · VN · KR</text>
+
+  <g>
+    <line x1="150" y1="250" x2="198" y2="250" stroke="#2dd4bf" stroke-width="2" marker-end="url(#arw)" opacity="0.85"/>
+    <line x1="300" y1="250" x2="348" y2="250" stroke="#2dd4bf" stroke-width="2" marker-end="url(#arw)" opacity="0.85"/>
+    <line x1="450" y1="250" x2="498" y2="250" stroke="#2dd4bf" stroke-width="2" marker-end="url(#arw)" opacity="0.85"/>
+    <line x1="600" y1="250" x2="630" y2="250" stroke="#2dd4bf" stroke-width="2" marker-end="url(#arw)" opacity="0.85"/>
+  </g>
+  <g font-size="15" font-weight="600" fill="#e2e8f0">
+    <rect x="56" y="224" width="94" height="52" rx="8" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="103" y="255" text-anchor="middle">Manuals</text>
+    <rect x="206" y="224" width="94" height="52" rx="8" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="253" y="255" text-anchor="middle">Vision·OCR</text>
+    <rect x="356" y="224" width="94" height="52" rx="8" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="403" y="255" text-anchor="middle">Embed</text>
+    <rect x="506" y="224" width="94" height="52" rx="8" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="553" y="255" text-anchor="middle">Search</text>
+  </g>
+  <g filter="url(#fg)">
+    <rect x="638" y="220" width="104" height="60" rx="14" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.8"/>
+    <path d="M656,280 l0,16 l16,-16 z" fill="#0d1b2a" stroke="#2dd4bf" stroke-width="1.8"/>
+    <circle cx="670" cy="250" r="4" fill="#2dd4bf"/><circle cx="690" cy="250" r="4" fill="#7dd3fc"/><circle cx="710" cy="250" r="4" fill="#22d3ee"/>
+  </g>
+
+  <text x="62" y="452" fill="#e2e8f0" font-size="22" font-weight="600">LG Q-bot</text>
+  <text x="64" y="476" fill="#64748b" font-size="13" letter-spacing="2">GLOBAL CUSTOMER-SUPPORT RAG · AIRFLOW PIPELINE</text>
+</svg>
