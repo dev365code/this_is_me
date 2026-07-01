@@ -7,7 +7,7 @@
     "location": "Seoul, South Korea",
     "profileImage": "images/wooyong_non_color.jpeg",
     "resume": "#",
-    "description": "From analysis to pipelines to RAG — I own data end to end."
+    "description": "From analysis to pipelines to RAG, I own data end to end."
   },
   "hero": {
     "line1": "Hi, I'm",
@@ -15,7 +15,7 @@
     "name": "Wooyong Lee",
     "ending": "",
     "subtitle": "Data Engineer",
-    "description": "From analysis to pipelines to RAG — owning data end to end",
+    "description": "From analysis to pipelines to RAG, owning data end to end",
     "ctaText": "Know more",
     "ctaLink": "#about"
   },
@@ -23,10 +23,10 @@
     "title": "About Me",
     "description": "",
     "details": [
-      "I embrace change—when there's a better way, I don't hesitate to refactor and rebuild.",
+      "I embrace change. When there's a better way, I don't hesitate to refactor and rebuild.",
       "For 5 years I <strong>analyzed 100M+ daily transaction records</strong> at crypto exchanges, designing anomaly-detection rules and passing Korea's FIU on-site audit with zero findings.",
-      "Now at <strong>BRFrame, I own the data pipeline for LG Electronics' global AI chatbot (Q-bot)</strong> — automating manual batches into a <strong>24-task Airflow pipeline</strong> and <strong>regenerating flowcharts the OCR missed with GPT Vision</strong> to lift retrieval quality.",
-      "Defining problems through analysis, building them into pipelines, making them usable through RAG — <strong>I own data end to end, from creation to use.</strong>"
+      "I built the data pipeline for <strong>LG Electronics' global AI chatbot (Q-bot)</strong>, automating manual batches into a <strong>24-task Airflow pipeline</strong> and <strong>regenerating flowcharts the OCR missed with GPT Vision</strong> to lift retrieval quality.",
+      "Defining problems through analysis, building them into pipelines, making them usable through RAG. <strong>I own data end to end, from creation to use.</strong>"
     ],
     "resumeText": "View Resume",
     "resumeLink": "https://drive.google.com/file/d/1FEY0vr-Ydp3S_AoQOtLuYxL9jSjfRr1l/view?usp=sharing",
@@ -58,7 +58,7 @@
     "title": "Projects",
     "items": [
       {
-        "title": "LG Electronics Global Q-bot — RAG Data Pipeline",
+        "title": "LG Electronics Global Q-bot RAG Data Pipeline",
         "description": "Customer-support RAG chatbot live on LG's official sites across the UK, France, Vietnam and more | Manual batches → 24-task Airflow preprocessing · GPT Vision to overcome Document Intelligence limits · Azure AI Search indexing",
         "image": "images/lg_qbot.svg",
         "websiteLink": "https://www.lg.com/uk",
@@ -124,7 +124,7 @@
   },
   "meta": {
     "title": "This Is Me - Wooyong Lee Portfolio",
-    "description": "Wooyong Lee — data engineer building and operating the RAG data pipeline for LG Electronics' global AI chatbot, backed by 5 years of large-scale data analysis.",
+    "description": "Wooyong Lee is a data engineer building and operating the RAG data pipeline for LG Electronics' global AI chatbot, backed by 5 years of large-scale data analysis.",
     "keywords": "Data Engineer, Data Analysis, LG Electronics, RAG, Airflow, Azure, Python, SQL, ETL, GPT Vision, Portfolio, Wooyong Lee",
     "favicon": "favicon.png"
   },
